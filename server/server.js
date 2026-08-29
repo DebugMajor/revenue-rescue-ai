@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import Event from "./models/Event.js";
+import analyzeEvent from "./services/analysisService.js";
 
 dotenv.config();
 
@@ -26,10 +27,12 @@ app.post("/events", async (req, res) => {
   try {
     const newEntry = new Event(req.body);
     await newEntry.save();
+    const analysis = await analyzeEvent(newEntry);
     res.json({
       status: "OK",
       message: "New tranasction saved",
-      event: newEntry
+      event: newEntry,
+      analysis
     });
   }
   catch (error) {
