@@ -33,10 +33,26 @@ app.post("/events", async (req, res) => {
     });
   }
   catch (error) {
-    res.status(400).json({
-      status: "ERROR",
-      message: error
-    })
+    if (error.name === "ValidationError") {
+      res.status(400).json({
+        status: "ERROR",
+        message: error.message
+      })
+    }
+    else if (error.code === 11000) {
+      res.status(409).json({
+        status: "ERROR",
+        message: error.message
+      })
+    }
+    else {
+      res.status(500).json({
+        status: "ERROR",
+        message: error
+      })
+
+    }
+
 
   }
 
