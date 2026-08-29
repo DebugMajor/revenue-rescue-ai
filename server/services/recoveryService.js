@@ -19,6 +19,21 @@ const executeRecovery = async (event, analysis) => {
         outcome: "PENDING"
     });
     const savedAttempt = await newAttempt.save();
+    //Retry logic
+    if (analysis.recommendation === "RETRY_NOW") {
+
+        if (event.errorCode === "NETWORK_ERROR") {
+            savedAttempt.outcome = "RECOVERED";
+            savedAttempt.outcomeDetails =
+                "Payment retry succeeded after the temporary network failure.";
+        }
+        else {
+            savedAttempt.outcome = "FAILED";
+            savedAttempt.outcomeDetails =
+                "Payment retry did not resolve the payment failure.";
+        }
+        await savedAttempt.save();
+    }
     return savedAttempt;
 };
 
