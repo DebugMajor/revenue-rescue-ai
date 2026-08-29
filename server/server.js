@@ -4,7 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import Event from "./models/Event.js";
 import analyzeEvent from "./services/analysisService.js";
-
+import executeRecovery from "./services/recoveryService.js";
 dotenv.config();
 
 const app = express();
@@ -28,11 +28,16 @@ app.post("/events", async (req, res) => {
     const newEntry = new Event(req.body);
     await newEntry.save();
     const analysis = await analyzeEvent(newEntry);
+    let recoveryAttempt;
+    if (analysis) {
+      recoveryAttempt = await executeRecovery(newEntry, analysis);
+    }
     res.json({
       status: "OK",
       message: "New tranasction saved",
       event: newEntry,
-      analysis
+      analysis,
+      recoveryAttempt
     });
   }
   catch (error) {
