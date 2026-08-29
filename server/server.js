@@ -48,14 +48,52 @@ app.post("/events", async (req, res) => {
     else {
       res.status(500).json({
         status: "ERROR",
-        message: error
+        message: error.message
       })
-
     }
-
-
   }
+})
 
+//Get events
+app.get("/events", async (req, res) => {
+  try {
+    const events = await Event.find();
+    res.json({
+      status: "OK",
+      events
+    })
+  }
+  catch (error) {
+    res.status(500).json({
+      message: error.message
+    })
+  }
+})
+
+//Get specific event
+app.get("/events/:eventId", async (req, res) => {
+  try {
+    const event = await Event.findOne({ eventId: req.params.eventId });
+    if (event === null) {
+      res.status(404).json({
+        status: "ERROR",
+        message: "No entry found!"
+
+      })
+    }
+    else {
+      res.json({
+        status: "OK",
+        event
+      })
+    }
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    })
+  }
 })
 
 
