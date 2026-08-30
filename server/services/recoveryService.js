@@ -1,4 +1,5 @@
 import RecoveryAttempt from "../models/RecoveryAttempt.js";
+import Event from "../models/Event.js";
 
 const executeRecovery = async (event, analysis) => {
 
@@ -26,11 +27,19 @@ const executeRecovery = async (event, analysis) => {
             savedAttempt.outcome = "RECOVERED";
             savedAttempt.outcomeDetails =
                 "Payment retry succeeded after the temporary network failure.";
+            await Event.findOneAndUpdate(
+                { id: event._id },
+                { status: "RECOVERED" }
+            );
         }
         else {
             savedAttempt.outcome = "FAILED";
             savedAttempt.outcomeDetails =
                 "Payment retry did not resolve the payment failure.";
+            await Event.findOneAndUpdate(
+                { id: event._id },
+                { status: "FAILED" }
+            );
         }
         await savedAttempt.save();
     }
