@@ -1,6 +1,6 @@
 import Analysis from "../models/RecoveryAnalysis.js";
 
-const analyzeEvent = async (event) => {
+const analyzeEvent = async (event, context, risk) => {
     if (event.status !== "FAILED") {
         return;
     }
