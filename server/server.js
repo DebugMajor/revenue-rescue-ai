@@ -3,8 +3,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import Event from "./models/Event.js";
-import analyzeEvent from "./services/analysisService.js";
-import executeRecovery from "./services/recoveryService.js";
+import processEvent from "./services/processEvent.js";
+
 dotenv.config();
 
 const app = express();
@@ -21,46 +21,37 @@ app.get("/health", (req, res) => {
   });
 });
 
-
-//Post route for accepting the tranx req
-app.post("/events", async (req, res) => {
+//Process Events 
+app.post("/events/process", async (req, res) => {
   try {
-    const newEntry = new Event(req.body);
-    await newEntry.save();
-    const analysis = await analyzeEvent(newEntry);
-    let recoveryAttempt;
-    if (analysis) {
-      recoveryAttempt = await executeRecovery(newEntry, analysis);
-    }
+    const result = await processEvent(req.body);
+
     res.json({
       status: "OK",
-      message: "New tranasction saved",
-      event: newEntry,
-      analysis,
-      recoveryAttempt
+      ...result
     });
   }
   catch (error) {
     if (error.name === "ValidationError") {
-      res.status(400).json({
+      return res.status(400).json({
         status: "ERROR",
         message: error.message
-      })
+      });
     }
-    else if (error.code === 11000) {
-      res.status(409).json({
+
+    if (error.code === 11000) {
+      return res.status(409).json({
         status: "ERROR",
         message: error.message
-      })
+      });
     }
-    else {
-      res.status(500).json({
-        status: "ERROR",
-        message: error.message
-      })
-    }
+
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
   }
-})
+});
 
 //Get events
 app.get("/events", async (req, res) => {

@@ -4,7 +4,6 @@ import { calculateRiskScore } from "./riskScore.js";
 import analyzeEvent from "./analysisService.js";
 import evaluatePolicy from "./policyService.js";
 import executeRecovery from "./recoveryService.js";
-
 const processEvent = async (eventData) => {
     const newEvent = new Event(eventData);
     await newEvent.save();
@@ -13,6 +12,14 @@ const processEvent = async (eventData) => {
         newEvent.customerId,
         newEvent._id
     );
+
+    // Non-failed events don't need recovery analysis
+    if (newEvent.status !== "FAILED") {
+        return {
+            event: newEvent,
+            context
+        };
+    }
 
     const risk = calculateRiskScore(
         context.successfulPayments,
@@ -44,9 +51,10 @@ const processEvent = async (eventData) => {
             analysis
         );
     }
+    const finalEvent = await Event.findById(newEvent._id);
 
     return {
-        event: newEvent,
+        event: finalEvent,
         context,
         risk,
         analysis,
@@ -54,5 +62,4 @@ const processEvent = async (eventData) => {
         recoveryAttempt
     };
 };
-
 export default processEvent;
