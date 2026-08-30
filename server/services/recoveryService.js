@@ -28,7 +28,7 @@ const executeRecovery = async (event, analysis) => {
             savedAttempt.outcomeDetails =
                 "Payment retry succeeded after the temporary network failure.";
             await Event.findOneAndUpdate(
-                { id: event._id },
+                { _id: event._id },
                 { status: "RECOVERED" }
             );
         }
@@ -37,7 +37,7 @@ const executeRecovery = async (event, analysis) => {
             savedAttempt.outcomeDetails =
                 "Payment retry did not resolve the payment failure.";
             await Event.findOneAndUpdate(
-                { id: event._id },
+                { _id: event._id },
                 { status: "FAILED" }
             );
         }

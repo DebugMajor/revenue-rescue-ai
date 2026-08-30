@@ -20,19 +20,19 @@ const analyzeEvent = async (event) => {
     //Dealing with vairous errors
     if (event.errorCode === "NETWORK_ERROR") {
         recommendation = "RETRY_NOW";
-        confidence = 80;
+        confidence = 0.80;
         analysisSummary = "Payment failed due to a network-related error.";
         reasoning = "Network failures are often temporary, so retrying the payment may succeed.";
     }
     else if (event.errorCode === "INSUFFICIENT_FUNDS") {
         recommendation = "SEND_PAYMENT_LINK";
-        confidence = 70;
+        confidence = 0.70;
         analysisSummary = "Payment failed because the customer has insufficient funds.";
         reasoning = "An immediate retry is unlikely to succeed, so providing an alternative payment option may improve the recovery chance.";
     }
     else {
         recommendation = "HUMAN_REVIEW";
-        confidence = 40;
+        confidence = 0.40;
         analysisSummary = "The payment failed with an error that is not handled by the current recovery rules.";
         reasoning = "The system does not have enough predefined information to safely select an automated recovery action, so human review is required.";
     }
