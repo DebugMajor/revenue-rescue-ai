@@ -5,7 +5,8 @@ import getCustomerHistory from "./services/contextService.js";
 import { calculateRiskScore } from "./services/riskScore.js";
 import {
     getRecoveryRecommendation,
-    validateGeminiResult
+    validateGeminiResult,
+    isRetryableGeminiError
 } from "./services/ai/geminiService.js";
 
 dotenv.config();
@@ -122,6 +123,56 @@ const test = async () => {
     } catch (error) {
         console.log("❌ Test 5 failed:", error.message);
     }
+
+    // =========================
+    // TEST 6 — RETRYABLE ERRORS
+    // =========================
+
+    console.log("\n===== TEST 6: RETRYABLE GEMINI ERRORS =====");
+
+    const error503 = new Error("Service unavailable");
+    error503.status = 503;
+
+    const error429 = new Error("Rate limited");
+    error429.status = 429;
+
+    const timeoutError = new DOMException(
+        "The operation was aborted",
+        "AbortError"
+    );
+
+    console.log(
+        isRetryableGeminiError(error503)
+            ? "✅ 503 is retryable"
+            : "❌ 503 should be retryable"
+    );
+
+    console.log(
+        isRetryableGeminiError(error429)
+            ? "✅ 429 is retryable"
+            : "❌ 429 should be retryable"
+    );
+
+    console.log(
+        isRetryableGeminiError(timeoutError)
+            ? "✅ Timeout is retryable"
+            : "❌ Timeout should be retryable"
+    );
+
+    // =========================
+    // TEST 7 — NON-RETRYABLE ERROR
+    // =========================
+
+    console.log("\n===== TEST 7: NON-RETRYABLE ERROR =====");
+
+    const authError = new Error("Invalid API key");
+    authError.status = 401;
+
+    console.log(
+        !isRetryableGeminiError(authError)
+            ? "✅ 401 is not retryable"
+            : "❌ 401 should not be retryable"
+    );
 };
 
 test().catch((error) => {

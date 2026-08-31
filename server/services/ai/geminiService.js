@@ -7,8 +7,13 @@ import {
     isValidConfidence
 } from "./aiConstants.js";
 
+const GEMINI_TIMEOUT_MS = 10000;
+
 const ai = new GoogleGenAI({
-    apiKey: process.env.GEMINI_API_KEY
+    apiKey: process.env.GEMINI_API_KEY,
+    httpOptions: {
+        timeout: GEMINI_TIMEOUT_MS
+    }
 });
 
 // Validation
@@ -29,11 +34,21 @@ const validateGeminiResult = (result) => {
     }
 
     if (
-        typeof result.analysisSummary !== "string" || result.analysisSummary.trim().length === 0) {
-        throw new Error("Invalid analysis summary returned by GEMINI.");
+        typeof result.analysisSummary !== "string" ||
+        result.analysisSummary.trim().length === 0
+    ) {
+        throw new Error("Invalid analysis summary returned by Gemini.");
     }
 
     return result;
+};
+
+const isRetryableGeminiError = (error) => {
+    return (
+        error.status === 503 ||
+        error.status === 429 ||
+        error.name === "AbortError"
+    );
 };
 
 const getRecoveryRecommendation = async (event, context, risk) => {
@@ -95,45 +110,62 @@ IMPORTANT CONSTRAINTS:
 INPUT DATA:
 ${JSON.stringify(input, null, 2)}
 `;
-    const response = await ai.models.generateContent({
-        model: "gemini-3.6-flash",
-        contents: prompt,
-        config: {
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: "object",
-                properties: {
-                    recommendation: {
-                        type: "string",
-                        enum: ALLOWED_RECOMMENDATIONS
-                    },
-                    confidence: {
-                        type: "number"
-                    },
-                    reasoning: {
-                        type: "string"
-                    },
-                    analysisSummary: {
-                        type: "string"
-                    }
 
-                },
-                required: [
-                    "recommendation",
-                    "confidence",
-                    "reasoning",
-                    "analysisSummary"
-                ]
+    try {
+        const response = await ai.models.generateContent({
+            model: "gemini-3.6-flash",
+            contents: prompt,
+            config: {
+                responseMimeType: "application/json",
+                responseSchema: {
+                    type: "object",
+                    properties: {
+                        recommendation: {
+                            type: "string",
+                            enum: ALLOWED_RECOMMENDATIONS
+                        },
+                        confidence: {
+                            type: "number"
+                        },
+                        reasoning: {
+                            type: "string"
+                        },
+                        analysisSummary: {
+                            type: "string"
+                        }
+                    },
+                    required: [
+                        "recommendation",
+                        "confidence",
+                        "reasoning",
+                        "analysisSummary"
+                    ]
+                }
             }
-        }
-    });
+        });
 
-    const result = JSON.parse(response.text);
+        const result = JSON.parse(response.text);
 
-    return validateGeminiResult(result);
+        return validateGeminiResult(result);
+
+    } catch (error) {
+
+        console.log("Error constructor:", error?.constructor?.name);
+        console.log("Error name:", error?.name);
+        console.log("Error status:", error?.status);
+        console.log("Error code:", error?.code);
+        console.log("Error message:", error?.message);
+
+        // console.log("Gemini error type:", error?.constructor?.name);
+        // console.log("Gemini error status:", error?.status);
+        // console.log("Gemini error message:", error?.message);
+
+        throw error;
+    }
 };
 
 export {
     getRecoveryRecommendation,
-    validateGeminiResult
+    validateGeminiResult,
+    isRetryableGeminiError
 };
