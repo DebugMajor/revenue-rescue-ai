@@ -61,21 +61,12 @@ const executeRecovery = async (event, analysis) => {
 
     // WAIT_AND_RETRY
     else if (analysis.recommendation === "WAIT_AND_RETRY") {
-        if (event.errorCode === "NETWORK_ERROR") {
-            await finalizeAttempt(
-                event,
-                savedAttempt,
-                "RECOVERED",
-                "Delayed payment retry succeeded after the temporary network failure."
-            );
-        } else {
-            await finalizeAttempt(
-                event,
-                savedAttempt,
-                "FAILED",
-                "Delayed payment retry did not resolve the payment failure."
-            );
-        }
+        await finalizeAttempt(
+            event,
+            savedAttempt,
+            "PENDING",
+            "Payment retry scheduled; awaiting deferred retry."
+        );
     }
 
     // SEND_PAYMENT_LINK

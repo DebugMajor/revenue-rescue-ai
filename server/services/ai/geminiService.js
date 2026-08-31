@@ -7,7 +7,7 @@ import {
     isValidConfidence
 } from "./aiConstants.js";
 
-const GEMINI_TIMEOUT_MS = 10000;
+const GEMINI_TIMEOUT_MS = 30000;
 
 const ai = new GoogleGenAI({
     apiKey: process.env.GEMINI_API_KEY,
@@ -45,8 +45,9 @@ const validateGeminiResult = (result) => {
 
 const isRetryableGeminiError = (error) => {
     return (
-        error.status === 503 ||
         error.status === 429 ||
+        error.status === 503 ||
+        error.status === 504 ||
         error.name === "AbortError"
     );
 };
