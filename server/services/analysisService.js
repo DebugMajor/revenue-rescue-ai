@@ -17,7 +17,8 @@ const analyzeEvent = async (event, analysisResult) => {
         analysisSummary: analysisResult.analysisSummary,
         recommendation: analysisResult.recommendation,
         confidence: analysisResult.confidence,
-        reasoning: analysisResult.reasoning
+        reasoning: analysisResult.reasoning,
+        source: analysisResult.source
     });
 
     const savedAnalysis = await newAnalysis.save();

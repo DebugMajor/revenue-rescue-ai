@@ -7,7 +7,7 @@ const deterministicAnalysisService = (event) => {
     let confidence;
     let analysisSummary;
     let reasoning;
-
+    const source = "DETERMINISTIC_FALLBACK";
     // if else rules
 
     if (event.errorCode === "NETWORK_ERROR") {
@@ -34,7 +34,8 @@ const deterministicAnalysisService = (event) => {
         analysisSummary,
         recommendation,
         confidence,
-        reasoning
+        reasoning,
+        source
     };
 };
 

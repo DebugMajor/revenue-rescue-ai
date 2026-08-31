@@ -7,7 +7,9 @@ import executeRecovery from "./recoveryService.js";
 import { getRecoveryRecommendation } from "./ai/geminiService.js";
 import deterministicAnalysisService from "./deterministicAnalysisServices.js";
 
-const processEvent = async (eventData) => {
+const processEvent = async (eventData,
+    analysisProvider = getRecoveryRecommendation
+) => {
     const newEvent = new Event(eventData);
     await newEvent.save();
 
@@ -33,11 +35,11 @@ const processEvent = async (eventData) => {
 
     let analysisResult;
     try {
-        analysisResult = await getRecoveryRecommendation(
-                newEvent,
-                context,
-                risk
-            );
+        analysisResult = await analysisProvider(
+            newEvent,
+            context,
+            risk
+        );
     }
     catch (error) {
         analysisResult = deterministicAnalysisService(newEvent);

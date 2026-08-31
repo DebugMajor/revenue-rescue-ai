@@ -146,8 +146,11 @@ ${JSON.stringify(input, null, 2)}
         });
 
         const result = JSON.parse(response.text);
-
-        return validateGeminiResult(result);
+        const validatedResult = validateGeminiResult(result)
+        return {
+            ...validatedResult,
+            source: "GEMINI"
+        }
 
     } catch (error) {
 

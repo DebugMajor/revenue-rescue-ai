@@ -38,6 +38,14 @@ const analysisSchema = new mongoose.Schema(
         reasoning: {
             type: String,
             required: true
+        },
+        source: {
+            type: String,
+            num: [
+                "GEMINI",
+                "DETERMINISTIC_FALLBACK"
+            ],
+            required: true
         }
     },
     {
