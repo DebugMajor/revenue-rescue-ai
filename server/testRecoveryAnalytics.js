@@ -4,26 +4,39 @@ dotenv.config();
 import mongoose from "mongoose";
 
 import connectDB from "./config/db.js";
+
 import Event from "./models/Event.js";
 import RecoveryAnalysis from "./models/RecoveryAnalysis.js";
 import RecoveryAttempt from "./models/RecoveryAttempt.js";
 
-import getRecoveryRate from "./services/recoveryAnalyticsService.js";
+import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
 
-const test = async () => {
+const {
+    getRecoveryRate,
+    getHistoricalRecoveryProbability,
+    getExpectedRecoveryValue
+} = recoveryAnalyticsService;
+
+
+const runTests = async () => {
+
     await connectDB();
 
+    const timestamp = Date.now();
+
     const testEventIds = [];
+    const testAnalysisIds = [];
     const testAttemptIds = [];
 
     try {
+
         console.log("==================================================");
-        console.log("RECOVERY RATE ANALYTICS TEST");
+        console.log("RUNNING RECOVERY ANALYTICS TESTS");
         console.log("==================================================");
 
-        // -------------------------------------------------
-        // Create temporary test events
-        // -------------------------------------------------
+        // ==================================================
+        // SETUP CONTROLLED TEST DATA
+        // ==================================================
 
         const outcomes = [
             "RECOVERED",
@@ -35,10 +48,10 @@ const test = async () => {
         for (let i = 0; i < outcomes.length; i++) {
 
             const event = await Event.create({
-                eventId: `TEST_ANALYTICS_EVENT_${Date.now()}_${i}`,
+                eventId: `TEST_ANALYTICS_EVENT_${timestamp}_${i}`,
                 eventType: "PAYMENT_FAILURE",
-                customerId: `TEST_ANALYTICS_CUSTOMER_${Date.now()}_${i}`,
-                paymentAmount: 1000,
+                customerId: `TEST_ANALYTICS_CUSTOMER_${timestamp}_${i}`,
+                paymentAmount: 5000,
                 status: "FAILED",
                 errorCode: "NETWORK_ERROR",
                 attemptNumber: 1,
@@ -47,16 +60,17 @@ const test = async () => {
 
             testEventIds.push(event._id);
 
-            // RecoveryAnalysis reference required by schema
             const analysis = await RecoveryAnalysis.create({
                 event: event._id,
                 analysisNumber: 1,
-                analysisSummary: "Analytics test analysis.",
+                analysisSummary: "Recovery analytics test.",
                 recommendation: "RETRY_NOW",
                 confidence: 0.8,
-                reasoning: "Analytics test reasoning.",
+                reasoning: "Recovery analytics test.",
                 source: "DETERMINISTIC_FALLBACK"
             });
+
+            testAnalysisIds.push(analysis._id);
 
             const attempt = await RecoveryAttempt.create({
                 event: event._id,
@@ -71,104 +85,172 @@ const test = async () => {
         }
 
         console.log("\n[SETUP]");
-        console.log("Created test outcomes:");
         console.log("RECOVERED: 2");
         console.log("FAILED: 1");
         console.log("PENDING: 1");
 
-        // -------------------------------------------------
-        // Run Recovery Rate
-        // -------------------------------------------------
 
-        const result = await getRecoveryRate(testEventIds);
+        // ==================================================
+        // TEST 1 — RECOVERY RATE
+        // ==================================================
 
-        console.log("\n[RESULT]");
-        console.log(result);
+        console.log("\n===== TEST 1: RECOVERY RATE =====");
 
-        // -------------------------------------------------
-        // Assertions
-        // -------------------------------------------------
+        const recoveryRateResult =
+            await getRecoveryRate(testEventIds);
 
-        if (result.recoveredAttempts !== 2) {
+        console.log(recoveryRateResult);
+
+        if (recoveryRateResult.recoveredAttempts !== 2) {
             throw new Error(
-                `Expected 2 recovered attempts, got ${result.recoveredAttempts}`
+                `Expected 2 recovered attempts, got ${recoveryRateResult.recoveredAttempts}`
             );
         }
 
-        if (result.failedAttempts !== 1) {
+        if (recoveryRateResult.failedAttempts !== 1) {
             throw new Error(
-                `Expected 1 failed attempt, got ${result.failedAttempts}`
+                `Expected 1 failed attempt, got ${recoveryRateResult.failedAttempts}`
             );
         }
 
-        if (result.recoveryRate !== 2 / 3) {
+        if (recoveryRateResult.recoveryRate !== 2 / 3) {
             throw new Error(
-                `Expected recovery rate ${2 / 3}, got ${result.recoveryRate}`
+                `Expected recovery rate ${2 / 3}, got ${recoveryRateResult.recoveryRate}`
             );
         }
 
-        /*
-         * IMPORTANT:
-         * getRecoveryRate() currently aggregates the entire database,
-         * so these assertions only verify that our test records were
-         * included and PENDING was excluded.
-         *
-         * The exact 2/3 value will only be possible after the analytics
-         * function supports filtering by test batch / event IDs.
-         */
-        const expectedTestRate = 2 / 3;
+        console.log("✅ Recovery Rate test passed.");
 
-        console.log("\n[EXPECTED TEST DATA RATE]");
-        console.log(expectedTestRate);
 
-        console.log("\n[NOTE]");
+        // ==================================================
+        // TEST 2 — HISTORICAL RECOVERY PROBABILITY
+        // ==================================================
+
         console.log(
-            "The current analytics function reads all RecoveryAttempt documents."
-        );
-        console.log(
-            "Therefore the returned overall rate may include existing data."
+            "\n===== TEST 2: HISTORICAL RECOVERY PROBABILITY ====="
         );
 
-        console.log("\n>>> RECOVERY RATE TEST PASSED <<<");
+        const probabilityResult =
+            await getHistoricalRecoveryProbability(
+                "RETRY_NOW",
+                "NETWORK_ERROR",
+                testEventIds
+            );
+
+        console.log(probabilityResult);
+
+        if (probabilityResult.recoveredAttempts !== 2) {
+            throw new Error(
+                `Expected 2 recovered attempts, got ${probabilityResult.recoveredAttempts}`
+            );
+        }
+
+        if (probabilityResult.failedAttempts !== 1) {
+            throw new Error(
+                `Expected 1 failed attempt, got ${probabilityResult.failedAttempts}`
+            );
+        }
+
+        if (probabilityResult.completedAttempts !== 3) {
+            throw new Error(
+                `Expected 3 completed attempts, got ${probabilityResult.completedAttempts}`
+            );
+        }
+
+        if (probabilityResult.recoveryProbability !== 2 / 3) {
+            throw new Error(
+                `Expected recovery probability ${2 / 3}, got ${probabilityResult.recoveryProbability}`
+            );
+        }
+
+        console.log(
+            "✅ Historical recovery probability test passed."
+        );
+
+
+        // ==================================================
+        // TEST 3 — EXPECTED RECOVERY VALUE
+        // ==================================================
+
+        console.log(
+            "\n===== TEST 3: EXPECTED RECOVERY VALUE ====="
+        );
+
+        const expectedValueResult =
+            await getExpectedRecoveryValue(
+                9000,
+                "RETRY_NOW",
+                "NETWORK_ERROR",
+                testEventIds
+            );
+
+        console.log(expectedValueResult);
+
+        if (expectedValueResult.recoveryProbability !== 2 / 3) {
+            throw new Error(
+                `Expected recovery probability ${2 / 3}, got ${expectedValueResult.recoveryProbability}`
+            );
+        }
+
+        if (expectedValueResult.expectedRecoveryValue !== 6000) {
+            throw new Error(
+                `Expected expected recovery value 6000, got ${expectedValueResult.expectedRecoveryValue}`
+            );
+        }
+
+        console.log(
+            "✅ Expected Recovery Value test passed."
+        );
+
+
+        // ==================================================
+        // FINAL RESULT
+        // ==================================================
+
+        console.log("\n==================================================");
+        console.log(">>> ALL RECOVERY ANALYTICS TESTS PASSED <<<");
+        console.log("==================================================");
+
 
     } catch (error) {
 
-        console.error("\n>>> TEST FAILED <<<");
+        console.error("\n==================================================");
+        console.error(">>> RECOVERY ANALYTICS TEST FAILED <<<");
+        console.error("==================================================");
+
         console.error(error.message);
 
     } finally {
 
-        // Delete RecoveryAttempts first
-        if (testAttemptIds.length > 0) {
-            await RecoveryAttempt.deleteMany({
-                _id: {
-                    $in: testAttemptIds
-                }
-            });
-        }
+        console.log("\n[CLEANUP] Removing test data...");
 
-        // Delete all test analyses
-        if (testEventIds.length > 0) {
-            await RecoveryAnalysis.deleteMany({
-                event: {
-                    $in: testEventIds
-                }
-            });
-        }
+        await RecoveryAttempt.deleteMany({
+            _id: {
+                $in: testAttemptIds
+            }
+        });
 
-        // Delete test events
-        if (testEventIds.length > 0) {
-            await Event.deleteMany({
-                _id: {
-                    $in: testEventIds
-                }
-            });
-        }
+        await RecoveryAnalysis.deleteMany({
+            _id: {
+                $in: testAnalysisIds
+            }
+        });
 
-        console.log("\n[CLEANUP] Temporary analytics data removed.");
+        await Event.deleteMany({
+            _id: {
+                $in: testEventIds
+            }
+        });
+
+        console.log("[CLEANUP] Test RecoveryAttempt documents removed.");
+        console.log("[CLEANUP] Test RecoveryAnalysis documents removed.");
+        console.log("[CLEANUP] Test Event documents removed.");
+        console.log("[CLEANUP] Completed.");
 
         await mongoose.connection.close();
+
+        console.log("[DB] MongoDB connection closed.");
     }
 };
 
-test();
+runTests();
