@@ -101,23 +101,21 @@ const test = async () => {
         console.log("✅ Test 4 passed:", error.message);
     }
 
-    // =========================
-    // TEST 5 — VALID EDGE VALUES
-    // =========================
-
     console.log("\n===== TEST 5: VALID EDGE CONFIDENCE VALUES =====");
 
     try {
         validateGeminiResult({
             recommendation: "RETRY_NOW",
             confidence: 0,
-            reasoning: "Low confidence test."
+            reasoning: "Low confidence test.",
+            analysisSummary: "Payment failed due to a network error."
         });
 
         validateGeminiResult({
             recommendation: "RETRY_NOW",
             confidence: 1,
-            reasoning: "High confidence test."
+            reasoning: "High confidence test.",
+            analysisSummary: "Payment failed due to a network error."
         });
 
         console.log("✅ Test 5 passed.");

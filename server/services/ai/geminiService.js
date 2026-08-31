@@ -28,6 +28,11 @@ const validateGeminiResult = (result) => {
         throw new Error("Invalid reasoning returned by Gemini.");
     }
 
+    if (
+        typeof result.analysisSummary !== "string" || result.analysisSummary.trim().length === 0) {
+        throw new Error("Invalid analysis summary returned by GEMINI.");
+    }
+
     return result;
 };
 
@@ -66,6 +71,7 @@ TASK:
 2. Consider the customer's historical payment and recovery behavior.
 3. Consider the provided risk score and risk band.
 4. Select the single most appropriate recovery recommendation.
+5. Provide a concise summary of what caused the payment failure.
 
 ALLOWED RECOMMENDATIONS:
 - RETRY_NOW
@@ -83,11 +89,12 @@ IMPORTANT CONSTRAINTS:
 - Reasoning must be concise and based on the supplied evidence.
 - Do not invent facts that are not present in the input.
 - Return only the requested structured output.
+- analysisSummary must briefly describe the failure.
+- reasoning must explain why the recommendation was selected.
 
 INPUT DATA:
 ${JSON.stringify(input, null, 2)}
 `;
-
     const response = await ai.models.generateContent({
         model: "gemini-3.6-flash",
         contents: prompt,
@@ -105,12 +112,17 @@ ${JSON.stringify(input, null, 2)}
                     },
                     reasoning: {
                         type: "string"
+                    },
+                    analysisSummary: {
+                        type: "string"
                     }
+
                 },
                 required: [
                     "recommendation",
                     "confidence",
-                    "reasoning"
+                    "reasoning",
+                    "analysisSummary"
                 ]
             }
         }

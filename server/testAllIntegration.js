@@ -91,6 +91,7 @@ const runAllTests = async () => {
             attemptNumber: 1,
             timestamp: new Date()
         });
+        console.log("Gemini/Analysis Result:", res2.analysis);
         console.log(`Policy Decision: ${res2.policy.decision}`);
         console.log(`Recovery Outcome: ${res2.recoveryAttempt?.outcome}`);
         console.log(`Final Event Status: ${res2.event?.status}`);
@@ -125,7 +126,7 @@ const runAllTests = async () => {
         const objId4 = new mongoose.Types.ObjectId();
         trackedEventIds.push(id4);
         console.log(`\n--- Test 4: BLOCKED (Max Attempts Exceeded) [${id4}] ---`);
-        
+
         // Seed 3 attempts
         for (let i = 1; i <= 3; i++) {
             const priorAttempt = new RecoveryAttempt({

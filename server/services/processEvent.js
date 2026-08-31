@@ -4,6 +4,9 @@ import { calculateRiskScore } from "./riskScore.js";
 import analyzeEvent from "./analysisService.js";
 import evaluatePolicy from "./policyService.js";
 import executeRecovery from "./recoveryService.js";
+import { getRecoveryRecommendation } from "./ai/geminiService.js";
+import deterministicAnalysisService from "./deterministicAnalysisServices.js";
+
 const processEvent = async (eventData) => {
     const newEvent = new Event(eventData);
     await newEvent.save();
@@ -28,11 +31,19 @@ const processEvent = async (eventData) => {
         newEvent.errorCode
     );
 
-    const analysis = await analyzeEvent(
-        newEvent,
-        context,
-        risk
-    );
+    let analysisResult;
+    try {
+        analysisResult = await getRecoveryRecommendation(
+                newEvent,
+                context,
+                risk
+            );
+    }
+    catch (error) {
+        analysisResult = deterministicAnalysisService(newEvent);
+    }
+    const analysis = await analyzeEvent(newEvent, analysisResult);
+
 
     const policy = evaluatePolicy(
         risk.riskScore,
