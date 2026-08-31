@@ -1,8 +1,9 @@
 import TransactionForm from "./components/TransactionForm";
 import { useState } from "react";
+import AnalysisResult from "./components/AnalysisResult";
 
 function App() {
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(null);
   const handleTransactionSubmit = async (transaction) => {
     console.log("Sending transaction:", transaction);
     const response = await fetch("http://localhost:5000/events/process", {
@@ -21,12 +22,9 @@ function App() {
       <h1>Revenue Rescue AI</h1>
       <TransactionForm onSubmit={handleTransactionSubmit} />
 
-      {result && (
-        <pre>
-          {JSON.stringify(result, null, 2)}
-        </pre>
+      {result != null && (
+        <AnalysisResult result={result} />
       )}
-
     </>
   );
 }
