@@ -4,6 +4,7 @@ import cors from "cors";
 import connectDB from "./config/db.js";
 import Event from "./models/Event.js";
 import processEvent from "./services/processEvent.js";
+import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
 
 dotenv.config();
 
@@ -92,6 +93,23 @@ app.get("/events/:eventId", async (req, res) => {
       status: "ERROR",
       message: error.message
     })
+  }
+})
+
+//GET dashboard analytics
+app.get("/analytics/dashboard", async (req, res) => {
+  try {
+    const result = await getDashboardMetrics();
+    res.json({
+      status: "OK",
+      ...result
+    });
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
   }
 })
 
