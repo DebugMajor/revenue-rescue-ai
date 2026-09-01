@@ -2,6 +2,7 @@ import TransactionForm from "./components/TransactionForm";
 import { useState } from "react";
 import AnalysisResult from "./components/AnalysisResult";
 import MetricsPanel from "./components/MetricsPanel";
+import RecentEvents from "./components/RecentEvents";
 
 function App() {
   const [result, setResult] = useState(null);
@@ -56,6 +57,7 @@ function App() {
       )}
 
       <MetricsPanel />
+      <RecentEvents />
     </>
   );
 }
