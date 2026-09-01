@@ -46,7 +46,7 @@ function MetricsPanel() {
                     <div>
                         <h2>Expected Recovery Value</h2>
                         <p>
-                            ₹{metrics.expectedRecoveryValue}
+                             ₹{metrics.expectedRecoveryValue.toLocaleString("en-IN")}
                         </p>
                     </div>
                 </>
