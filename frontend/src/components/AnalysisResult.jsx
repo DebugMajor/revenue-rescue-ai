@@ -1,3 +1,5 @@
+//Analysis for a single transaction
+
 function AnalysisResult({ result }) {
     const {
         event,
@@ -10,99 +12,99 @@ function AnalysisResult({ result }) {
     return (
         <section>
 
-            {/* Transaction */}
+            {/* Transaction Details */}
             <div>
                 <h2>Transaction</h2>
 
-                <div>
-                    <h3>Payment Amount</h3>
-                    <p>₹{event.paymentAmount}</p>
-                </div>
+                <p>
+                    <strong>Payment Amount:</strong>{" "}
+                    ₹{event.paymentAmount}
+                </p>
 
-                <div>
-                    <h3>Error Code</h3>
-                    <p>{event.errorCode}</p>
-                </div>
+                <p>
+                    <strong>Error Code:</strong>{" "}
+                    {event.errorCode}
+                </p>
 
-                <div>
-                    <h3>Attempt Number</h3>
-                    <p>{event.attemptNumber}</p>
-                </div>
+                <p>
+                    <strong>Attempt Number:</strong>{" "}
+                    {event.attemptNumber}
+                </p>
             </div>
 
             {/* AI Analysis */}
             <div>
                 <h2>AI Analysis</h2>
 
-                <div>
-                    <h3>Recommendation</h3>
-                    <p>{analysis.recommendation}</p>
-                </div>
+                <p>
+                    <strong>Recommendation:</strong>{" "}
+                    {analysis.recommendation}
+                </p>
 
-                <div>
-                    <h3>Confidence</h3>
-                    <p>{analysis.confidence * 100}%</p>
-                </div>
+                <p>
+                    <strong>Confidence:</strong>{" "}
+                    {analysis.confidence * 100}%
+                </p>
 
-                <div>
-                    <h3>Source</h3>
-                    <p>{analysis.source}</p>
-                </div>
+                <p>
+                    <strong>Source:</strong>{" "}
+                    {analysis.source}
+                </p>
 
-                <div>
-                    <h3>Analysis Summary</h3>
-                    <p>{analysis.analysisSummary}</p>
-                </div>
+                <p>
+                    <strong>Analysis Summary:</strong>{" "}
+                    {analysis.analysisSummary}
+                </p>
 
-                <div>
-                    <h3>Reasoning</h3>
-                    <p>{analysis.reasoning}</p>
-                </div>
+                <p>
+                    <strong>Reasoning:</strong>{" "}
+                    {analysis.reasoning}
+                </p>
             </div>
 
-            {/* Risk */}
+            {/* Risk Assessment */}
             <div>
                 <h2>Risk</h2>
 
-                <div>
-                    <h3>Risk Score</h3>
-                    <p>{risk.riskScore}</p>
-                </div>
+                <p>
+                    <strong>Risk Score:</strong>{" "}
+                    {risk.riskScore}
+                </p>
 
-                <div>
-                    <h3>Risk Band</h3>
-                    <p>{risk.riskBand}</p>
-                </div>
+                <p>
+                    <strong>Risk Band:</strong>{" "}
+                    {risk.riskBand}
+                </p>
             </div>
 
-            {/* Policy */}
+            {/* Policy Decision */}
             <div>
                 <h2>Policy</h2>
 
-                <div>
-                    <h3>Decision</h3>
-                    <p>{policy.decision}</p>
-                </div>
+                <p>
+                    <strong>Decision:</strong>{" "}
+                    {policy.decision}
+                </p>
 
-                <div>
-                    <h3>Reason</h3>
-                    <p>{policy.reason}</p>
-                </div>
+                <p>
+                    <strong>Reason:</strong>{" "}
+                    {policy.reason}
+                </p>
             </div>
 
-            {/* Recovery */}
+            {/* Recovery Result */}
             <div>
                 <h2>Recovery</h2>
 
-                <div>
-                    <h3>Action</h3>
-                    <p>{recoveryAttempt?.action || "None"}</p>
-                </div>
+                <p>
+                    <strong>Action:</strong>{" "}
+                    {recoveryAttempt?.action || "None"}
+                </p>
 
-                <div>
-                    <h3>Outcome</h3>
-                    <p>{recoveryAttempt?.outcome || "None"}</p>
-                </div>
+                <p>
+                    <strong>Outcome:</strong>{" "}
+                    {recoveryAttempt?.outcome || "None"}
+                </p>
             </div>
 
         </section>
