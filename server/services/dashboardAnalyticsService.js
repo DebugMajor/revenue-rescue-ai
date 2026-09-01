@@ -9,24 +9,17 @@ const ELIGIBLE_ACTIONS = [
 
 const getDashboardMetrics = async (eventIds = null) => {
 
-    const failedMatch = { status: "FAILED" };
-    const recoveredMatch = { status: "RECOVERED" };
-
-    if (eventIds && eventIds.length > 0) {
-        failedMatch._id = { $in: eventIds };
-        recoveredMatch._id = { $in: eventIds };
-    }
-
-    const failedEvents = await Event.countDocuments(failedMatch);
-
-    const recoveredEvents = await Event.countDocuments(recoveredMatch);
-
     const recoveryResult =
         await recoveryAnalyticsService.getRecoveryRate(eventIds);
 
     const failedEventAnalysis = await Event.aggregate([
         {
-            $match: failedMatch
+            $match: {
+                status: "FAILED",
+                ...(eventIds && eventIds.length > 0
+                    ? { _id: { $in: eventIds } }
+                    : {})
+            }
         },
 
         {
@@ -90,8 +83,8 @@ const getDashboardMetrics = async (eventIds = null) => {
     }
 
     return {
-        failedPayments: failedEvents,
-        recoveredPayments: recoveredEvents,
+        failedPayments: recoveryResult.failedAttempts,
+        recoveredPayments: recoveryResult.recoveredAttempts,
         recoveryRate: recoveryResult.recoveryRate,
         expectedRecoveryValue
     };

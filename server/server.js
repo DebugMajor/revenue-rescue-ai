@@ -57,7 +57,7 @@ app.post("/events/process", async (req, res) => {
 //Get events
 app.get("/events", async (req, res) => {
   try {
-    const events = await Event.find();
+    const events = await Event.find().sort({ timestamp: -1 }).limit(5);
     res.json({
       status: "OK",
       events
