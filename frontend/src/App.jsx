@@ -3,6 +3,8 @@ import { useState } from "react";
 import AnalysisResult from "./components/AnalysisResult";
 import MetricsPanel from "./components/MetricsPanel";
 import RecentEvents from "./components/RecentEvents";
+import Navbar from "./components/Navbar";
+
 
 function App() {
   const [result, setResult] = useState(null);
@@ -42,6 +44,7 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <h1>Revenue Rescue AI</h1>
 
       <TransactionForm
@@ -58,6 +61,8 @@ function App() {
 
       <MetricsPanel />
       <RecentEvents />
+
+
     </>
   );
 }
