@@ -1,5 +1,6 @@
 import RecoveryAttempt from "../models/RecoveryAttempt.js";
 import Event from "../models/Event.js";
+import razorpayService from "./razorpay/razorpayService.js";
 
 const finalizeAttempt = async (event, attempt, outcome, outcomeDetails) => {
     attempt.outcome = outcome;
@@ -71,12 +72,20 @@ const executeRecovery = async (event, analysis) => {
 
     // SEND_PAYMENT_LINK
     else if (analysis.recommendation === "SEND_PAYMENT_LINK") {
-        await finalizeAttempt(
-            event,
-            savedAttempt,
-            "PENDING",
-            "Payment link generation simulated; awaiting customer payment."
+        const razorpay = razorpayService();
+
+        const paymentLink = await razorpay.createPaymentLink(
+            event.paymentAmount,
+            event.customerId,
+            "test@example.com"
         );
+
+        savedAttempt.paymentLinkId = paymentLink.data.id;
+        savedAttempt.outcome = "PENDING";
+        savedAttempt.outcomeDetails =
+            "Razorpay Payment Link created; awaiting customer payment.";
+
+        await savedAttempt.save();
     }
 
     return savedAttempt;

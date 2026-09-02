@@ -3,6 +3,7 @@ import crypto from "crypto";
 import Event from "../models/Event.js";
 import normalizeRazorpayEvent from "../services/normalizeRazorpayEvent.js";
 import processEvent from "../services/processEvent.js";
+import RecoveryAttempt from "../models/RecoveryAttempt.js";
 
 const router = Router();
 
@@ -48,17 +49,90 @@ router.post("/", async (req, res) => {
 
         const payload = JSON.parse(req.body.toString());
 
+        const eventType = payload.event;
+
+        if (eventType.startsWith("payment_link.")) {
+            const paymentLinkId =
+                payload.payload.payment_link.entity.id;
+
+            const recoveryAttempt = await RecoveryAttempt.findOne({
+                paymentLinkId
+            });
+
+            if (recoveryAttempt === null) {
+                return res.status(200).json({
+                    status: "OK",
+                    message:
+                        "Payment Link received, but no matching recovery attempt was found",
+                    eventType,
+                    paymentLinkId
+                });
+            }
+
+            let outcome;
+            let outcomeDetails;
+
+            if (eventType === "payment_link.paid") {
+                outcome = "RECOVERED";
+                outcomeDetails =
+                    "Customer completed payment through the Razorpay Payment Link.";
+            }
+            else if (eventType === "payment_link.partially_paid") {
+                outcome = "PENDING";
+                outcomeDetails =
+                    "Customer partially paid through the Razorpay Payment Link.";
+            }
+            else if (eventType === "payment_link.cancelled") {
+                outcome = "FAILED";
+                outcomeDetails =
+                    "Payment Link was cancelled before full recovery.";
+            }
+            else if (eventType === "payment_link.expired") {
+                outcome = "FAILED";
+                outcomeDetails =
+                    "Payment Link expired before full recovery.";
+            }
+            else {
+                return res.status(200).json({
+                    status: "OK",
+                    message: "Unsupported Payment Link event",
+                    eventType,
+                    paymentLinkId
+                });
+            }
+
+            recoveryAttempt.outcome = outcome;
+            recoveryAttempt.outcomeDetails = outcomeDetails;
+
+            await recoveryAttempt.save();
+
+            await Event.findOneAndUpdate(
+                { _id: recoveryAttempt.event },
+                { status: outcome }
+            );
+
+            return res.status(200).json({
+                status: "OK",
+                message: "Payment Link webhook processed",
+                eventType,
+                paymentLinkId,
+                outcome: recoveryAttempt.outcome
+            });
+        }
+
         const normalizedEvent = normalizeRazorpayEvent(
             payload,
             providerEventId
         );
+
         if (normalizedEvent.eventType === "payment.failed") {
             await processEvent(normalizedEvent);
         }
         else {
-            const event = await Event.findOne(
-                { eventId: normalizedEvent.eventId }
-            );
+            const event = await Event.findOne({
+                eventId: normalizedEvent.eventId
+            });
+
             if (event !== null) {
                 event.status = normalizedEvent.status;
                 await event.save();
@@ -66,15 +140,14 @@ router.post("/", async (req, res) => {
             else {
                 return res.status(200).json({
                     status: "OK",
-                    message: "Lifecycle event received, but no existing payment event was found",
+                    message:
+                        "Lifecycle event received, but no existing payment event was found",
                     eventId: normalizedEvent.eventId
                 });
             }
         }
 
         console.log("Normalized event:", normalizedEvent);
-
-
 
         return res.status(200).json({
             status: "OK",

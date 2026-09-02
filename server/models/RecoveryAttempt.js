@@ -39,7 +39,14 @@ const attemptSchema = new mongoose.Schema(
             ]
         },
 
-        outcomeDetails: String
+        outcomeDetails: String,
+
+        paymentLinkId: {
+            type: String,
+            required: false,
+            unique: true,
+            sparse: true
+        }
     },
     { timestamps: true }
 );
