@@ -33,8 +33,33 @@ function razorpayService() {
         };
     };
 
+    const fetchOrder = async (orderId) => {
+        const order = await fetch(
+            `${baseURL}/orders/${orderId}`,
+            {
+                headers: {
+                    Authorization: authorizationValue
+                }
+            }
+        )
+        const data = await order.json();
+        if (!order.ok) {
+            throw new Error(
+                data.error?.description ||
+                data.error?.reason ||
+                "Razorpay order request failed"
+            );
+        }
+
+        return {
+            data
+        };
+    }
+
+
     return {
-        fetchPayment
+        fetchPayment,
+        fetchOrder
     };
 }
 
