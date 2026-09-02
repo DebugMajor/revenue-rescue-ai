@@ -56,10 +56,51 @@ function razorpayService() {
         };
     }
 
+    const createPaymentLink = async (amount, customerName, customerEmail) => {
+        const paymentLink = await fetch(
+            `${baseURL}/payment_links`,
+            {
+                method: "POST",
+                headers: {
+                    Authorization: authorizationValue,
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    amount: amount * 100,
+                    currency: "INR",
+                    description: "Revenue recovery payment",
+                    reference_id: `rr_test_${Date.now()}`,
+                    customer: {
+                        name: customerName,
+                        email: customerEmail
+                    },
+                    notify: {
+                        sms: false,
+                        email: true
+                    }
+                })
+            }
+        );
+
+        const data = await paymentLink.json();
+
+        if (!paymentLink.ok) {
+            throw new Error(
+                data.error?.description ||
+                data.error?.reason ||
+                "Razorpay payment link request failed"
+            );
+        }
+
+        return {
+            data
+        };
+    };
 
     return {
         fetchPayment,
-        fetchOrder
+        fetchOrder,
+        createPaymentLink
     };
 }
 
