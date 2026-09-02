@@ -52,15 +52,34 @@ router.post("/", async (req, res) => {
             payload,
             providerEventId
         );
+        if (normalizedEvent.eventType === "payment.failed") {
+            await processEvent(normalizedEvent);
+        }
+        else {
+            const event = await Event.findOne(
+                { eventId: normalizedEvent.eventId }
+            );
+            if (event !== null) {
+                event.status = normalizedEvent.status;
+                await event.save();
+            }
+            else {
+                return res.status(200).json({
+                    status: "OK",
+                    message: "Lifecycle event received, but no existing payment event was found",
+                    eventId: normalizedEvent.eventId
+                });
+            }
+        }
 
         console.log("Normalized event:", normalizedEvent);
 
-        const result = await processEvent(normalizedEvent);
-        
+
+
         return res.status(200).json({
             status: "OK",
             message: "Webhook processed successfully",
-            eventId: result.event.eventId
+            eventId: normalizedEvent.eventId
         });
 
     } catch (error) {

@@ -1,13 +1,13 @@
 import dotenv from "dotenv";
-import connectDB from "./config/db.js";
-import Event from "./models/Event.js";
-import getCustomerHistory from "./services/contextService.js";
-import { calculateRiskScore } from "./services/riskScore.js";
+import connectDB from "../../config/db.js";
+import Event from "../../models/Event.js";
+import getCustomerHistory from "../../services/contextService.js";
+import { calculateRiskScore } from "../../services/riskScore.js";
 import {
     getRecoveryRecommendation,
     validateGeminiResult,
     isRetryableGeminiError
-} from "./services/ai/geminiService.js";
+} from "../../services/ai/geminiService.js";
 
 dotenv.config();
 

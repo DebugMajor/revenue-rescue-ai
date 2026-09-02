@@ -3,13 +3,13 @@ dotenv.config();
 
 import mongoose from "mongoose";
 
-import connectDB from "./config/db.js";
+import connectDB from "../../config/db.js";
 
-import Event from "./models/Event.js";
-import RecoveryAnalysis from "./models/RecoveryAnalysis.js";
-import RecoveryAttempt from "./models/RecoveryAttempt.js";
+import Event from "../../models/Event.js";
+import RecoveryAnalysis from "../../models/RecoveryAnalysis.js";
+import RecoveryAttempt from "../../models/RecoveryAttempt.js";
 
-import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
+import recoveryAnalyticsService from "../../services/recoveryAnalyticsService.js";
 
 const {
     getRecoveryRate,

@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import connectDB from "./config/db.js";
-import Event from "./models/Event.js";
-import RecoveryAnalysis from "./models/RecoveryAnalysis.js";
-import RecoveryAttempt from "./models/RecoveryAttempt.js";
-import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
+import connectDB from "../../config/db.js";
+import Event from "../../models/Event.js";
+import RecoveryAnalysis from "../../models/RecoveryAnalysis.js";
+import RecoveryAttempt from "../../models/RecoveryAttempt.js";
+import getDashboardMetrics from "../../services/dashboardAnalyticsService.js";
 
 dotenv.config();
 

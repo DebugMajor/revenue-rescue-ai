@@ -1,4 +1,4 @@
-import normalizeRazorpayEvent from "./services/normalizeRazorpayEvent.js";
+import normalizeRazorpayEvent from "../../services/normalizeRazorpayEvent.js";
 
 const payload = {
     entity: "event",

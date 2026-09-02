@@ -1,15 +1,15 @@
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import connectDB from "./config/db.js";
-import Event from "./models/Event.js";
-import RecoveryAnalysis from "./models/RecoveryAnalysis.js";
-import RecoveryAttempt from "./models/RecoveryAttempt.js";
-import processEvent from "./services/processEvent.js";
+import connectDB from "../../config/db.js";
+import Event from "../../models/Event.js";
+import RecoveryAnalysis from "../../models/RecoveryAnalysis.js";
+import RecoveryAttempt from "../../models/RecoveryAttempt.js";
+import processEvent from "../../services/processEvent.js";
 import {
     validateGeminiResult,
     isRetryableGeminiError
-} from "./services/ai/geminiService.js";
-import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
+} from "../../services/ai/geminiService.js";
+import recoveryAnalyticsService from "../../services/recoveryAnalyticsService.js";
 
 dotenv.config();
 
