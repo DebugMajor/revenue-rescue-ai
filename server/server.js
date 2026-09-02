@@ -5,11 +5,19 @@ import connectDB from "./config/db.js";
 import Event from "./models/Event.js";
 import processEvent from "./services/processEvent.js";
 import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
+import router from "./routes/razorpayWebhook.js";
+
 
 dotenv.config();
 
 const app = express();
 app.use(cors());
+
+app.use(
+  "/webhooks/razorpay",
+  express.raw({ type: "application/json" }),
+  router
+);
 app.use(express.json());
 
 
@@ -21,6 +29,8 @@ app.get("/health", (req, res) => {
     status: "OK"
   });
 });
+
+
 
 //Process Events 
 app.post("/events/process", async (req, res) => {

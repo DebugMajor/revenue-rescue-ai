@@ -2,6 +2,7 @@ import mongoose from "mongoose";
 
 const eventSchema = new mongoose.Schema({
     eventId: { type: String, required: true, unique: true },
+    providerEventId: { type: String, unique: true, sparse: true },
     eventType: { type: String, required: true },
     customerId: { type: String, required: true },
     paymentAmount: { type: Number, required: true },
@@ -11,5 +12,5 @@ const eventSchema = new mongoose.Schema({
     timestamp: { type: Date, required: true }
 });
 
-const Event  = mongoose.model("Event", eventSchema);
+const Event = mongoose.model("Event", eventSchema);
 export default Event;
