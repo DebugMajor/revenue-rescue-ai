@@ -41,7 +41,7 @@ const analysisSchema = new mongoose.Schema(
         },
         source: {
             type: String,
-            num: [
+            enum: [
                 "GEMINI",
                 "DETERMINISTIC_FALLBACK"
             ],

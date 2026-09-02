@@ -65,12 +65,16 @@ const executeRecovery = async (event, analysis) => {
 
     // WAIT_AND_RETRY
     else if (analysis.recommendation === "WAIT_AND_RETRY") {
-        savedAttempt.nextRetryAt =
-            new Date(Date.now() + 10000);
+        savedAttempt.nextRetryAt = new Date(Date.now() + 10000);
 
         savedAttempt.outcome = "PENDING";
         savedAttempt.outcomeDetails =
             "Payment retry scheduled; awaiting deferred retry.";
+
+        await Event.findOneAndUpdate(
+            { _id: event._id },
+            { status: "PENDING" }
+        );
 
         await savedAttempt.save();
     }
@@ -85,12 +89,16 @@ const executeRecovery = async (event, analysis) => {
             "test@example.com"
         );
 
-        savedAttempt.paymentLinkId =
-            paymentLink.data.id;
+        savedAttempt.paymentLinkId = paymentLink.data.id;
 
         savedAttempt.outcome = "PENDING";
         savedAttempt.outcomeDetails =
             "Razorpay Payment Link created; awaiting customer payment.";
+
+        await Event.findOneAndUpdate(
+            { _id: event._id },
+            { status: "PENDING" }
+        );
 
         await savedAttempt.save();
     }
