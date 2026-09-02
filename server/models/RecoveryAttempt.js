@@ -41,6 +41,11 @@ const attemptSchema = new mongoose.Schema(
 
         outcomeDetails: String,
 
+        nextRetryAt: {
+            type: Date,
+            required: false
+        },
+
         paymentLinkId: {
             type: String,
             required: false,
@@ -48,9 +53,14 @@ const attemptSchema = new mongoose.Schema(
             sparse: true
         }
     },
-    { timestamps: true }
+    {
+        timestamps: true
+    }
 );
 
-const RecoveryAttempt = mongoose.model("RecoveryAttempt", attemptSchema);
+const RecoveryAttempt = mongoose.model(
+    "RecoveryAttempt",
+    attemptSchema
+);
 
 export default RecoveryAttempt;

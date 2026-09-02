@@ -2,7 +2,12 @@ import RecoveryAttempt from "../models/RecoveryAttempt.js";
 import Event from "../models/Event.js";
 import razorpayService from "./razorpay/razorpayService.js";
 
-const finalizeAttempt = async (event, attempt, outcome, outcomeDetails) => {
+const finalizeAttempt = async (
+    event,
+    attempt,
+    outcome,
+    outcomeDetails
+) => {
     attempt.outcome = outcome;
     attempt.outcomeDetails = outcomeDetails;
 
@@ -16,7 +21,6 @@ const finalizeAttempt = async (event, attempt, outcome, outcomeDetails) => {
 };
 
 const executeRecovery = async (event, analysis) => {
-
     if (
         analysis.recommendation === "HUMAN_REVIEW" ||
         analysis.recommendation === "DO_NOT_RETRY"
@@ -24,7 +28,6 @@ const executeRecovery = async (event, analysis) => {
         return;
     }
 
-    // History lookup
     const existingAttempts = await RecoveryAttempt.countDocuments({
         event: event._id
     });
@@ -62,12 +65,14 @@ const executeRecovery = async (event, analysis) => {
 
     // WAIT_AND_RETRY
     else if (analysis.recommendation === "WAIT_AND_RETRY") {
-        await finalizeAttempt(
-            event,
-            savedAttempt,
-            "PENDING",
-            "Payment retry scheduled; awaiting deferred retry."
-        );
+        savedAttempt.nextRetryAt =
+            new Date(Date.now() + 10000);
+
+        savedAttempt.outcome = "PENDING";
+        savedAttempt.outcomeDetails =
+            "Payment retry scheduled; awaiting deferred retry.";
+
+        await savedAttempt.save();
     }
 
     // SEND_PAYMENT_LINK
@@ -80,7 +85,9 @@ const executeRecovery = async (event, analysis) => {
             "test@example.com"
         );
 
-        savedAttempt.paymentLinkId = paymentLink.data.id;
+        savedAttempt.paymentLinkId =
+            paymentLink.data.id;
+
         savedAttempt.outcome = "PENDING";
         savedAttempt.outcomeDetails =
             "Razorpay Payment Link created; awaiting customer payment.";

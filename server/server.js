@@ -6,6 +6,7 @@ import Event from "./models/Event.js";
 import processEvent from "./services/processEvent.js";
 import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
 import router from "./routes/razorpayWebhook.js";
+import processDeferredRecoveries from "./services/deferredRecoveryService.js";
 
 
 dotenv.config();
@@ -122,6 +123,17 @@ app.get("/analytics/dashboard", async (req, res) => {
     });
   }
 })
+
+setInterval(async () => {
+  try {
+    await processDeferredRecoveries();
+  } catch (error) {
+    console.error(
+      "Deferred recovery processing failed:",
+      error
+    );
+  }
+}, 10000);
 
 
 const port = process.env.PORT || 5000;
