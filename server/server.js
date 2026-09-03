@@ -8,7 +8,7 @@ import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
 import router from "./routes/razorpayWebhook.js";
 import processDeferredRecoveries from "./services/deferredRecoveryService.js";
 import getTransaction from "./services/transactionsService.js";
-
+import getRecoveryQueue from "./services/recoveryCenterService.js";
 dotenv.config();
 
 const app = express();
@@ -132,6 +132,23 @@ setInterval(async () => {
   }
 }, 10000);
 
+//GET Recovery queue
+app.get("/recovery", async (req, res) => {
+  try {
+    const data = await getRecoveryQueue();
+
+    res.json({
+      status: "OK",
+      recoveries: data
+    })
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
+  }
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
