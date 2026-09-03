@@ -7,7 +7,7 @@ import processEvent from "./services/processEvent.js";
 import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
 import router from "./routes/razorpayWebhook.js";
 import processDeferredRecoveries from "./services/deferredRecoveryService.js";
-
+import getTransaction from "./services/transactionsService.js";
 
 dotenv.config();
 
@@ -82,22 +82,19 @@ app.get("/events", async (req, res) => {
 })
 
 //Get specific event
-app.get("/events/:eventId", async (req, res) => {
+app.get("/transactions/:id", async (req, res) => {
   try {
-    const event = await Event.findOne({ eventId: req.params.eventId });
-    if (event === null) {
-      res.status(404).json({
+    const result = await getTransaction(req.params.id);
+    if (result.message === "NOT FOUND") {
+      return res.status(404).json({
         status: "ERROR",
         message: "No entry found!"
-
       })
     }
-    else {
-      res.json({
-        status: "OK",
-        event
-      })
-    }
+    res.json({
+      status: "OK",
+      ...result
+    });
   }
   catch (error) {
     res.status(500).json({

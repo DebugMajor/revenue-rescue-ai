@@ -1,0 +1,25 @@
+import Event from "../models/Event.js";
+import RecoveryAttempt from "../models/RecoveryAttempt.js";
+
+const getTransaction = async (id) => {
+    const event = await Event.findOne({
+        _id: id
+    })
+    if (event === null) {
+        return ({
+            message: "NOT FOUND"
+        })
+    }
+
+    const attempts = await RecoveryAttempt.find({
+        event: event._id
+    }).populate("analysis")
+
+    return ({
+        event,
+        attempts,
+    })
+
+}
+
+export default getTransaction;
