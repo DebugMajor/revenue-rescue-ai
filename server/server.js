@@ -204,6 +204,24 @@ app.get("/analytics/recovery-trend", async (req, res) => {
   }
 })
 
+// GET recoveries by analysis source
+app.get("/analytics/recovery-by-source", async (req, res) => {
+  try {
+    const data = await recoveryAnalyticsService.getRecoveryBySource();
+
+    res.json({
+      status: "OK",
+      recoveryBySource: data
+    });
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
+  }
+});
+
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

@@ -322,11 +322,59 @@ const getRecoveryTrend = async () => {
 };
 
 
+//Recovery By sources
+const getRecoveryBySource = async () => {
+    const result = await RecoveryAttempt.aggregate([
+        {
+            $lookup: {
+                from: "analyses",
+                localField: "analysis",
+                foreignField: "_id",
+                as: "analysisData"
+            }
+        },
+        {
+            $unwind: "$analysisData"
+        },
+        {
+            $group: {
+                _id: {
+                    source: "$analysisData.source",
+                    outcome: "$outcome"
+                },
+                count: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                source: "$_id.source",
+                outcome: "$_id.outcome",
+                count: 1
+            }
+        },
+        {
+            $sort: {
+                source: 1,
+                outcome: 1
+            }
+        }
+    ]);
+
+    return result;
+};
+
+
+
+
 export default {
     getRecoveryRate,
     getHistoricalRecoveryProbability,
     getExpectedRecoveryValue,
     getRecoveryByAction,
     getRecoveryByError,
-    getRecoveryTrend
+    getRecoveryTrend,
+    getRecoveryBySource
 };
