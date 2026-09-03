@@ -10,7 +10,8 @@ import processDeferredRecoveries from "./services/deferredRecoveryService.js";
 import { getTransaction, getTransactions } from "./services/transactionsService.js";
 import getRecoveryQueue from "./services/recoveryCenterService.js";
 import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
-
+import authRoutes from "./routes/authRoutes.js";
+import authMiddleware from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
@@ -24,9 +25,8 @@ app.use(
 );
 app.use(express.json());
 
-
-// Connect to Database
-connectDB();
+//authN user 
+app.use("/auth", authRoutes);
 
 app.get("/health", (req, res) => {
   res.json({
@@ -34,6 +34,13 @@ app.get("/health", (req, res) => {
   });
 });
 
+
+//Authenticate protected routes
+app.use(authMiddleware);
+
+
+// Connect to Database
+connectDB();
 
 
 //Process Events 

@@ -45,8 +45,13 @@ const processEvent = async (eventData,
     catch (error) {
         analysisResult = deterministicAnalysisService(newEvent);
     }
-    const analysis = await analyzeEvent(newEvent, analysisResult, context, risk);
 
+    const analysis = await analyzeEvent(
+        newEvent,
+        analysisResult,
+        context,
+        risk
+    );
 
     const policy = evaluatePolicy(
         risk.riskScore,
@@ -58,15 +63,16 @@ const processEvent = async (eventData,
     );
 
     await updateAnalysisPolicy(analysis._id, policy);
+
     let recoveryAttempt;
 
     if (policy.decision === "APPROVED") {
         recoveryAttempt = await executeRecovery(
             newEvent,
-            analysis,
-            policy
+            analysis
         );
     }
+
     const finalEvent = await Event.findById(newEvent._id);
 
     return {
@@ -78,4 +84,5 @@ const processEvent = async (eventData,
         recoveryAttempt
     };
 };
+
 export default processEvent;
