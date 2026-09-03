@@ -10,6 +10,8 @@ import processDeferredRecoveries from "./services/deferredRecoveryService.js";
 import getTransaction from "./services/transactionsService.js";
 import getRecoveryQueue from "./services/recoveryCenterService.js";
 import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
+
+
 dotenv.config();
 
 const app = express();
@@ -151,7 +153,7 @@ app.get("/recovery", async (req, res) => {
   }
 })
 
-//GEt recovery as per action
+//GET recovery as per action
 app.get("/analytics/recovery-by-action", async (req, res) => {
   try {
     const data = await recoveryAnalyticsService.getRecoveryByAction();
@@ -168,6 +170,22 @@ app.get("/analytics/recovery-by-action", async (req, res) => {
   }
 })
 
+//GET recoveries as per error
+app.get("/analytics/recovery-by-error", async (req, res) => {
+  try {
+    const data = await recoveryAnalyticsService.getRecoveryByError();
+    res.json({
+      status: "OK",
+      recoveryByError: data
+    })
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
+  }
+})
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

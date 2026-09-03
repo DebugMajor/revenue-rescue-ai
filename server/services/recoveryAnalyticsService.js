@@ -207,6 +207,50 @@ const getRecoveryByAction = async () => {
     return result;
 }
 
+//Recovery by error
+// Recovery by error
+const getRecoveryByError = async () => {
+    const result = await RecoveryAttempt.aggregate([
+        {
+            $lookup: {
+                from: "events",
+                localField: "event",
+                foreignField: "_id",
+                as: "eventData"
+            }
+        },
+        {
+            $unwind: "$eventData"
+        },
+        {
+            $group: {
+                _id: {
+                    errorCode: "$eventData.errorCode",
+                    outcome: "$outcome"
+                },
+                count: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                errorCode: "$_id.errorCode",
+                outcome: "$_id.outcome",
+                count: 1
+            }
+        },
+        {
+            $sort: {
+                errorCode: 1,
+                outcome: 1
+            }
+        }
+    ]);
+
+    return result;
+};
 
 const getExpectedRecoveryValue = async (
     paymentAmount,
@@ -244,5 +288,6 @@ export default {
     getRecoveryRate,
     getHistoricalRecoveryProbability,
     getExpectedRecoveryValue,
-    getRecoveryByAction
+    getRecoveryByAction,
+    getRecoveryByError
 };
