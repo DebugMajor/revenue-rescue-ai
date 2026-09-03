@@ -187,6 +187,24 @@ app.get("/analytics/recovery-by-error", async (req, res) => {
   }
 })
 
+//Recovery Trends
+app.get("/analytics/recovery-trend", async (req, res) => {
+  try {
+    const data = await recoveryAnalyticsService.getRecoveryTrend();
+    res.json({
+      status: "OK",
+      recoveryTrends: data
+    })
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
+  }
+})
+
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server Started on port ${port}`);

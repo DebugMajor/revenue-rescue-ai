@@ -207,7 +207,37 @@ const getRecoveryByAction = async () => {
     return result;
 }
 
-//Recovery by error
+const getExpectedRecoveryValue = async (
+    paymentAmount,
+    action,
+    errorCode,
+    eventIds = null
+) => {
+
+    const probabilityResult =
+        await getHistoricalRecoveryProbability(
+            action,
+            errorCode,
+            eventIds
+        );
+
+    const expectedRecoveryValue =
+        paymentAmount *
+        probabilityResult.recoveryProbability;
+
+    return {
+        paymentAmount,
+        action,
+        errorCode,
+        recoveredAttempts: probabilityResult.recoveredAttempts,
+        failedAttempts: probabilityResult.failedAttempts,
+        completedAttempts: probabilityResult.completedAttempts,
+        recoveryProbability: probabilityResult.recoveryProbability,
+        expectedRecoveryValue
+    };
+
+};
+
 // Recovery by error
 const getRecoveryByError = async () => {
     const result = await RecoveryAttempt.aggregate([
@@ -252,35 +282,43 @@ const getRecoveryByError = async () => {
     return result;
 };
 
-const getExpectedRecoveryValue = async (
-    paymentAmount,
-    action,
-    errorCode,
-    eventIds = null
-) => {
 
-    const probabilityResult =
-        await getHistoricalRecoveryProbability(
-            action,
-            errorCode,
-            eventIds
-        );
+//Recovery Trend
+const getRecoveryTrend = async () => {
+    const result = await RecoveryAttempt.aggregate([
+        {
+            $group: {
+                _id: {
+                    date: {
+                        $dateToString: {
+                            format: "%Y-%m-%d",
+                            date: "$createdAt"
+                        }
+                    },
+                    outcome: "$outcome"
+                },
+                count: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                date: "$_id.date",
+                outcome: "$_id.outcome",
+                count: 1
+            }
+        },
+        {
+            $sort: {
+                date: 1,
+                outcome: 1
+            }
+        }
+    ]);
 
-    const expectedRecoveryValue =
-        paymentAmount *
-        probabilityResult.recoveryProbability;
-
-    return {
-        paymentAmount,
-        action,
-        errorCode,
-        recoveredAttempts: probabilityResult.recoveredAttempts,
-        failedAttempts: probabilityResult.failedAttempts,
-        completedAttempts: probabilityResult.completedAttempts,
-        recoveryProbability: probabilityResult.recoveryProbability,
-        expectedRecoveryValue
-    };
-
+    return result;
 };
 
 
@@ -289,5 +327,6 @@ export default {
     getHistoricalRecoveryProbability,
     getExpectedRecoveryValue,
     getRecoveryByAction,
-    getRecoveryByError
+    getRecoveryByError,
+    getRecoveryTrend
 };
