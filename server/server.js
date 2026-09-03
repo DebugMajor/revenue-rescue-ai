@@ -7,7 +7,7 @@ import processEvent from "./services/processEvent.js";
 import getDashboardMetrics from "./services/dashboardAnalyticsService.js";
 import router from "./routes/razorpayWebhook.js";
 import processDeferredRecoveries from "./services/deferredRecoveryService.js";
-import getTransaction from "./services/transactionsService.js";
+import { getTransaction, getTransactions } from "./services/transactionsService.js";
 import getRecoveryQueue from "./services/recoveryCenterService.js";
 import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
 
@@ -84,10 +84,27 @@ app.get("/events", async (req, res) => {
   }
 })
 
-//Get specific event
-app.get("/transactions/:id", async (req, res) => {
+//Get all transactions
+app.get("/transactions", async (req, res) => {
   try {
-    const result = await getTransaction(req.params.id);
+    const data = await getTransactions();
+
+    res.json({
+      status: "OK",
+      transactions: data
+    });
+  }
+  catch (error) {
+    res.status(500).json({
+      status: "ERROR",
+      message: error.message
+    });
+  }
+});
+//Get specific event
+app.get("/transactions/:eventId", async (req, res) => {
+  try {
+    const result = await getTransaction(req.params.eventId);
     if (result.message === "NOT FOUND") {
       return res.status(404).json({
         status: "ERROR",

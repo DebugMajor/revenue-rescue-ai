@@ -146,7 +146,7 @@ const main = async () => {
 
                 assert(
                     response.status >= 200 &&
-                        response.status < 300,
+                    response.status < 300,
                     `Expected 2xx response, got ${response.status}`
                 );
             }
@@ -181,7 +181,7 @@ const main = async () => {
 
                 assert(
                     response.status >= 400 &&
-                        response.status < 500,
+                    response.status < 500,
                     `Expected 4xx response, got ${response.status}`
                 );
             }
@@ -214,7 +214,7 @@ const main = async () => {
 
                 assert(
                     response.status >= 400 &&
-                        response.status < 500,
+                    response.status < 500,
                     `Expected 4xx response, got ${response.status}`
                 );
             }
@@ -250,7 +250,7 @@ const main = async () => {
 
                 assert(
                     response.status >= 400 &&
-                        response.status < 500,
+                    response.status < 500,
                     `Expected safe 4xx response, got ${response.status}`
                 );
             }
@@ -293,7 +293,7 @@ const main = async () => {
 
                 assert(
                     response.status >= 400 &&
-                        response.status < 500,
+                    response.status < 500,
                     `Expected safe 4xx response, got ${response.status}`
                 );
             }
@@ -336,7 +336,7 @@ const main = async () => {
 
                 assert(
                     firstResponse.status >= 200 &&
-                        firstResponse.status < 300,
+                    firstResponse.status < 300,
                     `First webhook expected 2xx, got ${firstResponse.status}`
                 );
 
@@ -356,7 +356,7 @@ const main = async () => {
 
                 assert(
                     secondResponse.status >= 200 &&
-                        secondResponse.status < 300,
+                    secondResponse.status < 300,
                     `Duplicate webhook expected 2xx, got ${secondResponse.status}`
                 );
             }
