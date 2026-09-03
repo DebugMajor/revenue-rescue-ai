@@ -176,6 +176,37 @@ const getHistoricalRecoveryProbability = async (
     };
 };
 
+const getRecoveryByAction = async () => {
+    const result = await RecoveryAttempt.aggregate([
+        {
+            $group: {
+                _id: {
+                    action: "$action",
+                    outcome: "$outcome"
+                },
+                count: {
+                    $sum: 1
+                }
+            }
+        },
+        {
+            $project: {
+                _id: 0,
+                action: "$_id.action",
+                outcome: "$_id.outcome",
+                count: 1
+            }
+        },
+        {
+            $sort: {
+                action: 1,
+                outcome: 1
+            }
+        }
+    ])
+    return result;
+}
+
 
 const getExpectedRecoveryValue = async (
     paymentAmount,
@@ -205,11 +236,13 @@ const getExpectedRecoveryValue = async (
         recoveryProbability: probabilityResult.recoveryProbability,
         expectedRecoveryValue
     };
+
 };
 
 
 export default {
     getRecoveryRate,
     getHistoricalRecoveryProbability,
-    getExpectedRecoveryValue
+    getExpectedRecoveryValue,
+    getRecoveryByAction
 };
