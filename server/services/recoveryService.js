@@ -20,7 +20,7 @@ const finalizeAttempt = async (
     await attempt.save();
 };
 
-const executeRecovery = async (event, analysis) => {
+const executeRecovery = async (event, analysis, policy) => {
     if (
         analysis.recommendation === "HUMAN_REVIEW" ||
         analysis.recommendation === "DO_NOT_RETRY"
@@ -39,7 +39,9 @@ const executeRecovery = async (event, analysis) => {
         analysis: analysis._id,
         recoveryAttemptNumber,
         action: analysis.recommendation,
-        outcome: "PENDING"
+        outcome: "PENDING",
+        policyDecision: policy.decision,
+        policyReason: policy.reason
     });
 
     const savedAttempt = await newAttempt.save();

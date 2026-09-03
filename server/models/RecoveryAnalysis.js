@@ -46,6 +46,28 @@ const analysisSchema = new mongoose.Schema(
                 "DETERMINISTIC_FALLBACK"
             ],
             required: true
+        },
+        customerContext: {
+            successfulPayments: Number,
+            failedPayments: Number,
+            totalPayments: Number,
+            recoveryAttempts: Number
+        },
+        riskAssessment: {
+            riskScore: Number,
+            riskBand: {
+                type: String,
+                enum: ["LOW", "MEDIUM", "HIGH"]
+            }
+        },
+        policyDecision: {
+            type: String,
+            enum: ["APPROVED",
+                "BLOCKED",
+                "ESCALATED"]
+        },
+        policyReason: {
+            type: String
         }
     },
     {

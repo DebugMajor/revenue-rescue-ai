@@ -1,11 +1,12 @@
 import Event from "../models/Event.js";
 import getCustomerHistory from "./contextService.js";
 import { calculateRiskScore } from "./riskScore.js";
-import analyzeEvent from "./analysisService.js";
+import { analyzeEvent, updateAnalysisPolicy } from "./analysisService.js";
 import evaluatePolicy from "./policyService.js";
 import executeRecovery from "./recoveryService.js";
 import { getRecoveryRecommendation } from "./ai/geminiService.js";
 import deterministicAnalysisService from "./deterministicAnalysisServices.js";
+
 
 const processEvent = async (eventData,
     analysisProvider = getRecoveryRecommendation
@@ -44,7 +45,7 @@ const processEvent = async (eventData,
     catch (error) {
         analysisResult = deterministicAnalysisService(newEvent);
     }
-    const analysis = await analyzeEvent(newEvent, analysisResult);
+    const analysis = await analyzeEvent(newEvent, analysisResult, context, risk);
 
 
     const policy = evaluatePolicy(
@@ -56,12 +57,14 @@ const processEvent = async (eventData,
         newEvent.paymentAmount
     );
 
+    await updateAnalysisPolicy(analysis._id, policy);
     let recoveryAttempt;
 
     if (policy.decision === "APPROVED") {
         recoveryAttempt = await executeRecovery(
             newEvent,
-            analysis
+            analysis,
+            policy
         );
     }
     const finalEvent = await Event.findById(newEvent._id);

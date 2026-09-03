@@ -51,7 +51,7 @@ const attemptSchema = new mongoose.Schema(
             required: false,
             unique: true,
             sparse: true
-        }
+        },
     },
     {
         timestamps: true
