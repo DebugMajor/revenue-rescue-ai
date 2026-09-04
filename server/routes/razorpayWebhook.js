@@ -41,9 +41,8 @@ const verifySignature = (rawBody, receivedSignature) => {
 
 router.post("/", async (req, res) => {
     try {
-        // --------------------------------------------------
+
         // 1. Verify webhook secret configuration
-        // --------------------------------------------------
         if (!webhookSecret) {
             console.error(
                 "RAZORPAY_WEBHOOK_SECRET is not configured."
@@ -56,9 +55,8 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
+
         // 2. Ensure raw request body exists
-        // --------------------------------------------------
         if (!Buffer.isBuffer(req.body)) {
             return sendError(
                 res,
@@ -67,9 +65,7 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
         // 3. Verify Razorpay signature
-        // --------------------------------------------------
         const receivedSignature =
             req.headers["x-razorpay-signature"];
 
@@ -94,9 +90,8 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
+
         // 4. Require provider event ID
-        // --------------------------------------------------
         const providerEventId =
             req.headers["x-razorpay-event-id"];
 
@@ -108,11 +103,7 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
         // 5. Parse JSON safely
-        // --------------------------------------------------
-        let payload;
-
         try {
             payload = JSON.parse(req.body.toString("utf8"));
         } catch (error) {
@@ -128,9 +119,8 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
+
         // 6. Validate basic payload structure
-        // --------------------------------------------------
         if (
             payload === null ||
             typeof payload !== "object" ||
@@ -156,9 +146,8 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
+
         // 7. Idempotency check
-        // --------------------------------------------------
         const existingEvent = await Event.findOne({
             providerEventId
         });
@@ -170,9 +159,7 @@ router.post("/", async (req, res) => {
             });
         }
 
-        // --------------------------------------------------
         // 8. Handle Payment Link lifecycle events
-        // --------------------------------------------------
         if (eventType.startsWith("payment_link.")) {
             const paymentLinkId =
                 payload?.payload?.payment_link?.entity?.id;
@@ -256,9 +243,7 @@ router.post("/", async (req, res) => {
             });
         }
 
-        // --------------------------------------------------
         // 9. Normalize standard Razorpay payment event
-        // --------------------------------------------------
         let normalizedEvent;
 
         try {
@@ -279,16 +264,25 @@ router.post("/", async (req, res) => {
             );
         }
 
-        // --------------------------------------------------
-        // 10. Process payment.failed
-        // --------------------------------------------------
+
+        // 10. Process payment.failed      
         if (normalizedEvent.eventType === "payment.failed") {
-            await processEvent(normalizedEvent);
+            if (!process.env.WEBHOOK_USER_ID) {
+                return sendError(
+                    res,
+                    500,
+                    "Webhook user is not configured."
+                );
+            }
+
+            await processEvent(
+                normalizedEvent,
+                process.env.WEBHOOK_USER_ID
+            );
         }
 
-        // --------------------------------------------------
+
         // 11. Process other payment lifecycle events
-        // --------------------------------------------------
         else {
             const event = await Event.findOne({
                 eventId: normalizedEvent.eventId

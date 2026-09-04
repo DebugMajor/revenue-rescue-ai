@@ -1,9 +1,10 @@
 import Event from "../models/Event.js";
 import RecoveryAttempt from "../models/RecoveryAttempt.js";
 
-const getTransaction = async (id) => {
+const getTransaction = async (id, userId) => {
     const event = await Event.findOne({
-        eventId: id
+        eventId: id,
+        user: userId
     });
 
     if (event === null) {
@@ -22,8 +23,10 @@ const getTransaction = async (id) => {
     };
 };
 
-const getTransactions = async () => {
-    const data = await Event.find()
+const getTransactions = async (userId) => {
+    const data = await Event.find({
+        user: userId
+    })
         .sort({ timestamp: -1 })
         .limit(10);
 

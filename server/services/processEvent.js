@@ -8,10 +8,13 @@ import { getRecoveryRecommendation } from "./ai/geminiService.js";
 import deterministicAnalysisService from "./deterministicAnalysisServices.js";
 
 
-const processEvent = async (eventData,
+const processEvent = async (eventData, userId,
     analysisProvider = getRecoveryRecommendation
 ) => {
-    const newEvent = new Event(eventData);
+    const newEvent = new Event({
+        ...eventData,
+        user: userId
+    });
     await newEvent.save();
 
     const context = await getCustomerHistory(

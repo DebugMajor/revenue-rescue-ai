@@ -46,7 +46,7 @@ connectDB();
 //Process Events 
 app.post("/events/process", async (req, res) => {
   try {
-    const result = await processEvent(req.body);
+    const result = await processEvent(req.body, req.user.userId);
 
     res.json({
       status: "OK",
@@ -78,7 +78,11 @@ app.post("/events/process", async (req, res) => {
 //Get events
 app.get("/events", async (req, res) => {
   try {
-    const events = await Event.find().sort({ timestamp: -1 }).limit(5);
+    const events = await Event.find({
+      user: req.user.userId
+    })
+      .sort({ timestamp: -1 })
+      .limit(5);
     res.json({
       status: "OK",
       events
@@ -94,7 +98,7 @@ app.get("/events", async (req, res) => {
 //Get all transactions
 app.get("/transactions", async (req, res) => {
   try {
-    const data = await getTransactions();
+    const data = await getTransactions(req.user.userId);
 
     res.json({
       status: "OK",
@@ -111,7 +115,10 @@ app.get("/transactions", async (req, res) => {
 //Get specific event
 app.get("/transactions/:eventId", async (req, res) => {
   try {
-    const result = await getTransaction(req.params.eventId);
+    const result = await getTransaction(
+      req.params.eventId,
+      req.user.userId
+    );
     if (result.message === "NOT FOUND") {
       return res.status(404).json({
         status: "ERROR",
@@ -134,7 +141,9 @@ app.get("/transactions/:eventId", async (req, res) => {
 //GET dashboard analytics
 app.get("/analytics/dashboard", async (req, res) => {
   try {
-    const result = await getDashboardMetrics();
+    const result = await getDashboardMetrics(
+      req.user.userId
+    );
     res.json({
       status: "OK",
       ...result
@@ -162,7 +171,9 @@ setInterval(async () => {
 //GET Recovery queue
 app.get("/recovery", async (req, res) => {
   try {
-    const data = await getRecoveryQueue();
+    const data = await getRecoveryQueue(
+      req.user.userId
+    );
 
     res.json({
       status: "OK",
@@ -180,7 +191,9 @@ app.get("/recovery", async (req, res) => {
 //GET recovery as per action
 app.get("/analytics/recovery-by-action", async (req, res) => {
   try {
-    const data = await recoveryAnalyticsService.getRecoveryByAction();
+    const data = await recoveryAnalyticsService.getRecoveryByAction(
+      req.user.userId
+    );
     res.json({
       status: "OK",
       recoveryByAction: data
@@ -197,7 +210,9 @@ app.get("/analytics/recovery-by-action", async (req, res) => {
 //GET recoveries as per error
 app.get("/analytics/recovery-by-error", async (req, res) => {
   try {
-    const data = await recoveryAnalyticsService.getRecoveryByError();
+    const data = await recoveryAnalyticsService.getRecoveryByError(
+      req.user.userId
+    );
     res.json({
       status: "OK",
       recoveryByError: data
@@ -214,7 +229,9 @@ app.get("/analytics/recovery-by-error", async (req, res) => {
 //Recovery Trends
 app.get("/analytics/recovery-trend", async (req, res) => {
   try {
-    const data = await recoveryAnalyticsService.getRecoveryTrend();
+    const data = await recoveryAnalyticsService.getRecoveryTrend(
+      req.user.userId
+    );
     res.json({
       status: "OK",
       recoveryTrends: data
@@ -231,8 +248,9 @@ app.get("/analytics/recovery-trend", async (req, res) => {
 // GET recoveries by analysis source
 app.get("/analytics/recovery-by-source", async (req, res) => {
   try {
-    const data = await recoveryAnalyticsService.getRecoveryBySource();
-
+    const data = await recoveryAnalyticsService.getRecoveryBySource(
+      req.user.userId
+    );
     res.json({
       status: "OK",
       recoveryBySource: data

@@ -1,15 +1,13 @@
+import mongoose from "mongoose";
 import RecoveryAttempt from "../models/RecoveryAttempt.js";
 
-const getRecoveryRate = async (eventIds = null) => {
-
-    // Build the MongoDB filter dynamically.
+const getRecoveryRate = async (userId, eventIds = null) => {
     const matchStage = {
         outcome: {
             $in: ["RECOVERED", "FAILED"]
         }
     };
 
-    // Restrict calculation to specific events when provided.
     if (eventIds && eventIds.length > 0) {
         matchStage.event = {
             $in: eventIds
@@ -20,11 +18,25 @@ const getRecoveryRate = async (eventIds = null) => {
         {
             $match: matchStage
         },
-
+        {
+            $lookup: {
+                from: "events",
+                localField: "event",
+                foreignField: "_id",
+                as: "eventData"
+            }
+        },
+        {
+            $unwind: "$eventData"
+        },
+        {
+            $match: {
+                "eventData.user": new mongoose.Types.ObjectId(userId)
+            }
+        },
         {
             $group: {
                 _id: null,
-
                 recoveredAttempts: {
                     $sum: {
                         $cond: [
@@ -34,7 +46,6 @@ const getRecoveryRate = async (eventIds = null) => {
                         ]
                     }
                 },
-
                 failedAttempts: {
                     $sum: {
                         $cond: [
@@ -71,14 +82,12 @@ const getRecoveryRate = async (eventIds = null) => {
     };
 };
 
-
 const getHistoricalRecoveryProbability = async (
     action,
     errorCode,
+    userId,
     eventIds = null
 ) => {
-
-    // Build the initial MongoDB filter.
     const matchStage = {
         action,
         outcome: {
@@ -86,7 +95,6 @@ const getHistoricalRecoveryProbability = async (
         }
     };
 
-    // Restrict calculation to specific events when provided.
     if (eventIds && eventIds.length > 0) {
         matchStage.event = {
             $in: eventIds
@@ -94,13 +102,9 @@ const getHistoricalRecoveryProbability = async (
     }
 
     const result = await RecoveryAttempt.aggregate([
-
-        // 1. Match recovery action and completed outcomes.
         {
             $match: matchStage
         },
-
-        // 2. Join RecoveryAttempt with Event.
         {
             $lookup: {
                 from: "events",
@@ -109,24 +113,18 @@ const getHistoricalRecoveryProbability = async (
                 as: "eventData"
             }
         },
-
-        // 3. Convert eventData array into a single document.
         {
             $unwind: "$eventData"
         },
-
-        // 4. Match the requested payment error.
         {
             $match: {
+                "eventData.user": new mongoose.Types.ObjectId(userId),
                 "eventData.errorCode": errorCode
             }
         },
-
-        // 5. Count recovered and failed attempts.
         {
             $group: {
                 _id: null,
-
                 recoveredAttempts: {
                     $sum: {
                         $cond: [
@@ -136,7 +134,6 @@ const getHistoricalRecoveryProbability = async (
                         ]
                     }
                 },
-
                 failedAttempts: {
                     $sum: {
                         $cond: [
@@ -176,8 +173,55 @@ const getHistoricalRecoveryProbability = async (
     };
 };
 
-const getRecoveryByAction = async () => {
+const getExpectedRecoveryValue = async (
+    paymentAmount,
+    action,
+    errorCode,
+    userId,
+    eventIds = null
+) => {
+    const probabilityResult =
+        await getHistoricalRecoveryProbability(
+            action,
+            errorCode,
+            userId,
+            eventIds
+        );
+
+    const expectedRecoveryValue =
+        paymentAmount *
+        probabilityResult.recoveryProbability;
+
+    return {
+        paymentAmount,
+        action,
+        errorCode,
+        recoveredAttempts: probabilityResult.recoveredAttempts,
+        failedAttempts: probabilityResult.failedAttempts,
+        completedAttempts: probabilityResult.completedAttempts,
+        recoveryProbability: probabilityResult.recoveryProbability,
+        expectedRecoveryValue
+    };
+};
+
+const getRecoveryByAction = async (userId) => {
     const result = await RecoveryAttempt.aggregate([
+        {
+            $lookup: {
+                from: "events",
+                localField: "event",
+                foreignField: "_id",
+                as: "eventData"
+            }
+        },
+        {
+            $unwind: "$eventData"
+        },
+        {
+            $match: {
+                "eventData.user": new mongoose.Types.ObjectId(userId)
+            }
+        },
         {
             $group: {
                 _id: {
@@ -203,43 +247,12 @@ const getRecoveryByAction = async () => {
                 outcome: 1
             }
         }
-    ])
+    ]);
+
     return result;
-}
-
-const getExpectedRecoveryValue = async (
-    paymentAmount,
-    action,
-    errorCode,
-    eventIds = null
-) => {
-
-    const probabilityResult =
-        await getHistoricalRecoveryProbability(
-            action,
-            errorCode,
-            eventIds
-        );
-
-    const expectedRecoveryValue =
-        paymentAmount *
-        probabilityResult.recoveryProbability;
-
-    return {
-        paymentAmount,
-        action,
-        errorCode,
-        recoveredAttempts: probabilityResult.recoveredAttempts,
-        failedAttempts: probabilityResult.failedAttempts,
-        completedAttempts: probabilityResult.completedAttempts,
-        recoveryProbability: probabilityResult.recoveryProbability,
-        expectedRecoveryValue
-    };
-
 };
 
-// Recovery by error
-const getRecoveryByError = async () => {
+const getRecoveryByError = async (userId) => {
     const result = await RecoveryAttempt.aggregate([
         {
             $lookup: {
@@ -251,6 +264,11 @@ const getRecoveryByError = async () => {
         },
         {
             $unwind: "$eventData"
+        },
+        {
+            $match: {
+                "eventData.user": new mongoose.Types.ObjectId(userId)
+            }
         },
         {
             $group: {
@@ -282,10 +300,24 @@ const getRecoveryByError = async () => {
     return result;
 };
 
-
-//Recovery Trend
-const getRecoveryTrend = async () => {
+const getRecoveryTrend = async (userId) => {
     const result = await RecoveryAttempt.aggregate([
+        {
+            $lookup: {
+                from: "events",
+                localField: "event",
+                foreignField: "_id",
+                as: "eventData"
+            }
+        },
+        {
+            $unwind: "$eventData"
+        },
+        {
+            $match: {
+                "eventData.user": new mongoose.Types.ObjectId(userId)
+            }
+        },
         {
             $group: {
                 _id: {
@@ -321,10 +353,24 @@ const getRecoveryTrend = async () => {
     return result;
 };
 
-
-//Recovery By sources
-const getRecoveryBySource = async () => {
+const getRecoveryBySource = async (userId) => {
     const result = await RecoveryAttempt.aggregate([
+        {
+            $lookup: {
+                from: "events",
+                localField: "event",
+                foreignField: "_id",
+                as: "eventData"
+            }
+        },
+        {
+            $unwind: "$eventData"
+        },
+        {
+            $match: {
+                "eventData.user": new mongoose.Types.ObjectId(userId)
+            }
+        },
         {
             $lookup: {
                 from: "analyses",
@@ -365,9 +411,6 @@ const getRecoveryBySource = async () => {
 
     return result;
 };
-
-
-
 
 export default {
     getRecoveryRate,

@@ -1,5 +1,6 @@
 import Event from "../models/Event.js";
 import recoveryAnalyticsService from "./recoveryAnalyticsService.js";
+import mongoose from "mongoose";
 
 const ELIGIBLE_ACTIONS = [
     "RETRY_NOW",
@@ -7,21 +8,30 @@ const ELIGIBLE_ACTIONS = [
     "WAIT_AND_RETRY"
 ];
 
-const getDashboardMetrics = async (eventIds = null) => {
+const getDashboardMetrics = async (userId, eventIds = null) => {
+    const userObjectId = new mongoose.Types.ObjectId(userId);
 
     const recoveryResult =
-        await recoveryAnalyticsService.getRecoveryRate(eventIds);
+        await recoveryAnalyticsService.getRecoveryRate(
+            userId,
+            eventIds
+        );
+
+    const failedEventMatch = {
+        status: "FAILED",
+        user: userObjectId,
+        ...(eventIds && eventIds.length > 0
+            ? { _id: { $in: eventIds } }
+            : {})
+    };
+
+    const failedPayments =
+        await Event.countDocuments(failedEventMatch);
 
     const failedEventAnalysis = await Event.aggregate([
         {
-            $match: {
-                status: "FAILED",
-                ...(eventIds && eventIds.length > 0
-                    ? { _id: { $in: eventIds } }
-                    : {})
-            }
+            $match: failedEventMatch
         },
-
         {
             $lookup: {
                 from: "analyses",
@@ -48,7 +58,6 @@ const getDashboardMetrics = async (eventIds = null) => {
                 as: "analysis"
             }
         },
-
         {
             $unwind: "$analysis"
         }
@@ -58,22 +67,34 @@ const getDashboardMetrics = async (eventIds = null) => {
 
     for (const record of failedEventAnalysis) {
         try {
-            const recommendation = record.analysis?.recommendation;
-            const errorCode = record.errorCode;
-            const paymentAmount = Number(record.paymentAmount) || 0;
+            const recommendation =
+                record.analysis?.recommendation;
 
-            if (ELIGIBLE_ACTIONS.includes(recommendation) && errorCode) {
+            const errorCode = record.errorCode;
+
+            const paymentAmount =
+                Number(record.paymentAmount) || 0;
+
+            if (
+                ELIGIBLE_ACTIONS.includes(recommendation) &&
+                errorCode
+            ) {
                 const probResult =
                     await recoveryAnalyticsService.getHistoricalRecoveryProbability(
                         recommendation,
                         errorCode,
+                        userId,
                         eventIds
                     );
 
-                const probability = probResult?.recoveryProbability || 0;
-                expectedRecoveryValue += paymentAmount * probability;
+                const probability =
+                    probResult?.recoveryProbability || 0;
+
+                expectedRecoveryValue +=
+                    paymentAmount * probability;
             }
-        } catch (err) {
+        }
+        catch (err) {
             console.error(
                 "Error calculating EV for event:",
                 record._id,
@@ -83,9 +104,11 @@ const getDashboardMetrics = async (eventIds = null) => {
     }
 
     return {
-        failedPayments: recoveryResult.failedAttempts,
-        recoveredPayments: recoveryResult.recoveredAttempts,
-        recoveryRate: recoveryResult.recoveryRate,
+        failedPayments,
+        recoveredPayments:
+            recoveryResult.recoveredAttempts,
+        recoveryRate:
+            recoveryResult.recoveryRate,
         expectedRecoveryValue
     };
 };
