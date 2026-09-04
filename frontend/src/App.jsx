@@ -1,74 +1,58 @@
-import TransactionForm from "./components/TransactionForm";
-import { useState } from "react";
-import AnalysisResult from "./components/AnalysisResult";
-import MetricsPanel from "./components/MetricsPanel";
-import RecentEvents from "./components/RecentEvents";
-import Navbar from "./components/Navbar";
+import { BrowserRouter, Routes, Route, Navigate, Outlet } from "react-router-dom";
+import { AuthProvider, useAuth } from "./context/AuthContext";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
+import Sidebar from "./components/layout/Sidebar";
+import Topbar from "./components/layout/Topbar";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Transactions from "./pages/Transactions";
+import TransactionDetail from "./pages/TransactionDetail";
+import Analytics from "./pages/Analytics";
+import RecoveryCenter from "./pages/RecoveryCenter";
+import Settings from "./pages/Settings";
+
+// The app shell (sidebar + topbar) only wraps authenticated pages —
+// the login screen renders standalone.
+function AppShell() {
+  return (
+    <div className="rr-shell">
+      <Sidebar />
+      <Topbar />
+      <main className="rr-main">
+        <Outlet />
+      </main>
+    </div>
+  );
+}
+
+function RootRedirect() {
+  const { isAuthenticated } = useAuth();
+  return <Navigate to={isAuthenticated ? "/dashboard" : "/login"} replace />;
+}
 
 function App() {
-  const [result, setResult] = useState(null);
-  const [error, setError] = useState(null);
-
-  const handleTransactionSubmit = async (transaction) => {
-    console.log("Sending transaction:", transaction);
-
-    // Clear previous request state
-    setError(null);
-    setResult(null);
-
-    try {
-      const response = await fetch(
-        "http://localhost:5000/events/process",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(transaction)
-        }
-      );
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(
-          data.message || "Failed to process transaction."
-        );
-      }
-
-      setResult(data);
-
-    } catch (error) {
-      console.error(
-        "Transaction processing failed:",
-        error
-      );
-
-      setError(error.message);
-    }
-  };
-
   return (
-    <>
-      <Navbar />
+    <BrowserRouter>
+      <AuthProvider>
+        <Routes>
+          <Route path="/login" element={<Login />} />
 
-      <h1>Revenue Rescue AI</h1>
+          <Route element={<ProtectedRoute />}>
+            <Route element={<AppShell />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/transactions" element={<Transactions />} />
+              <Route path="/transactions/:id" element={<TransactionDetail />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/recovery" element={<RecoveryCenter />} />
+              <Route path="/settings" element={<Settings />} />
+            </Route>
+          </Route>
 
-      <TransactionForm
-        onSubmit={handleTransactionSubmit}
-      />
-
-      {error != null && (
-        <p>{error}</p>
-      )}
-
-      {result != null && (
-        <AnalysisResult result={result} />
-      )}
-
-      <MetricsPanel />
-      <RecentEvents />
-    </>
+          <Route path="/" element={<RootRedirect />} />
+          <Route path="*" element={<RootRedirect />} />
+        </Routes>
+      </AuthProvider>
+    </BrowserRouter>
   );
 }
 
