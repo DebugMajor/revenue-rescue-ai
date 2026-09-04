@@ -6,7 +6,6 @@ import { BrandMark } from "../components/layout/Sidebar";
 function Login() {
   const { login, isAuthenticated } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -44,7 +43,7 @@ function Login() {
           </div>
         </div>
 
-        <h1 className="rr-login-title">Sign in</h1>
+        <h1 className="rr-login-title">Log In</h1>
         <p className="rr-login-subtitle">
           Access the revenue recovery operations console.
         </p>

@@ -139,6 +139,14 @@ export async function login(email, password) {
   return data.token;
 }
 
+export async function register(email, password) {
+  return post(
+    "/auth/register",
+    { email, password },
+    { auth: false }
+  );
+}
+
 export async function getHealth() {
   const res = await fetch(`${BASE_URL}/health`);
   return handle(res);

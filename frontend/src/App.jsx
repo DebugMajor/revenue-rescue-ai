@@ -10,9 +10,8 @@ import TransactionDetail from "./pages/TransactionDetail";
 import Analytics from "./pages/Analytics";
 import RecoveryCenter from "./pages/RecoveryCenter";
 import Settings from "./pages/Settings";
+import Signup from "./pages/Signup";
 
-// The app shell (sidebar + topbar) only wraps authenticated pages —
-// the login screen renders standalone.
 function AppShell() {
   return (
     <div className="rr-shell">
@@ -36,7 +35,7 @@ function App() {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
-
+          <Route path="/signup" element={<Signup />} />
           <Route element={<ProtectedRoute />}>
             <Route element={<AppShell />}>
               <Route path="/dashboard" element={<Dashboard />} />
