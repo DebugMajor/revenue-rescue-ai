@@ -1,8 +1,15 @@
+const METRICS = [
+    { label: "Revenue at Risk", value: "₹21.2K", accent: "danger" },
+    { label: "Expected Recovery", value: "₹8.0K", accent: "violet" },
+    { label: "Recovered Revenue", value: "₹6.4K", accent: "cyan" },
+    { label: "Recovery Rate", value: "76%", accent: "success" }
+];
+
 const STAGES = [
-    { label: "Revenue at Risk", width: 100, accent: "danger", note: "Failed payments entering the engine" },
-    { label: "Expected Recovery", width: 74, accent: "violet", note: "Modeled from historical recovery probability" },
-    { label: "Recovered Revenue", width: 52, accent: "cyan", note: "Actually returned via retry or payment link" },
-    { label: "Recovery Rate", width: 52, accent: "success", note: "Recovered ÷ completed attempts" }
+    { label: "Revenue at Risk", width: 100, accent: "danger" },
+    { label: "Expected Recovery", width: 74, accent: "violet" },
+    { label: "Recovered Revenue", width: 52, accent: "cyan" },
+    { label: "Recovery Rate", width: 52, accent: "success" }
 ];
 
 function ValueSection() {
@@ -17,6 +24,15 @@ function ValueSection() {
                 attempts in Analytics.
             </p>
 
+            <div className="rr-value-metrics">
+                {METRICS.map((m) => (
+                    <div className="rr-value-metric" key={m.label}>
+                        <div className={`rr-value-metric-figure accent-${m.accent} rr-num`}>{m.value}</div>
+                        <div className="rr-value-metric-label">{m.label}</div>
+                    </div>
+                ))}
+            </div>
+
             <div className="rr-home-funnel">
                 {STAGES.map((s) => (
                     <div className="rr-home-funnel-row" key={s.label}>
@@ -27,7 +43,6 @@ function ValueSection() {
                                 style={{ width: `${s.width}%` }}
                             />
                         </div>
-                        <div className="rr-home-funnel-note">{s.note}</div>
                     </div>
                 ))}
             </div>

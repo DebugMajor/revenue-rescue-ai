@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 
 const STAGES = [
-    { id: "event", label: "Payment Failure", detail: "NETWORK_ERROR detected", accent: "danger" },
-    { id: "context", label: "Customer Context", detail: "6 successful / 8 total", accent: "cyan" },
-    { id: "risk", label: "Risk Engine", detail: "MEDIUM risk", accent: "violet" },
-    { id: "ai", label: "AI Recommendation", detail: "WAIT_AND_RETRY · 80% confidence", accent: "cyan" },
-    { id: "policy", label: "Policy Gate", detail: "APPROVED", accent: "blue" },
-    { id: "recovery", label: "Recovery", detail: "PENDING · deferred retry", accent: "success" }
+    { id: "event", label: "Payment Failure", meta: "NETWORK_ERROR", accent: "danger" },
+    { id: "context", label: "Customer Context", meta: "6 successful / 8 total", accent: "cyan" },
+    { id: "risk", label: "Risk Engine", meta: "MEDIUM · 0.52", accent: "violet" },
+    { id: "ai", label: "AI Recommendation", meta: "WAIT_AND_RETRY · 80%", accent: "cyan" },
+    { id: "policy", label: "Policy Gate", meta: "APPROVED", accent: "blue" },
+    { id: "recovery", label: "Recovery", meta: "PENDING · deferred retry", accent: "success" }
 ];
 
 function prefersReducedMotion() {
@@ -42,6 +42,16 @@ function RecoveryEngineViz() {
             onFocus={() => setPaused(true)}
             onBlur={() => setPaused(false)}
         >
+            <div className="rr-home-engine-grid" aria-hidden="true" />
+
+            <div className="rr-home-engine-header">
+                <div className="rr-home-engine-title">Recovery Decision Engine</div>
+                <div className="rr-home-engine-live">
+                    <span className="rr-home-engine-live-dot" />
+                    Live
+                </div>
+            </div>
+
             <div className="rr-home-engine-rail">
                 {STAGES.map((s, i) => (
                     <div className="rr-home-engine-item" key={s.id}>
@@ -52,10 +62,17 @@ function RecoveryEngineViz() {
                             aria-pressed={i === active}
                         >
                             <span className="rr-home-engine-dot" />
-                            {s.label}
+                            <span className="rr-home-engine-node-text">
+                                <span className="rr-home-engine-node-label">{s.label}</span>
+                                <span className={`rr-home-engine-node-meta${i === active ? " is-visible" : ""}`}>
+                                    {s.meta}
+                                </span>
+                            </span>
                         </button>
                         {i < STAGES.length - 1 && (
-                            <div className={`rr-home-engine-line${i < active ? " is-filled" : ""}`} />
+                            <div className={`rr-home-engine-line${i < active ? " is-filled" : ""}${i === active ? " is-pulsing" : ""}`}>
+                                <span className="rr-home-engine-line-pulse" />
+                            </div>
                         )}
                     </div>
                 ))}
@@ -63,7 +80,7 @@ function RecoveryEngineViz() {
 
             <div className="rr-home-engine-detail" aria-live="polite">
                 <div className={`rr-home-engine-detail-tag accent-${stage.accent}`}>{stage.label}</div>
-                <div className="rr-home-engine-detail-value rr-num">{stage.detail}</div>
+                <div className="rr-home-engine-detail-value rr-num">{stage.meta}</div>
             </div>
         </div>
     );

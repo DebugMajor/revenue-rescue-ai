@@ -60,7 +60,7 @@ function DecisionTracePreview() {
                 ))}
             </div>
 
-            <div className={`rr-home-trace-panel accent-${step.accent}`} aria-live="polite">
+            <div className={`rr-home-trace-panel accent-${step.accent}`} aria-live="polite" key={step.label}>
                 {step.rows.map(([k, v]) => (
                     <div className="rr-kv-row" key={k}>
                         <span className="k">{k}</span>

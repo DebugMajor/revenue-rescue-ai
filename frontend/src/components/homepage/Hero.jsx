@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import RecoveryEngineViz from "./RecoveryEngineViz";
+import FloatingPanels from "./FloatingPanels";
 
 function Hero() {
     return (
@@ -13,14 +14,15 @@ function Hero() {
             <div className="rr-home-hero-copy">
                 <p className="rr-eyebrow">Revenue Intelligence</p>
                 <h1>
-                    Recover lost <span className="accent-cyan">revenue</span> without giving{" "}
-                    <span className="accent-violet">AI</span> <span className="accent-blue">control</span> over
-                    your money.
+                    Recover revenue. Keep <span className="accent-violet">AI</span> under control.
                 </h1>
                 <p className="rr-home-hero-sub">
-                    Payment failures need context, not guesses. Revenue Rescue AI diagnoses each one and
-                    recommends a fix — but a deterministic policy engine, not the model, decides what actually
-                    executes. Every step of that decision is logged and auditable.
+                    Revenue Rescue AI diagnoses failed payments, evaluates recovery risk, and recommends
+                    the next action. A deterministic policy engine decides what is actually allowed to
+                    execute.
+                </p>
+                <p className="rr-home-hero-tenet">
+                    <span className="accent-cyan">AI recommends.</span> <span className="accent-blue">Code decides.</span>
                 </p>
                 <div className="rr-home-hero-ctas">
                     <Link to="/signup" className="rr-btn rr-btn-primary">Get Started</Link>
@@ -29,6 +31,7 @@ function Hero() {
             </div>
 
             <div className="rr-home-hero-viz">
+                <FloatingPanels />
                 <RecoveryEngineViz />
             </div>
         </section>
