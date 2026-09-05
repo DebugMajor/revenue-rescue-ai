@@ -1,5 +1,6 @@
 import Event from "../models/Event.js";
 import RecoveryAttempt from "../models/RecoveryAttempt.js";
+import Analysis from "../models/RecoveryAnalysis.js";
 
 const getTransaction = async (id, userId) => {
     const event = await Event.findOne({
@@ -15,10 +16,18 @@ const getTransaction = async (id, userId) => {
 
     const attempts = await RecoveryAttempt.find({
         event: event._id
-    }).populate("analysis");
+    })
+        .populate("analysis");
+
+    const analysis = await Analysis.findOne({
+        event: event._id
+    }).sort({
+        analysisNumber: -1
+    });
 
     return {
         event,
+        analysis,
         attempts
     };
 };
@@ -33,4 +42,7 @@ const getTransactions = async (userId) => {
     return data;
 };
 
-export { getTransaction, getTransactions };
+export {
+    getTransaction,
+    getTransactions
+};
