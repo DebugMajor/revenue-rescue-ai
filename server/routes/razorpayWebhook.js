@@ -104,6 +104,7 @@ router.post("/", async (req, res) => {
         }
 
         // 5. Parse JSON safely
+        let payload;
         try {
             payload = JSON.parse(req.body.toString("utf8"));
         } catch (error) {
@@ -178,13 +179,27 @@ router.post("/", async (req, res) => {
             const recoveryAttempt =
                 await RecoveryAttempt.findOne({
                     paymentLinkId
-                });
+                }).populate("event");
 
             if (recoveryAttempt === null) {
                 return res.status(200).json({
                     status: "OK",
                     message:
                         "Payment Link received, but no matching recovery attempt was found",
+                    eventType,
+                    paymentLinkId
+                });
+            }
+
+            if (
+                !recoveryAttempt.event ||
+                String(recoveryAttempt.event.user) !==
+                String(process.env.WEBHOOK_USER_ID)
+            ) {
+                return res.status(200).json({
+                    status: "OK",
+                    message:
+                        "Payment Link does not belong to configured webhook user",
                     eventType,
                     paymentLinkId
                 });
