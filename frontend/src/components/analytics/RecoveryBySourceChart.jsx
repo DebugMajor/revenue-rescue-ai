@@ -1,10 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import EmptyState from "../common/EmptyState";
 
-// data: [{ source, outcome, count }] from GET /analytics/recovery-by-source
-// (recoveryAnalyticsService.getRecoveryBySource). This endpoint now
-// exists in the backend contract, so the "not available" placeholder
-// the old frontend used here is stale — replaced with a real chart.
+
 function pivot(rows) {
   const bySource = new Map();
   for (const row of rows) {

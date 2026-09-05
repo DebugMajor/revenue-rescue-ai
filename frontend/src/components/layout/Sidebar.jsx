@@ -14,9 +14,6 @@ const SYSTEM = [
   { to: "/settings", label: "Settings", icon: "⚙" }
 ];
 
-// A small recovery-arc mark: a broken ring reconnecting into an
-// upward arrow — communicates "recovery" without relying on a
-// literal "RR" monogram. Pure inline SVG, no new dependency.
 function BrandMark() {
   return (
     <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -7,12 +7,6 @@ import ErrorState from "../components/common/ErrorState";
 import EmptyState from "../components/common/EmptyState";
 import { getRecoveryQueue } from "../services/api";
 
-// Backed by GET /recovery -> recoveryCenterService.getRecoveryQueue(),
-// which returns RecoveryAttempt records with outcome === "PENDING",
-// each populated with .event and .analysis. This is real, per-attempt
-// data — action taken, attempt number, retry timing, payment link
-// status — unlike the old /events-based approximation this page used
-// to fall back on.
 function RecoveryCenter() {
   const [queue, setQueue] = useState(null);
   const [error, setError] = useState(null);

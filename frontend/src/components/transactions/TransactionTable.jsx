@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import StatusBadge from "../common/StatusBadge";
 import EmptyState from "../common/EmptyState";
 
-// Filters run client-side over whatever GET /transactions returned.
-// These narrow the current result set only — they are not a
-// replacement for server-side pagination/search, which the API does
-// not currently expose query params for.
 function TransactionTable({ events }) {
     const [statusFilter, setStatusFilter] = useState("ALL");
     const [errorFilter, setErrorFilter] = useState("ALL");

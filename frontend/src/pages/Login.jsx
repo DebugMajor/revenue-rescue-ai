@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { BrandMark } from "../components/layout/Sidebar";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 
 function Login() {
   const { login, isAuthenticated } = useAuth();
@@ -84,6 +84,12 @@ function Login() {
             {submitting ? "Signing in…" : "Sign in"}
           </button>
         </form>
+        <p className="rr-login-footer-link">
+          Don't have an account?{" "}
+          <Link to="/signup">
+            Create account
+          </Link>
+        </p>
       </div>
     </div>
   );

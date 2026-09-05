@@ -1,6 +1,4 @@
-// Optional `eyebrow` renders a small accent label above the title
-// (e.g. "REVENUE INTELLIGENCE" on the Dashboard) for stronger visual
-// hierarchy on the primary pages. Purely presentational — no data.
+
 function PageContainer({ eyebrow, title, subtitle, actions, children }) {
   return (
     <div>

@@ -1,10 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import EmptyState from "../common/EmptyState";
 
-// data: [{ action, outcome, count }] from GET /analytics/recovery-by-action
-// (recoveryAnalyticsService.getRecoveryByAction). Pivoted client-side
-// into one row per action with recovered/failed columns — no values
-// are invented, only regrouped for charting.
+
 function pivot(rows) {
   const byAction = new Map();
   for (const row of rows) {

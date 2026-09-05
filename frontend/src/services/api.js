@@ -17,7 +17,6 @@ export function setToken(token) {
     localStorage.setItem(TOKEN_KEY, token);
   }
   catch {
-    // Storage unavailable
   }
 }
 
@@ -26,7 +25,6 @@ export function clearToken() {
     localStorage.removeItem(TOKEN_KEY);
   }
   catch {
-    // Nothing to clear
   }
 }
 
@@ -50,7 +48,6 @@ async function handle(response) {
     data = await response.json();
   }
   catch {
-    // Response was not JSON
   }
 
   if (response.status === 401) {
@@ -85,17 +82,17 @@ function authHeaders() {
 }
 
 async function get(path) {
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const response = await fetch(`${BASE_URL}${path}`, {
     headers: {
       ...authHeaders()
     }
   });
 
-  return handle(res);
+  return handle(response);
 }
 
 async function post(path, body, { auth = true } = {}) {
-  const res = await fetch(`${BASE_URL}${path}`, {
+  const response = await fetch(`${BASE_URL}${path}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -104,7 +101,7 @@ async function post(path, body, { auth = true } = {}) {
     body: JSON.stringify(body)
   });
 
-  return handle(res);
+  return handle(response);
 }
 
 function extractArray(payload, candidateKeys = []) {
@@ -148,8 +145,8 @@ export async function register(email, password) {
 }
 
 export async function getHealth() {
-  const res = await fetch(`${BASE_URL}/health`);
-  return handle(res);
+  const response = await fetch(`${BASE_URL}/health`);
+  return handle(response);
 }
 
 export async function processTransaction(transaction) {
@@ -172,6 +169,7 @@ export async function getTransactionById(eventId) {
 
   return {
     event: payload.event || null,
+    analysis: payload.analysis || null,
     attempts: Array.isArray(payload.attempts)
       ? payload.attempts
       : []
@@ -180,10 +178,12 @@ export async function getTransactionById(eventId) {
 
 export async function getRecoveryQueue() {
   const data = await get("/recovery");
+
   return extractArray(data, [
     "recoveryAttempts",
     "queue",
-    "recovery"
+    "recovery",
+    "recoveries"
   ]);
 }
 
@@ -193,22 +193,42 @@ export async function getDashboardMetrics() {
 
 export async function getRecoveryByAction() {
   const data = await get("/analytics/recovery-by-action");
-  return extractArray(data, ["data", "result"]);
+
+  return extractArray(data, [
+    "data",
+    "result",
+    "recoveryByAction"
+  ]);
 }
 
 export async function getRecoveryByError() {
   const data = await get("/analytics/recovery-by-error");
-  return extractArray(data, ["data", "result"]);
+
+  return extractArray(data, [
+    "data",
+    "result",
+    "recoveryByError"
+  ]);
 }
 
 export async function getRecoveryTrend() {
   const data = await get("/analytics/recovery-trend");
-  return extractArray(data, ["data", "result"]);
+
+  return extractArray(data, [
+    "data",
+    "result",
+    "recoveryTrends"
+  ]);
 }
 
 export async function getRecoveryBySource() {
   const data = await get("/analytics/recovery-by-source");
-  return extractArray(data, ["data", "result"]);
+
+  return extractArray(data, [
+    "data",
+    "result",
+    "recoveryBySource"
+  ]);
 }
 
 export { ApiError };

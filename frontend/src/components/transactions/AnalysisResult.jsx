@@ -1,8 +1,6 @@
 import StatusBadge from "../common/StatusBadge";
 
-// Renders exactly what POST /events/process returned. Sections are
-// conditionally rendered so BLOCKED/ESCALATED events (which have no
-// recoveryAttempt) don't show a fabricated recovery step.
+
 function AnalysisResult({ result }) {
     const {
         event,

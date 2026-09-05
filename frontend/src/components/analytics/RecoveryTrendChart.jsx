@@ -1,8 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import EmptyState from "../common/EmptyState";
 
-// data: [{ date, outcome, count }] from GET /analytics/recovery-trend
-// Pivoted into one row per date with recovered/failed columns.
 function pivot(rows) {
   const byDate = new Map();
   for (const row of rows) {

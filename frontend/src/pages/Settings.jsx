@@ -4,11 +4,7 @@ import EmptyState from "../components/common/EmptyState";
 import { useAuth } from "../context/AuthContext";
 import { getHealth } from "../services/api";
 
-// Real, backend-verifiable information only: the authenticated
-// account (decoded from the JWT already held by the client) and live
-// API health via GET /health. No configurable thresholds, API keys,
-// or notification preferences are shown — none of that is backed by
-// a settings endpoint on the frozen backend.
+
 function Settings() {
   const { user, logout } = useAuth();
   const [health, setHealth] = useState(null);

@@ -1,7 +1,4 @@
-// Maps the actual status/decision/outcome/band/source strings used by
-// the backend (Event.status, RecoveryAttempt.outcome, policy.decision,
-// riskBand, analysis.source) to a visual tone. Unrecognized values
-// fall back to "neutral" rather than guessing.
+
 const TONE_MAP = {
   RECOVERED: "success",
   APPROVED: "success",

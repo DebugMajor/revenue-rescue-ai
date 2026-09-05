@@ -11,7 +11,7 @@
   background: var(--rr-bg);
 }
 
-/* ---------- Sidebar ---------- */
+/*  Sidebar  */
 
 .rr-sidebar {
   grid-area: sidebar;
@@ -147,7 +147,7 @@
   letter-spacing: 0.01em;
 }
 
-/* ---------- Topbar ---------- */
+/*  Topbar  */
 
 .rr-topbar {
   grid-area: topbar;
@@ -196,7 +196,7 @@
   box-shadow: 0 0 0 3px var(--rr-success-dim);
 }
 
-/* ---------- Main content ---------- */
+/*  Main content  */
 
 .rr-main {
   grid-area: main;
