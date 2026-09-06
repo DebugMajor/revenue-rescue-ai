@@ -1,3 +1,5 @@
+import isEvaluationMode from "../../config/evaluation.js";
+
 function razorpayService() {
     const baseURL = "https://api.razorpay.com/v1";
 
@@ -7,6 +9,14 @@ function razorpayService() {
     const authorizationValue =
         "Basic " +
         Buffer.from(`${keyId}:${keySecret}`).toString("base64");
+
+    const assertLiveExecutionAllowed = () => {
+        if (isEvaluationMode) {
+            throw new Error(
+                "Live Razorpay execution is disabled in evaluation mode."
+            );
+        }
+    };
 
     const fetchPayment = async (paymentId) => {
         const payment = await fetch(
@@ -41,8 +51,10 @@ function razorpayService() {
                     Authorization: authorizationValue
                 }
             }
-        )
+        );
+
         const data = await order.json();
+
         if (!order.ok) {
             throw new Error(
                 data.error?.description ||
@@ -54,9 +66,15 @@ function razorpayService() {
         return {
             data
         };
-    }
+    };
 
-    const createPaymentLink = async (amount, customerName, customerEmail) => {
+    const createPaymentLink = async (
+        amount,
+        customerName,
+        customerEmail
+    ) => {
+        assertLiveExecutionAllowed();
+
         const paymentLink = await fetch(
             `${baseURL}/payment_links`,
             {

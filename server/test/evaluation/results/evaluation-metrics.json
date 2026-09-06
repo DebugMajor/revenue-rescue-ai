@@ -1,0 +1,94 @@
+{
+  "generatedAt": "2026-09-05T17:20:15.056Z",
+  "sourceEvaluationFile": "evaluation-2026-09-05T17-16-58-886Z.json",
+  "dataset": {
+    "uniqueEvents": 500,
+    "duplicateEvents": 15,
+    "totalRecords": 515
+  },
+  "financial": {
+    "revenueAtRisk": 10676939,
+    "expectedRecovery": 1936557.8,
+    "recoveredRevenue": 979772,
+    "pendingRevenue": 1909964,
+    "escalatedRevenue": 7326377,
+    "blockedRevenue": 460826,
+    "recoveryRate": 0.3391
+  },
+  "outcomes": {
+    "recovered": 100,
+    "pending": 171,
+    "escalated": 179,
+    "blocked": 50,
+    "recoveryFailed": 0,
+    "duplicatesPrevented": 15
+  },
+  "policy": {
+    "maxAttemptsBlocked": 50,
+    "highRiskEscalated": 129,
+    "highValueEscalated": 50,
+    "humanReviewEscalated": 0,
+    "lowConfidenceEscalated": 0
+  },
+  "actionCounts": {
+    "SEND_PAYMENT_LINK": 150,
+    "RETRY_NOW": 200,
+    "WAIT_AND_RETRY": 150
+  },
+  "errorMetrics": {
+    "CARD_DECLINED": {
+      "events": 75,
+      "recovered": 0,
+      "pending": 75,
+      "escalated": 0,
+      "blocked": 0,
+      "revenueAtRisk": 819631,
+      "recoveredRevenue": 0
+    },
+    "NETWORK_ERROR": {
+      "events": 200,
+      "recovered": 100,
+      "pending": 0,
+      "escalated": 50,
+      "blocked": 50,
+      "revenueAtRisk": 7408648,
+      "recoveredRevenue": 979772
+    },
+    "TIMEOUT": {
+      "events": 75,
+      "recovered": 0,
+      "pending": 75,
+      "escalated": 0,
+      "blocked": 0,
+      "revenueAtRisk": 841118,
+      "recoveredRevenue": 0
+    },
+    "GATEWAY_ERROR": {
+      "events": 75,
+      "recovered": 0,
+      "pending": 15,
+      "escalated": 60,
+      "blocked": 0,
+      "revenueAtRisk": 802844,
+      "recoveredRevenue": 0
+    },
+    "INSUFFICIENT_FUNDS": {
+      "events": 75,
+      "recovered": 0,
+      "pending": 6,
+      "escalated": 69,
+      "blocked": 0,
+      "revenueAtRisk": 804698,
+      "recoveredRevenue": 0
+    },
+    "UNKNOWN": {
+      "events": 15,
+      "recovered": 0,
+      "pending": 0,
+      "escalated": 0,
+      "blocked": 0,
+      "revenueAtRisk": 0,
+      "recoveredRevenue": 0
+    }
+  }
+}

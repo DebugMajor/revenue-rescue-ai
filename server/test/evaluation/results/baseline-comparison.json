@@ -1,0 +1,60 @@
+{
+  "generatedAt": "2026-09-05T17:32:29.333Z",
+  "dataset": {
+    "uniqueEvents": 500,
+    "duplicateEvents": 15,
+    "totalRevenueAtRisk": 10676939
+  },
+  "methodology": {
+    "type": "Controlled synthetic comparison",
+    "outcomeModel": "Same deterministic outcome simulator for baseline strategies",
+    "revenueRescueSource": "Observed outcomes from Revenue Rescue evaluation",
+    "baselineSource": "Same deterministic outcome simulator",
+    "fairnessRule": "All strategies receive the same event set and deterministic event/action outcome mapping.",
+    "note": "This evaluation is synthetic and does not represent production payment-provider recovery rates."
+  },
+  "strategies": {
+    "retryEverything": {
+      "events": 500,
+      "automaticallyActed": 500,
+      "noAction": 0,
+      "recoveredEvents": 271,
+      "recoveredRevenue": 7156602,
+      "exposedRevenue": 10676939,
+      "unnecessaryRetries": 150,
+      "escalated": 0,
+      "blocked": 0,
+      "recoveryRateByExposedRevenue": 0.6702859312018173,
+      "recoveryRateByTotalRevenue": 0.6702859312018173,
+      "unnecessaryRetryRate": 0.3
+    },
+    "simpleRules": {
+      "events": 500,
+      "automaticallyActed": 350,
+      "noAction": 150,
+      "recoveredEvents": 271,
+      "recoveredRevenue": 7126905,
+      "exposedRevenue": 9052610,
+      "unnecessaryRetries": 0,
+      "escalated": 0,
+      "blocked": 0,
+      "recoveryRateByExposedRevenue": 0.7872762661817972,
+      "recoveryRateByTotalRevenue": 0.6675045160415358,
+      "unnecessaryRetryRate": 0
+    },
+    "revenueRescue": {
+      "events": 500,
+      "automaticallyActed": 271,
+      "noAction": 0,
+      "recoveredEvents": 168,
+      "recoveredRevenue": 1718177,
+      "exposedRevenue": 2889736,
+      "unnecessaryRetries": 0,
+      "escalated": 179,
+      "blocked": 50,
+      "recoveryRateByExposedRevenue": 0.5945792279986822,
+      "recoveryRateByTotalRevenue": 0.16092411879472196,
+      "unnecessaryRetryRate": 0
+    }
+  }
+}

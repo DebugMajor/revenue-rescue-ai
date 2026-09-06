@@ -1,0 +1,2596 @@
+{
+  "metadata": {
+    "generatedAt": "2026-09-05T16:59:14.654Z",
+    "datasetVersion": "1.0",
+    "evaluationUser": "admin@revenuerescue.ai"
+  },
+  "summary": {
+    "totalRecords": 515,
+    "processed": 0,
+    "succeeded": 0,
+    "duplicates": 515,
+    "failed": 0,
+    "recovered": 0,
+    "recoveryFailed": 0,
+    "pending": 0,
+    "escalated": 0,
+    "blocked": 0
+  },
+  "results": [
+    {
+      "eventId": "EVAL_0001",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0001\" }"
+    },
+    {
+      "eventId": "EVAL_0002",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0002\" }"
+    },
+    {
+      "eventId": "EVAL_0003",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0003\" }"
+    },
+    {
+      "eventId": "EVAL_0004",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0004\" }"
+    },
+    {
+      "eventId": "EVAL_0005",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0005\" }"
+    },
+    {
+      "eventId": "EVAL_0006",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0006\" }"
+    },
+    {
+      "eventId": "EVAL_0007",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0007\" }"
+    },
+    {
+      "eventId": "EVAL_0008",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0008\" }"
+    },
+    {
+      "eventId": "EVAL_0009",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0009\" }"
+    },
+    {
+      "eventId": "EVAL_0010",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0010\" }"
+    },
+    {
+      "eventId": "EVAL_0011",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0011\" }"
+    },
+    {
+      "eventId": "EVAL_0012",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0012\" }"
+    },
+    {
+      "eventId": "EVAL_0013",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0013\" }"
+    },
+    {
+      "eventId": "EVAL_0014",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0014\" }"
+    },
+    {
+      "eventId": "EVAL_0015",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0015\" }"
+    },
+    {
+      "eventId": "EVAL_0016",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0016\" }"
+    },
+    {
+      "eventId": "EVAL_0017",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0017\" }"
+    },
+    {
+      "eventId": "EVAL_0018",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0018\" }"
+    },
+    {
+      "eventId": "EVAL_0019",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0019\" }"
+    },
+    {
+      "eventId": "EVAL_0020",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0020\" }"
+    },
+    {
+      "eventId": "EVAL_0021",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0021\" }"
+    },
+    {
+      "eventId": "EVAL_0022",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0022\" }"
+    },
+    {
+      "eventId": "EVAL_0023",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0023\" }"
+    },
+    {
+      "eventId": "EVAL_0024",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0024\" }"
+    },
+    {
+      "eventId": "EVAL_0025",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0025\" }"
+    },
+    {
+      "eventId": "EVAL_0026",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0026\" }"
+    },
+    {
+      "eventId": "EVAL_0027",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0027\" }"
+    },
+    {
+      "eventId": "EVAL_0028",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0028\" }"
+    },
+    {
+      "eventId": "EVAL_0029",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0029\" }"
+    },
+    {
+      "eventId": "EVAL_0030",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0030\" }"
+    },
+    {
+      "eventId": "EVAL_0031",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0031\" }"
+    },
+    {
+      "eventId": "EVAL_0032",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0032\" }"
+    },
+    {
+      "eventId": "EVAL_0033",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0033\" }"
+    },
+    {
+      "eventId": "EVAL_0034",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0034\" }"
+    },
+    {
+      "eventId": "EVAL_0035",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0035\" }"
+    },
+    {
+      "eventId": "EVAL_0036",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0036\" }"
+    },
+    {
+      "eventId": "EVAL_0037",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0037\" }"
+    },
+    {
+      "eventId": "EVAL_0038",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0038\" }"
+    },
+    {
+      "eventId": "EVAL_0039",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0039\" }"
+    },
+    {
+      "eventId": "EVAL_0040",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0040\" }"
+    },
+    {
+      "eventId": "EVAL_0041",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0041\" }"
+    },
+    {
+      "eventId": "EVAL_0042",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0042\" }"
+    },
+    {
+      "eventId": "EVAL_0043",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0043\" }"
+    },
+    {
+      "eventId": "EVAL_0044",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0044\" }"
+    },
+    {
+      "eventId": "EVAL_0045",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0045\" }"
+    },
+    {
+      "eventId": "EVAL_0046",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0046\" }"
+    },
+    {
+      "eventId": "EVAL_0047",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0047\" }"
+    },
+    {
+      "eventId": "EVAL_0048",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0048\" }"
+    },
+    {
+      "eventId": "EVAL_0049",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0049\" }"
+    },
+    {
+      "eventId": "EVAL_0050",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0050\" }"
+    },
+    {
+      "eventId": "EVAL_0051",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0051\" }"
+    },
+    {
+      "eventId": "EVAL_0052",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0052\" }"
+    },
+    {
+      "eventId": "EVAL_0053",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0053\" }"
+    },
+    {
+      "eventId": "EVAL_0054",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0054\" }"
+    },
+    {
+      "eventId": "EVAL_0055",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0055\" }"
+    },
+    {
+      "eventId": "EVAL_0056",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0056\" }"
+    },
+    {
+      "eventId": "EVAL_0057",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0057\" }"
+    },
+    {
+      "eventId": "EVAL_0058",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0058\" }"
+    },
+    {
+      "eventId": "EVAL_0059",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0059\" }"
+    },
+    {
+      "eventId": "EVAL_0060",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0060\" }"
+    },
+    {
+      "eventId": "EVAL_0061",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0061\" }"
+    },
+    {
+      "eventId": "EVAL_0062",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0062\" }"
+    },
+    {
+      "eventId": "EVAL_0063",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0063\" }"
+    },
+    {
+      "eventId": "EVAL_0064",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0064\" }"
+    },
+    {
+      "eventId": "EVAL_0065",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0065\" }"
+    },
+    {
+      "eventId": "EVAL_0066",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0066\" }"
+    },
+    {
+      "eventId": "EVAL_0067",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0067\" }"
+    },
+    {
+      "eventId": "EVAL_0068",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0068\" }"
+    },
+    {
+      "eventId": "EVAL_0069",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0069\" }"
+    },
+    {
+      "eventId": "EVAL_0070",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0070\" }"
+    },
+    {
+      "eventId": "EVAL_0071",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0071\" }"
+    },
+    {
+      "eventId": "EVAL_0072",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0072\" }"
+    },
+    {
+      "eventId": "EVAL_0073",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0073\" }"
+    },
+    {
+      "eventId": "EVAL_0074",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0074\" }"
+    },
+    {
+      "eventId": "EVAL_0075",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0075\" }"
+    },
+    {
+      "eventId": "EVAL_0076",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0076\" }"
+    },
+    {
+      "eventId": "EVAL_0077",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0077\" }"
+    },
+    {
+      "eventId": "EVAL_0078",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0078\" }"
+    },
+    {
+      "eventId": "EVAL_0079",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0079\" }"
+    },
+    {
+      "eventId": "EVAL_0080",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0080\" }"
+    },
+    {
+      "eventId": "EVAL_0081",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0081\" }"
+    },
+    {
+      "eventId": "EVAL_0082",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0082\" }"
+    },
+    {
+      "eventId": "EVAL_0083",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0083\" }"
+    },
+    {
+      "eventId": "EVAL_0084",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0084\" }"
+    },
+    {
+      "eventId": "EVAL_0085",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0085\" }"
+    },
+    {
+      "eventId": "EVAL_0086",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0086\" }"
+    },
+    {
+      "eventId": "EVAL_0087",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0087\" }"
+    },
+    {
+      "eventId": "EVAL_0088",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0088\" }"
+    },
+    {
+      "eventId": "EVAL_0089",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0089\" }"
+    },
+    {
+      "eventId": "EVAL_0090",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0090\" }"
+    },
+    {
+      "eventId": "EVAL_0091",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0091\" }"
+    },
+    {
+      "eventId": "EVAL_0092",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0092\" }"
+    },
+    {
+      "eventId": "EVAL_0093",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0093\" }"
+    },
+    {
+      "eventId": "EVAL_0094",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0094\" }"
+    },
+    {
+      "eventId": "EVAL_0095",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0095\" }"
+    },
+    {
+      "eventId": "EVAL_0096",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0096\" }"
+    },
+    {
+      "eventId": "EVAL_0097",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0097\" }"
+    },
+    {
+      "eventId": "EVAL_0098",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0098\" }"
+    },
+    {
+      "eventId": "EVAL_0099",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0099\" }"
+    },
+    {
+      "eventId": "EVAL_0100",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0100\" }"
+    },
+    {
+      "eventId": "EVAL_0101",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0101\" }"
+    },
+    {
+      "eventId": "EVAL_0102",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0102\" }"
+    },
+    {
+      "eventId": "EVAL_0103",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0103\" }"
+    },
+    {
+      "eventId": "EVAL_0104",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0104\" }"
+    },
+    {
+      "eventId": "EVAL_0105",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0105\" }"
+    },
+    {
+      "eventId": "EVAL_0106",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0106\" }"
+    },
+    {
+      "eventId": "EVAL_0107",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0107\" }"
+    },
+    {
+      "eventId": "EVAL_0108",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0108\" }"
+    },
+    {
+      "eventId": "EVAL_0109",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0109\" }"
+    },
+    {
+      "eventId": "EVAL_0110",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0110\" }"
+    },
+    {
+      "eventId": "EVAL_0111",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0111\" }"
+    },
+    {
+      "eventId": "EVAL_0112",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0112\" }"
+    },
+    {
+      "eventId": "EVAL_0113",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0113\" }"
+    },
+    {
+      "eventId": "EVAL_0114",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0114\" }"
+    },
+    {
+      "eventId": "EVAL_0115",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0115\" }"
+    },
+    {
+      "eventId": "EVAL_0116",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0116\" }"
+    },
+    {
+      "eventId": "EVAL_0117",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0117\" }"
+    },
+    {
+      "eventId": "EVAL_0118",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0118\" }"
+    },
+    {
+      "eventId": "EVAL_0119",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0119\" }"
+    },
+    {
+      "eventId": "EVAL_0120",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0120\" }"
+    },
+    {
+      "eventId": "EVAL_0121",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0121\" }"
+    },
+    {
+      "eventId": "EVAL_0122",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0122\" }"
+    },
+    {
+      "eventId": "EVAL_0123",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0123\" }"
+    },
+    {
+      "eventId": "EVAL_0124",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0124\" }"
+    },
+    {
+      "eventId": "EVAL_0125",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0125\" }"
+    },
+    {
+      "eventId": "EVAL_0126",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0126\" }"
+    },
+    {
+      "eventId": "EVAL_0127",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0127\" }"
+    },
+    {
+      "eventId": "EVAL_0128",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0128\" }"
+    },
+    {
+      "eventId": "EVAL_0129",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0129\" }"
+    },
+    {
+      "eventId": "EVAL_0130",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0130\" }"
+    },
+    {
+      "eventId": "EVAL_0131",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0131\" }"
+    },
+    {
+      "eventId": "EVAL_0132",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0132\" }"
+    },
+    {
+      "eventId": "EVAL_0133",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0133\" }"
+    },
+    {
+      "eventId": "EVAL_0134",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0134\" }"
+    },
+    {
+      "eventId": "EVAL_0135",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0135\" }"
+    },
+    {
+      "eventId": "EVAL_0136",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0136\" }"
+    },
+    {
+      "eventId": "EVAL_0137",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0137\" }"
+    },
+    {
+      "eventId": "EVAL_0138",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0138\" }"
+    },
+    {
+      "eventId": "EVAL_0139",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0139\" }"
+    },
+    {
+      "eventId": "EVAL_0140",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0140\" }"
+    },
+    {
+      "eventId": "EVAL_0141",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0141\" }"
+    },
+    {
+      "eventId": "EVAL_0142",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0142\" }"
+    },
+    {
+      "eventId": "EVAL_0143",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0143\" }"
+    },
+    {
+      "eventId": "EVAL_0144",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0144\" }"
+    },
+    {
+      "eventId": "EVAL_0145",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0145\" }"
+    },
+    {
+      "eventId": "EVAL_0146",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0146\" }"
+    },
+    {
+      "eventId": "EVAL_0147",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0147\" }"
+    },
+    {
+      "eventId": "EVAL_0148",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0148\" }"
+    },
+    {
+      "eventId": "EVAL_0149",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0149\" }"
+    },
+    {
+      "eventId": "EVAL_0150",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0150\" }"
+    },
+    {
+      "eventId": "EVAL_0151",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0151\" }"
+    },
+    {
+      "eventId": "EVAL_0152",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0152\" }"
+    },
+    {
+      "eventId": "EVAL_0153",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0153\" }"
+    },
+    {
+      "eventId": "EVAL_0154",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0154\" }"
+    },
+    {
+      "eventId": "EVAL_0155",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0155\" }"
+    },
+    {
+      "eventId": "EVAL_0156",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0156\" }"
+    },
+    {
+      "eventId": "EVAL_0157",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0157\" }"
+    },
+    {
+      "eventId": "EVAL_0158",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0158\" }"
+    },
+    {
+      "eventId": "EVAL_0159",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0159\" }"
+    },
+    {
+      "eventId": "EVAL_0160",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0160\" }"
+    },
+    {
+      "eventId": "EVAL_0161",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0161\" }"
+    },
+    {
+      "eventId": "EVAL_0162",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0162\" }"
+    },
+    {
+      "eventId": "EVAL_0163",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0163\" }"
+    },
+    {
+      "eventId": "EVAL_0164",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0164\" }"
+    },
+    {
+      "eventId": "EVAL_0165",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0165\" }"
+    },
+    {
+      "eventId": "EVAL_0166",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0166\" }"
+    },
+    {
+      "eventId": "EVAL_0167",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0167\" }"
+    },
+    {
+      "eventId": "EVAL_0168",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0168\" }"
+    },
+    {
+      "eventId": "EVAL_0169",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0169\" }"
+    },
+    {
+      "eventId": "EVAL_0170",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0170\" }"
+    },
+    {
+      "eventId": "EVAL_0171",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0171\" }"
+    },
+    {
+      "eventId": "EVAL_0172",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0172\" }"
+    },
+    {
+      "eventId": "EVAL_0173",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0173\" }"
+    },
+    {
+      "eventId": "EVAL_0174",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0174\" }"
+    },
+    {
+      "eventId": "EVAL_0175",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0175\" }"
+    },
+    {
+      "eventId": "EVAL_0176",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0176\" }"
+    },
+    {
+      "eventId": "EVAL_0177",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0177\" }"
+    },
+    {
+      "eventId": "EVAL_0178",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0178\" }"
+    },
+    {
+      "eventId": "EVAL_0179",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0179\" }"
+    },
+    {
+      "eventId": "EVAL_0180",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0180\" }"
+    },
+    {
+      "eventId": "EVAL_0181",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0181\" }"
+    },
+    {
+      "eventId": "EVAL_0182",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0182\" }"
+    },
+    {
+      "eventId": "EVAL_0183",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0183\" }"
+    },
+    {
+      "eventId": "EVAL_0184",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0184\" }"
+    },
+    {
+      "eventId": "EVAL_0185",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0185\" }"
+    },
+    {
+      "eventId": "EVAL_0186",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0186\" }"
+    },
+    {
+      "eventId": "EVAL_0187",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0187\" }"
+    },
+    {
+      "eventId": "EVAL_0188",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0188\" }"
+    },
+    {
+      "eventId": "EVAL_0189",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0189\" }"
+    },
+    {
+      "eventId": "EVAL_0190",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0190\" }"
+    },
+    {
+      "eventId": "EVAL_0191",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0191\" }"
+    },
+    {
+      "eventId": "EVAL_0192",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0192\" }"
+    },
+    {
+      "eventId": "EVAL_0193",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0193\" }"
+    },
+    {
+      "eventId": "EVAL_0194",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0194\" }"
+    },
+    {
+      "eventId": "EVAL_0195",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0195\" }"
+    },
+    {
+      "eventId": "EVAL_0196",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0196\" }"
+    },
+    {
+      "eventId": "EVAL_0197",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0197\" }"
+    },
+    {
+      "eventId": "EVAL_0198",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0198\" }"
+    },
+    {
+      "eventId": "EVAL_0199",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0199\" }"
+    },
+    {
+      "eventId": "EVAL_0200",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0200\" }"
+    },
+    {
+      "eventId": "EVAL_0201",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0201\" }"
+    },
+    {
+      "eventId": "EVAL_0202",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0202\" }"
+    },
+    {
+      "eventId": "EVAL_0203",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0203\" }"
+    },
+    {
+      "eventId": "EVAL_0204",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0204\" }"
+    },
+    {
+      "eventId": "EVAL_0205",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0205\" }"
+    },
+    {
+      "eventId": "EVAL_0206",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0206\" }"
+    },
+    {
+      "eventId": "EVAL_0207",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0207\" }"
+    },
+    {
+      "eventId": "EVAL_0208",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0208\" }"
+    },
+    {
+      "eventId": "EVAL_0209",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0209\" }"
+    },
+    {
+      "eventId": "EVAL_0210",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0210\" }"
+    },
+    {
+      "eventId": "EVAL_0211",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0211\" }"
+    },
+    {
+      "eventId": "EVAL_0212",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0212\" }"
+    },
+    {
+      "eventId": "EVAL_0213",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0213\" }"
+    },
+    {
+      "eventId": "EVAL_0214",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0214\" }"
+    },
+    {
+      "eventId": "EVAL_0215",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0215\" }"
+    },
+    {
+      "eventId": "EVAL_0216",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0216\" }"
+    },
+    {
+      "eventId": "EVAL_0217",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0217\" }"
+    },
+    {
+      "eventId": "EVAL_0218",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0218\" }"
+    },
+    {
+      "eventId": "EVAL_0219",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0219\" }"
+    },
+    {
+      "eventId": "EVAL_0220",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0220\" }"
+    },
+    {
+      "eventId": "EVAL_0221",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0221\" }"
+    },
+    {
+      "eventId": "EVAL_0222",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0222\" }"
+    },
+    {
+      "eventId": "EVAL_0223",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0223\" }"
+    },
+    {
+      "eventId": "EVAL_0224",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0224\" }"
+    },
+    {
+      "eventId": "EVAL_0225",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0225\" }"
+    },
+    {
+      "eventId": "EVAL_0226",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0226\" }"
+    },
+    {
+      "eventId": "EVAL_0227",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0227\" }"
+    },
+    {
+      "eventId": "EVAL_0228",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0228\" }"
+    },
+    {
+      "eventId": "EVAL_0229",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0229\" }"
+    },
+    {
+      "eventId": "EVAL_0230",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0230\" }"
+    },
+    {
+      "eventId": "EVAL_0231",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0231\" }"
+    },
+    {
+      "eventId": "EVAL_0232",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0232\" }"
+    },
+    {
+      "eventId": "EVAL_0233",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0233\" }"
+    },
+    {
+      "eventId": "EVAL_0234",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0234\" }"
+    },
+    {
+      "eventId": "EVAL_0235",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0235\" }"
+    },
+    {
+      "eventId": "EVAL_0236",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0236\" }"
+    },
+    {
+      "eventId": "EVAL_0237",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0237\" }"
+    },
+    {
+      "eventId": "EVAL_0238",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0238\" }"
+    },
+    {
+      "eventId": "EVAL_0239",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0239\" }"
+    },
+    {
+      "eventId": "EVAL_0240",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0240\" }"
+    },
+    {
+      "eventId": "EVAL_0241",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0241\" }"
+    },
+    {
+      "eventId": "EVAL_0242",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0242\" }"
+    },
+    {
+      "eventId": "EVAL_0243",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0243\" }"
+    },
+    {
+      "eventId": "EVAL_0244",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0244\" }"
+    },
+    {
+      "eventId": "EVAL_0245",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0245\" }"
+    },
+    {
+      "eventId": "EVAL_0246",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0246\" }"
+    },
+    {
+      "eventId": "EVAL_0247",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0247\" }"
+    },
+    {
+      "eventId": "EVAL_0248",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0248\" }"
+    },
+    {
+      "eventId": "EVAL_0249",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0249\" }"
+    },
+    {
+      "eventId": "EVAL_0250",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0250\" }"
+    },
+    {
+      "eventId": "EVAL_0251",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0251\" }"
+    },
+    {
+      "eventId": "EVAL_0252",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0252\" }"
+    },
+    {
+      "eventId": "EVAL_0253",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0253\" }"
+    },
+    {
+      "eventId": "EVAL_0254",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0254\" }"
+    },
+    {
+      "eventId": "EVAL_0255",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0255\" }"
+    },
+    {
+      "eventId": "EVAL_0256",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0256\" }"
+    },
+    {
+      "eventId": "EVAL_0257",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0257\" }"
+    },
+    {
+      "eventId": "EVAL_0258",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0258\" }"
+    },
+    {
+      "eventId": "EVAL_0259",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0259\" }"
+    },
+    {
+      "eventId": "EVAL_0260",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0260\" }"
+    },
+    {
+      "eventId": "EVAL_0261",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0261\" }"
+    },
+    {
+      "eventId": "EVAL_0262",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0262\" }"
+    },
+    {
+      "eventId": "EVAL_0263",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0263\" }"
+    },
+    {
+      "eventId": "EVAL_0264",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0264\" }"
+    },
+    {
+      "eventId": "EVAL_0265",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0265\" }"
+    },
+    {
+      "eventId": "EVAL_0266",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0266\" }"
+    },
+    {
+      "eventId": "EVAL_0267",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0267\" }"
+    },
+    {
+      "eventId": "EVAL_0268",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0268\" }"
+    },
+    {
+      "eventId": "EVAL_0269",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0269\" }"
+    },
+    {
+      "eventId": "EVAL_0270",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0270\" }"
+    },
+    {
+      "eventId": "EVAL_0271",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0271\" }"
+    },
+    {
+      "eventId": "EVAL_0272",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0272\" }"
+    },
+    {
+      "eventId": "EVAL_0273",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0273\" }"
+    },
+    {
+      "eventId": "EVAL_0274",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0274\" }"
+    },
+    {
+      "eventId": "EVAL_0275",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0275\" }"
+    },
+    {
+      "eventId": "EVAL_0276",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0276\" }"
+    },
+    {
+      "eventId": "EVAL_0277",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0277\" }"
+    },
+    {
+      "eventId": "EVAL_0278",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0278\" }"
+    },
+    {
+      "eventId": "EVAL_0279",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0279\" }"
+    },
+    {
+      "eventId": "EVAL_0280",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0280\" }"
+    },
+    {
+      "eventId": "EVAL_0281",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0281\" }"
+    },
+    {
+      "eventId": "EVAL_0282",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0282\" }"
+    },
+    {
+      "eventId": "EVAL_0283",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0283\" }"
+    },
+    {
+      "eventId": "EVAL_0284",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0284\" }"
+    },
+    {
+      "eventId": "EVAL_0285",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0285\" }"
+    },
+    {
+      "eventId": "EVAL_0286",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0286\" }"
+    },
+    {
+      "eventId": "EVAL_0287",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0287\" }"
+    },
+    {
+      "eventId": "EVAL_0288",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0288\" }"
+    },
+    {
+      "eventId": "EVAL_0289",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0289\" }"
+    },
+    {
+      "eventId": "EVAL_0290",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0290\" }"
+    },
+    {
+      "eventId": "EVAL_0291",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0291\" }"
+    },
+    {
+      "eventId": "EVAL_0292",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0292\" }"
+    },
+    {
+      "eventId": "EVAL_0293",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0293\" }"
+    },
+    {
+      "eventId": "EVAL_0294",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0294\" }"
+    },
+    {
+      "eventId": "EVAL_0295",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0295\" }"
+    },
+    {
+      "eventId": "EVAL_0296",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0296\" }"
+    },
+    {
+      "eventId": "EVAL_0297",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0297\" }"
+    },
+    {
+      "eventId": "EVAL_0298",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0298\" }"
+    },
+    {
+      "eventId": "EVAL_0299",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0299\" }"
+    },
+    {
+      "eventId": "EVAL_0300",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0300\" }"
+    },
+    {
+      "eventId": "EVAL_0301",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0301\" }"
+    },
+    {
+      "eventId": "EVAL_0302",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0302\" }"
+    },
+    {
+      "eventId": "EVAL_0303",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0303\" }"
+    },
+    {
+      "eventId": "EVAL_0304",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0304\" }"
+    },
+    {
+      "eventId": "EVAL_0305",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0305\" }"
+    },
+    {
+      "eventId": "EVAL_0306",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0306\" }"
+    },
+    {
+      "eventId": "EVAL_0307",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0307\" }"
+    },
+    {
+      "eventId": "EVAL_0308",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0308\" }"
+    },
+    {
+      "eventId": "EVAL_0309",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0309\" }"
+    },
+    {
+      "eventId": "EVAL_0310",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0310\" }"
+    },
+    {
+      "eventId": "EVAL_0311",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0311\" }"
+    },
+    {
+      "eventId": "EVAL_0312",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0312\" }"
+    },
+    {
+      "eventId": "EVAL_0313",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0313\" }"
+    },
+    {
+      "eventId": "EVAL_0314",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0314\" }"
+    },
+    {
+      "eventId": "EVAL_0315",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0315\" }"
+    },
+    {
+      "eventId": "EVAL_0316",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0316\" }"
+    },
+    {
+      "eventId": "EVAL_0317",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0317\" }"
+    },
+    {
+      "eventId": "EVAL_0318",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0318\" }"
+    },
+    {
+      "eventId": "EVAL_0319",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0319\" }"
+    },
+    {
+      "eventId": "EVAL_0320",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0320\" }"
+    },
+    {
+      "eventId": "EVAL_0321",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0321\" }"
+    },
+    {
+      "eventId": "EVAL_0322",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0322\" }"
+    },
+    {
+      "eventId": "EVAL_0323",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0323\" }"
+    },
+    {
+      "eventId": "EVAL_0324",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0324\" }"
+    },
+    {
+      "eventId": "EVAL_0325",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0325\" }"
+    },
+    {
+      "eventId": "EVAL_0326",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0326\" }"
+    },
+    {
+      "eventId": "EVAL_0327",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0327\" }"
+    },
+    {
+      "eventId": "EVAL_0328",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0328\" }"
+    },
+    {
+      "eventId": "EVAL_0329",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0329\" }"
+    },
+    {
+      "eventId": "EVAL_0330",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0330\" }"
+    },
+    {
+      "eventId": "EVAL_0331",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0331\" }"
+    },
+    {
+      "eventId": "EVAL_0332",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0332\" }"
+    },
+    {
+      "eventId": "EVAL_0333",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0333\" }"
+    },
+    {
+      "eventId": "EVAL_0334",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0334\" }"
+    },
+    {
+      "eventId": "EVAL_0335",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0335\" }"
+    },
+    {
+      "eventId": "EVAL_0336",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0336\" }"
+    },
+    {
+      "eventId": "EVAL_0337",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0337\" }"
+    },
+    {
+      "eventId": "EVAL_0338",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0338\" }"
+    },
+    {
+      "eventId": "EVAL_0339",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0339\" }"
+    },
+    {
+      "eventId": "EVAL_0340",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0340\" }"
+    },
+    {
+      "eventId": "EVAL_0341",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0341\" }"
+    },
+    {
+      "eventId": "EVAL_0342",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0342\" }"
+    },
+    {
+      "eventId": "EVAL_0343",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0343\" }"
+    },
+    {
+      "eventId": "EVAL_0344",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0344\" }"
+    },
+    {
+      "eventId": "EVAL_0345",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0345\" }"
+    },
+    {
+      "eventId": "EVAL_0346",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0346\" }"
+    },
+    {
+      "eventId": "EVAL_0347",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0347\" }"
+    },
+    {
+      "eventId": "EVAL_0348",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0348\" }"
+    },
+    {
+      "eventId": "EVAL_0349",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0349\" }"
+    },
+    {
+      "eventId": "EVAL_0350",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0350\" }"
+    },
+    {
+      "eventId": "EVAL_0351",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0351\" }"
+    },
+    {
+      "eventId": "EVAL_0352",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0352\" }"
+    },
+    {
+      "eventId": "EVAL_0353",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0353\" }"
+    },
+    {
+      "eventId": "EVAL_0354",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0354\" }"
+    },
+    {
+      "eventId": "EVAL_0355",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0355\" }"
+    },
+    {
+      "eventId": "EVAL_0356",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0356\" }"
+    },
+    {
+      "eventId": "EVAL_0357",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0357\" }"
+    },
+    {
+      "eventId": "EVAL_0358",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0358\" }"
+    },
+    {
+      "eventId": "EVAL_0359",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0359\" }"
+    },
+    {
+      "eventId": "EVAL_0360",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0360\" }"
+    },
+    {
+      "eventId": "EVAL_0361",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0361\" }"
+    },
+    {
+      "eventId": "EVAL_0362",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0362\" }"
+    },
+    {
+      "eventId": "EVAL_0363",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0363\" }"
+    },
+    {
+      "eventId": "EVAL_0364",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0364\" }"
+    },
+    {
+      "eventId": "EVAL_0365",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0365\" }"
+    },
+    {
+      "eventId": "EVAL_0366",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0366\" }"
+    },
+    {
+      "eventId": "EVAL_0367",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0367\" }"
+    },
+    {
+      "eventId": "EVAL_0368",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0368\" }"
+    },
+    {
+      "eventId": "EVAL_0369",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0369\" }"
+    },
+    {
+      "eventId": "EVAL_0370",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0370\" }"
+    },
+    {
+      "eventId": "EVAL_0371",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0371\" }"
+    },
+    {
+      "eventId": "EVAL_0372",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0372\" }"
+    },
+    {
+      "eventId": "EVAL_0373",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0373\" }"
+    },
+    {
+      "eventId": "EVAL_0374",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0374\" }"
+    },
+    {
+      "eventId": "EVAL_0375",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0375\" }"
+    },
+    {
+      "eventId": "EVAL_0376",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0376\" }"
+    },
+    {
+      "eventId": "EVAL_0377",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0377\" }"
+    },
+    {
+      "eventId": "EVAL_0378",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0378\" }"
+    },
+    {
+      "eventId": "EVAL_0379",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0379\" }"
+    },
+    {
+      "eventId": "EVAL_0380",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0380\" }"
+    },
+    {
+      "eventId": "EVAL_0381",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0381\" }"
+    },
+    {
+      "eventId": "EVAL_0382",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0382\" }"
+    },
+    {
+      "eventId": "EVAL_0383",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0383\" }"
+    },
+    {
+      "eventId": "EVAL_0384",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0384\" }"
+    },
+    {
+      "eventId": "EVAL_0385",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0385\" }"
+    },
+    {
+      "eventId": "EVAL_0386",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0386\" }"
+    },
+    {
+      "eventId": "EVAL_0387",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0387\" }"
+    },
+    {
+      "eventId": "EVAL_0388",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0388\" }"
+    },
+    {
+      "eventId": "EVAL_0389",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0389\" }"
+    },
+    {
+      "eventId": "EVAL_0390",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0390\" }"
+    },
+    {
+      "eventId": "EVAL_0391",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0391\" }"
+    },
+    {
+      "eventId": "EVAL_0392",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0392\" }"
+    },
+    {
+      "eventId": "EVAL_0393",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0393\" }"
+    },
+    {
+      "eventId": "EVAL_0394",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0394\" }"
+    },
+    {
+      "eventId": "EVAL_0395",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0395\" }"
+    },
+    {
+      "eventId": "EVAL_0396",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0396\" }"
+    },
+    {
+      "eventId": "EVAL_0397",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0397\" }"
+    },
+    {
+      "eventId": "EVAL_0398",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0398\" }"
+    },
+    {
+      "eventId": "EVAL_0399",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0399\" }"
+    },
+    {
+      "eventId": "EVAL_0400",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0400\" }"
+    },
+    {
+      "eventId": "EVAL_0401",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0401\" }"
+    },
+    {
+      "eventId": "EVAL_0402",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0402\" }"
+    },
+    {
+      "eventId": "EVAL_0403",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0403\" }"
+    },
+    {
+      "eventId": "EVAL_0404",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0404\" }"
+    },
+    {
+      "eventId": "EVAL_0405",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0405\" }"
+    },
+    {
+      "eventId": "EVAL_0406",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0406\" }"
+    },
+    {
+      "eventId": "EVAL_0407",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0407\" }"
+    },
+    {
+      "eventId": "EVAL_0408",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0408\" }"
+    },
+    {
+      "eventId": "EVAL_0409",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0409\" }"
+    },
+    {
+      "eventId": "EVAL_0410",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0410\" }"
+    },
+    {
+      "eventId": "EVAL_0411",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0411\" }"
+    },
+    {
+      "eventId": "EVAL_0412",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0412\" }"
+    },
+    {
+      "eventId": "EVAL_0413",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0413\" }"
+    },
+    {
+      "eventId": "EVAL_0414",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0414\" }"
+    },
+    {
+      "eventId": "EVAL_0415",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0415\" }"
+    },
+    {
+      "eventId": "EVAL_0416",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0416\" }"
+    },
+    {
+      "eventId": "EVAL_0417",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0417\" }"
+    },
+    {
+      "eventId": "EVAL_0418",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0418\" }"
+    },
+    {
+      "eventId": "EVAL_0419",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0419\" }"
+    },
+    {
+      "eventId": "EVAL_0420",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0420\" }"
+    },
+    {
+      "eventId": "EVAL_0421",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0421\" }"
+    },
+    {
+      "eventId": "EVAL_0422",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0422\" }"
+    },
+    {
+      "eventId": "EVAL_0423",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0423\" }"
+    },
+    {
+      "eventId": "EVAL_0424",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0424\" }"
+    },
+    {
+      "eventId": "EVAL_0425",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0425\" }"
+    },
+    {
+      "eventId": "EVAL_0426",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0426\" }"
+    },
+    {
+      "eventId": "EVAL_0427",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0427\" }"
+    },
+    {
+      "eventId": "EVAL_0428",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0428\" }"
+    },
+    {
+      "eventId": "EVAL_0429",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0429\" }"
+    },
+    {
+      "eventId": "EVAL_0430",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0430\" }"
+    },
+    {
+      "eventId": "EVAL_0431",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0431\" }"
+    },
+    {
+      "eventId": "EVAL_0432",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0432\" }"
+    },
+    {
+      "eventId": "EVAL_0433",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0433\" }"
+    },
+    {
+      "eventId": "EVAL_0434",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0434\" }"
+    },
+    {
+      "eventId": "EVAL_0435",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0435\" }"
+    },
+    {
+      "eventId": "EVAL_0436",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0436\" }"
+    },
+    {
+      "eventId": "EVAL_0437",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0437\" }"
+    },
+    {
+      "eventId": "EVAL_0438",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0438\" }"
+    },
+    {
+      "eventId": "EVAL_0439",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0439\" }"
+    },
+    {
+      "eventId": "EVAL_0440",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0440\" }"
+    },
+    {
+      "eventId": "EVAL_0441",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0441\" }"
+    },
+    {
+      "eventId": "EVAL_0442",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0442\" }"
+    },
+    {
+      "eventId": "EVAL_0443",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0443\" }"
+    },
+    {
+      "eventId": "EVAL_0444",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0444\" }"
+    },
+    {
+      "eventId": "EVAL_0445",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0445\" }"
+    },
+    {
+      "eventId": "EVAL_0446",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0446\" }"
+    },
+    {
+      "eventId": "EVAL_0447",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0447\" }"
+    },
+    {
+      "eventId": "EVAL_0448",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0448\" }"
+    },
+    {
+      "eventId": "EVAL_0449",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0449\" }"
+    },
+    {
+      "eventId": "EVAL_0450",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0450\" }"
+    },
+    {
+      "eventId": "EVAL_0451",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0451\" }"
+    },
+    {
+      "eventId": "EVAL_0452",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0452\" }"
+    },
+    {
+      "eventId": "EVAL_0453",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0453\" }"
+    },
+    {
+      "eventId": "EVAL_0454",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0454\" }"
+    },
+    {
+      "eventId": "EVAL_0455",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0455\" }"
+    },
+    {
+      "eventId": "EVAL_0456",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0456\" }"
+    },
+    {
+      "eventId": "EVAL_0457",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0457\" }"
+    },
+    {
+      "eventId": "EVAL_0458",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0458\" }"
+    },
+    {
+      "eventId": "EVAL_0459",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0459\" }"
+    },
+    {
+      "eventId": "EVAL_0460",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0460\" }"
+    },
+    {
+      "eventId": "EVAL_0461",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0461\" }"
+    },
+    {
+      "eventId": "EVAL_0462",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0462\" }"
+    },
+    {
+      "eventId": "EVAL_0463",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0463\" }"
+    },
+    {
+      "eventId": "EVAL_0464",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0464\" }"
+    },
+    {
+      "eventId": "EVAL_0465",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0465\" }"
+    },
+    {
+      "eventId": "EVAL_0466",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0466\" }"
+    },
+    {
+      "eventId": "EVAL_0467",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0467\" }"
+    },
+    {
+      "eventId": "EVAL_0468",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0468\" }"
+    },
+    {
+      "eventId": "EVAL_0469",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0469\" }"
+    },
+    {
+      "eventId": "EVAL_0470",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0470\" }"
+    },
+    {
+      "eventId": "EVAL_0471",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0471\" }"
+    },
+    {
+      "eventId": "EVAL_0472",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0472\" }"
+    },
+    {
+      "eventId": "EVAL_0473",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0473\" }"
+    },
+    {
+      "eventId": "EVAL_0474",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0474\" }"
+    },
+    {
+      "eventId": "EVAL_0475",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0475\" }"
+    },
+    {
+      "eventId": "EVAL_0476",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0476\" }"
+    },
+    {
+      "eventId": "EVAL_0477",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0477\" }"
+    },
+    {
+      "eventId": "EVAL_0478",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0478\" }"
+    },
+    {
+      "eventId": "EVAL_0479",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0479\" }"
+    },
+    {
+      "eventId": "EVAL_0480",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0480\" }"
+    },
+    {
+      "eventId": "EVAL_0481",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0481\" }"
+    },
+    {
+      "eventId": "EVAL_0482",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0482\" }"
+    },
+    {
+      "eventId": "EVAL_0483",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0483\" }"
+    },
+    {
+      "eventId": "EVAL_0484",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0484\" }"
+    },
+    {
+      "eventId": "EVAL_0485",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0485\" }"
+    },
+    {
+      "eventId": "EVAL_0486",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0486\" }"
+    },
+    {
+      "eventId": "EVAL_0487",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0487\" }"
+    },
+    {
+      "eventId": "EVAL_0488",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0488\" }"
+    },
+    {
+      "eventId": "EVAL_0489",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0489\" }"
+    },
+    {
+      "eventId": "EVAL_0490",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0490\" }"
+    },
+    {
+      "eventId": "EVAL_0491",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0491\" }"
+    },
+    {
+      "eventId": "EVAL_0492",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0492\" }"
+    },
+    {
+      "eventId": "EVAL_0493",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0493\" }"
+    },
+    {
+      "eventId": "EVAL_0494",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0494\" }"
+    },
+    {
+      "eventId": "EVAL_0495",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0495\" }"
+    },
+    {
+      "eventId": "EVAL_0496",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0496\" }"
+    },
+    {
+      "eventId": "EVAL_0497",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0497\" }"
+    },
+    {
+      "eventId": "EVAL_0498",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0498\" }"
+    },
+    {
+      "eventId": "EVAL_0499",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0499\" }"
+    },
+    {
+      "eventId": "EVAL_0500",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0500\" }"
+    },
+    {
+      "eventId": "EVAL_0342",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0342\" }"
+    },
+    {
+      "eventId": "EVAL_0381",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0381\" }"
+    },
+    {
+      "eventId": "EVAL_0364",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0364\" }"
+    },
+    {
+      "eventId": "EVAL_0076",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0076\" }"
+    },
+    {
+      "eventId": "EVAL_0363",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0363\" }"
+    },
+    {
+      "eventId": "EVAL_0032",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0032\" }"
+    },
+    {
+      "eventId": "EVAL_0040",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0040\" }"
+    },
+    {
+      "eventId": "EVAL_0385",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0385\" }"
+    },
+    {
+      "eventId": "EVAL_0019",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0019\" }"
+    },
+    {
+      "eventId": "EVAL_0116",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0116\" }"
+    },
+    {
+      "eventId": "EVAL_0205",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0205\" }"
+    },
+    {
+      "eventId": "EVAL_0325",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0325\" }"
+    },
+    {
+      "eventId": "EVAL_0475",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0475\" }"
+    },
+    {
+      "eventId": "EVAL_0278",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0278\" }"
+    },
+    {
+      "eventId": "EVAL_0078",
+      "status": "DUPLICATE",
+      "error": "E11000 duplicate key error collection: revenue_rescue_ai.events index: eventId_1 dup key: { eventId: \"EVAL_0078\" }"
+    }
+  ]
+}
