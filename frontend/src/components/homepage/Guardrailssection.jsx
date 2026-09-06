@@ -33,54 +33,67 @@ function GuardrailsSection() {
     const allPassed = checked >= CHECKS.length;
 
     return (
-        <section className="rr-home-section" id="guardrails">
-            <p className="rr-eyebrow">Safety / guardrails</p>
-            <h2 className="rr-page-title">AI recommends. Code decides.</h2>
+        <section className="rr-home-section rr-section-bg--guardrails" id="guardrails">
+            <p className="rr-eyebrow">Guardrails</p>
+            <h2 className="rr-page-title">AI can recommend. It cannot bypass the policy.</h2>
+            <p className="rr-home-section-sub">
+                Deterministic rules provide bounded execution — AI is never given unrestricted
+                authority over financial actions.
+            </p>
 
-            <div className="rr-guard-flow">
-                <div className="rr-guard-stage">
-                    <div className="rr-guard-stage-tag accent-violet">AI</div>
-                    <ul className="rr-home-list">
-                        <li>Diagnoses why a payment failed</li>
-                        <li>Recommends one bounded recovery action</li>
-                        <li>Explains its reasoning in plain language</li>
-                    </ul>
-                </div>
+            <div className="rr-guard-module">
+                <div className="rr-guard-flow">
+                    <div className="rr-guard-stage">
+                        <div className="rr-guard-stage-tag accent-violet">AI Recommendation</div>
+                        <div className="rr-guard-stage-headline rr-num">WAIT_AND_RETRY</div>
+                        <div className="rr-guard-stage-sub">80% confidence</div>
+                    </div>
 
-                <div className="rr-guard-connector" aria-hidden="true">
-                    <span className="rr-guard-connector-line" />
-                </div>
+                    <div className="rr-guard-connector" aria-hidden="true">
+                        <span className="rr-guard-connector-line" />
+                    </div>
 
-                <div className="rr-guard-stage rr-guard-stage--policy">
-                    <div className="rr-guard-stage-tag accent-blue">Policy Gate</div>
-                    <ul className="rr-guard-checklist">
-                        {CHECKS.map((c, i) => (
-                            <li key={c} className={i < checked ? "is-passed" : ""}>
-                                <span className="rr-guard-check-mark">{i < checked ? "✓" : "·"}</span>
-                                {c}
-                            </li>
-                        ))}
-                    </ul>
-                    <div className={`rr-guard-verdict${allPassed ? " is-visible" : ""}`}>
-                        <span className="rr-badge success">
-                            <span className="rr-badge-dot" />
-                            Approved
-                        </span>
+                    <div className="rr-guard-stage rr-guard-stage--policy">
+                        <div className="rr-guard-stage-tag accent-blue">Policy Gate</div>
+                        <ul className="rr-guard-checklist">
+                            {CHECKS.map((c, i) => (
+                                <li key={c} className={i < checked ? "is-passed" : ""}>
+                                    <span className="rr-guard-check-mark">{i < checked ? "✓" : "·"}</span>
+                                    {c}
+                                </li>
+                            ))}
+                        </ul>
+                        <div className={`rr-guard-verdict${allPassed ? " is-visible" : ""}`}>
+                            <span className="rr-badge success">
+                                <span className="rr-badge-dot" />
+                                Approved
+                            </span>
+                        </div>
+                    </div>
+
+                    <div className="rr-guard-connector" aria-hidden="true">
+                        <span className="rr-guard-connector-line" />
+                    </div>
+
+                    <div className="rr-guard-stage">
+                        <div className="rr-guard-stage-tag accent-cyan">Executor</div>
+                        <ul className="rr-home-list">
+                            <li>Retry, deferred retry, or Razorpay Payment Link</li>
+                            <li>Blocks unsupported or unsafe actions</li>
+                            <li>Caps repeated attempts and escalates when needed</li>
+                        </ul>
                     </div>
                 </div>
 
-                <div className="rr-guard-connector" aria-hidden="true">
-                    <span className="rr-guard-connector-line" />
-                </div>
-
-                <div className="rr-guard-stage">
-                    <div className="rr-guard-stage-tag accent-cyan">Executor</div>
-                    <ul className="rr-home-list">
-                        <li>Enforces limits on amount, risk, and confidence</li>
-                        <li>Blocks unsafe or unsupported actions</li>
-                        <li>Runs a safe deterministic fallback if the AI call fails</li>
-                        <li>Caps repeated retries and escalates when necessary</li>
-                    </ul>
+                <div className="rr-guard-alt-outcomes">
+                    <div className="rr-guard-alt-chip accent-violet">
+                        <span className="rr-guard-alt-label">ESCALATED</span>
+                        <span className="rr-guard-alt-note">High risk / high value</span>
+                    </div>
+                    <div className="rr-guard-alt-chip accent-danger">
+                        <span className="rr-guard-alt-label">BLOCKED</span>
+                        <span className="rr-guard-alt-note">Unsafe / unsupported / limit exceeded</span>
+                    </div>
                 </div>
             </div>
         </section>

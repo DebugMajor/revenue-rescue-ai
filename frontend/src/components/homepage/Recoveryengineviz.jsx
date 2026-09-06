@@ -1,12 +1,48 @@
 import { useEffect, useRef, useState } from "react";
 
 const STAGES = [
-    { id: "event", label: "Payment Failure", meta: "NETWORK_ERROR", accent: "danger" },
-    { id: "context", label: "Customer Context", meta: "6 successful / 8 total", accent: "cyan" },
-    { id: "risk", label: "Risk Engine", meta: "MEDIUM · 0.52", accent: "violet" },
-    { id: "ai", label: "AI Recommendation", meta: "WAIT_AND_RETRY · 80%", accent: "cyan" },
-    { id: "policy", label: "Policy Gate", meta: "APPROVED", accent: "blue" },
-    { id: "recovery", label: "Recovery", meta: "PENDING · deferred retry", accent: "success" }
+    {
+        id: "event",
+        label: "Payment Failure",
+        meta: "NETWORK_ERROR",
+        detail: "₹4,000",
+        accent: "danger"
+    },
+    {
+        id: "context",
+        label: "Customer Context",
+        meta: "6 successful / 8 total",
+        detail: "0 prior recovery attempts",
+        accent: "cyan"
+    },
+    {
+        id: "risk",
+        label: "Risk",
+        meta: "MEDIUM",
+        detail: "0.52",
+        accent: "violet"
+    },
+    {
+        id: "ai",
+        label: "AI Recommendation",
+        meta: "WAIT_AND_RETRY",
+        detail: "80% confidence",
+        accent: "cyan"
+    },
+    {
+        id: "policy",
+        label: "Policy Gate",
+        meta: "APPROVED",
+        detail: "4 / 4 checks passed",
+        accent: "blue"
+    },
+    {
+        id: "recovery",
+        label: "Recovery",
+        meta: "PENDING",
+        detail: "Deferred retry scheduled",
+        accent: "success"
+    }
 ];
 
 function prefersReducedMotion() {
@@ -45,10 +81,13 @@ function RecoveryEngineViz() {
             <div className="rr-home-engine-grid" aria-hidden="true" />
 
             <div className="rr-home-engine-header">
-                <div className="rr-home-engine-title">Recovery Decision Engine</div>
+                <div className="rr-home-engine-title-group">
+                    <div className="rr-home-engine-title">Recovery Decision Engine</div>
+                    <div className="rr-home-engine-subid rr-num">evt_9f21ac · Attempt 01</div>
+                </div>
                 <div className="rr-home-engine-live">
                     <span className="rr-home-engine-live-dot" />
-                    Live
+                    Illustrative
                 </div>
             </div>
 
@@ -81,6 +120,7 @@ function RecoveryEngineViz() {
             <div className="rr-home-engine-detail" aria-live="polite">
                 <div className={`rr-home-engine-detail-tag accent-${stage.accent}`}>{stage.label}</div>
                 <div className="rr-home-engine-detail-value rr-num">{stage.meta}</div>
+                <div className="rr-home-engine-detail-sub rr-num">{stage.detail}</div>
             </div>
         </div>
     );

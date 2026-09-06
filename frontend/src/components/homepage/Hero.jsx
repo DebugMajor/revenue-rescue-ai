@@ -17,16 +17,16 @@ function Hero() {
                     Recover revenue. Keep <span className="accent-violet">AI</span> under control.
                 </h1>
                 <p className="rr-home-hero-sub">
-                    Revenue Rescue AI diagnoses failed payments, evaluates recovery risk, and recommends
-                    the next action. A deterministic policy engine decides what is actually allowed to
-                    execute.
+                    Revenue Rescue AI analyzes payment failures using customer context and
+                    deterministic risk, lets AI recommend a bounded recovery action, and uses a
+                    deterministic policy engine to decide what can actually execute.
                 </p>
                 <p className="rr-home-hero-tenet">
                     <span className="accent-cyan">AI recommends.</span> <span className="accent-blue">Code decides.</span>
                 </p>
                 <div className="rr-home-hero-ctas">
                     <Link to="/signup" className="rr-btn rr-btn-primary">Get Started</Link>
-                    <a href="#trace" className="rr-btn rr-btn-secondary">Explore the Decision Engine</a>
+                    <a href="#pipeline" className="rr-btn rr-btn-secondary">Explore the Decision Engine</a>
                 </div>
             </div>
 

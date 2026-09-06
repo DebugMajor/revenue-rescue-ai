@@ -4,17 +4,17 @@ const STEPS = [
     {
         label: "Payment Event",
         accent: "danger",
-        rows: [["Error Code", "NETWORK_ERROR"], ["Amount", "₹4,000"]]
+        rows: [["Error", "NETWORK_ERROR"], ["Amount", "₹4,000"]]
     },
     {
         label: "Customer Context",
         accent: "cyan",
-        rows: [["Prior Successful Payments", "6"], ["Total Payments", "8"]]
+        rows: [["Successful", "6"], ["Total", "8"]]
     },
     {
         label: "Risk Engine",
         accent: "violet",
-        rows: [["Risk Band", "MEDIUM"], ["Risk Score", "0.52"]]
+        rows: [["Band", "MEDIUM"], ["Score", "0.52"]]
     },
     {
         label: "AI Recommendation",
@@ -40,8 +40,8 @@ function DecisionTracePreview() {
     return (
         <div className="rr-card rr-home-trace-card">
             <p className="rr-home-trace-note">
-                Illustrative preview — not live data. Every real recovery decision produces this same trace,
-                viewable per transaction in the app.
+                Illustrative preview — not live data. Every real recovery decision produces this
+                same trace, viewable per transaction in the app.
             </p>
 
             <div className="rr-home-trace-steps">
