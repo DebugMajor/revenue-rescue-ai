@@ -1,0 +1,121 @@
+@import "./variables.css";
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--rr-bg);
+  color: var(--rr-text);
+  font-family: var(--rr-font-ui);
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 650;
+  letter-spacing: -0.015em;
+  color: var(--rr-text);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: var(--rr-cyan);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  font-family: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  color: var(--rr-text);
+}
+
+::selection {
+  background: var(--rr-cyan-dim);
+}
+
+:focus-visible {
+  outline: 2px solid var(--rr-cyan);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--rr-surface-3);
+  border-radius: 999px;
+  border: 2px solid var(--rr-bg);
+}
+
+/* ---------- Typography utilities ---------- */
+
+.rr-num {
+  font-family: var(--rr-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.rr-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--rr-cyan);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.rr-eyebrow::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--rr-cyan);
+  box-shadow: 0 0 0 3px var(--rr-cyan-dim);
+}
+
+.rr-page-title {
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+.rr-page-subtitle {
+  color: var(--rr-muted);
+  font-size: 13.5px;
+  margin-top: 8px;
+  max-width: 64ch;
+  line-height: 1.6;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,188 @@
+@import "./variables.css";
+
+.rr-home-hero {
+  min-height: 86vh;
+  align-items: center;
+  padding-top: 64px;
+}
+
+.rr-home-hero-copy h1 {
+  font-size: clamp(40px, 5.6vw, 78px);
+  line-height: 1.04;
+  max-width: 15ch;
+}
+
+.rr-home-hero-sub {
+  font-size: 17.5px;
+  max-width: 46ch;
+}
+
+.rr-home-hero-tenet {
+  font-size: 18px;
+}
+
+/* ==================== 2. SECTION CHAPTER RHYTHM ==================== */
+/* Each existing section id gets a distinct, subtle atmosphere instead
+   of one continuous flat surface. Kept dark + restrained — no bright
+   color blocks, just gradient tints against the same base background. */
+
+.rr-home-signals-wrap {
+  background: linear-gradient(180deg, rgba(21, 27, 38, 0.4), transparent);
+}
+
+#value {
+  position: relative;
+  background:
+    radial-gradient(90% 60% at 15% 0%, rgba(47, 224, 200, 0.05), transparent 65%),
+    var(--rr-bg);
+}
+
+#how-it-works {
+  background: var(--rr-bg);
+}
+
+#guardrails {
+  position: relative;
+  padding-top: 96px;
+  padding-bottom: 96px;
+  background:
+    radial-gradient(70% 55% at 50% 0%, rgba(155, 140, 242, 0.07), transparent 70%),
+    linear-gradient(180deg, rgba(78, 139, 245, 0.03), transparent 40%),
+    var(--rr-bg);
+}
+
+.rr-home-demo-wrap {
+  background: linear-gradient(180deg, transparent, rgba(15, 20, 29, 0.5) 30%, transparent);
+}
+
+#trace {
+  position: relative;
+  padding-top: 88px;
+  padding-bottom: 96px;
+  background: linear-gradient(180deg, var(--rr-bg), rgba(11, 15, 22, 0.9));
+}
+
+#product {
+  background: var(--rr-bg);
+}
+
+.rr-home-final-cta {
+  background: radial-gradient(60% 90% at 50% 100%, rgba(47, 224, 200, 0.05), transparent 70%);
+}
+
+/* ==================== 3. REVENUE IMPACT — BIG NUMBER TREATMENT ==================== */
+
+#value .rr-page-title {
+  max-width: 22ch;
+}
+
+.rr-value-metrics {
+  gap: 28px;
+  margin-bottom: 52px;
+}
+
+.rr-value-metric {
+  padding-top: 26px;
+  border-top-width: 2px;
+}
+
+.rr-value-metric-figure {
+  font-size: clamp(34px, 3.6vw, 52px);
+  font-family: var(--rr-font-mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.rr-value-metric-label {
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.rr-home-funnel {
+  max-width: 920px;
+}
+
+.rr-home-funnel-track {
+  height: 12px;
+}
+
+/* ==================== 4. GUARDRAILS — SIGNATURE SECTION ==================== */
+
+#guardrails .rr-page-title {
+  font-size: clamp(30px, 3.4vw, 46px);
+  max-width: 20ch;
+}
+
+.rr-guard-flow {
+  gap: 26px;
+  margin-top: 44px;
+}
+
+.rr-guard-stage {
+  padding: 28px 26px;
+}
+
+.rr-guard-stage--policy {
+  box-shadow: 0 0 0 1px rgba(155, 140, 242, 0.18), 0 20px 50px -30px rgba(155, 140, 242, 0.45);
+}
+
+.rr-guard-stage-tag {
+  font-size: 12px;
+}
+
+.rr-guard-checklist li {
+  font-size: 13.5px;
+}
+
+.rr-guard-verdict .rr-badge {
+  font-size: 12px;
+  padding: 6px 14px;
+}
+
+/* ==================== 5. CAPABILITIES — STRONGER SIZE CONTRAST ==================== */
+
+.rr-home-bento {
+  gap: 14px;
+  grid-auto-rows: minmax(140px, auto);
+}
+
+.rr-home-bento-item--lg {
+  padding: 30px 32px;
+}
+
+.rr-home-bento-item--lg .rr-card-title {
+  font-size: 20px;
+}
+
+.rr-home-bento-item--sm {
+  padding: 18px 20px;
+}
+
+.rr-home-bento-item--sm .rr-card-title {
+  font-size: 13.5px;
+}
+
+/* ==================== 6. SECTION HEADING SCALE ==================== */
+
+.rr-home-section .rr-page-title {
+  font-size: clamp(28px, 3.2vw, 44px);
+}
+
+@media (max-width: 900px) {
+  .rr-home-hero {
+    min-height: 0;
+  }
+
+  #guardrails,
+  #trace {
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #guardrails,
+  #trace,
+  #value {
+    background-attachment: initial;
+  }
+}

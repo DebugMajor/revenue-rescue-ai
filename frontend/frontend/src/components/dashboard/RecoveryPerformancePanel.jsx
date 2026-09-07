@@ -12,34 +12,19 @@ function numberFromRow(row, keys) {
 }
 
 function normalizeTrend(rows) {
-  const byDate = new Map();
-
-  (Array.isArray(rows) ? rows : []).forEach((row) => {
-    const date = row?.date || row?.day || row?._id || "Unknown";
-    const current = byDate.get(date) || {
-      date,
-      recovered: 0,
-      failed: 0
-    };
-
-    current.recovered += numberFromRow(row, [
+  return (Array.isArray(rows) ? rows : []).map((row) => ({
+    date: row?.date || row?.day || row?._id || "Unknown",
+    recovered: numberFromRow(row, [
       "recovered",
       "recoveredCount",
       "RECOVERED"
-    ]);
-
-    current.failed += numberFromRow(row, [
+    ]),
+    failed: numberFromRow(row, [
       "failed",
       "failedCount",
       "FAILED"
-    ]);
-
-    byDate.set(date, current);
-  });
-
-  return Array.from(byDate.values()).sort((a, b) =>
-    String(a.date).localeCompare(String(b.date))
-  );
+    ])
+  }));
 }
 
 function RecoveryPerformancePanel() {

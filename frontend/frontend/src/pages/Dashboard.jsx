@@ -12,7 +12,6 @@ import RecoveryBreakdownPanel from "../components/dashboard/RecoveryBreakdownPan
 import RecentEvents from "../components/dashboard/RecentEvents";
 
 import TransactionForm from "../components/transactions/TransactionForm";
-import AnalysisResult from "../components/transactions/AnalysisResult";
 import ErrorState from "../components/common/ErrorState";
 
 import {
@@ -22,13 +21,6 @@ import {
   getRecoveryQueue,
   processTransaction
 } from "../services/api";
-
-const simulationSteps = [
-  { key: "received", label: "Event received" },
-  { key: "engine", label: "Decision engine" },
-  { key: "policy", label: "Policy evaluated" },
-  { key: "recovery", label: "Recovery recorded" }
-];
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -44,7 +36,6 @@ function Dashboard() {
   const [submitting, setSubmitting] = useState(false);
   const [simulationState, setSimulationState] = useState("idle");
   const [simulationStep, setSimulationStep] = useState(0);
-  const [result, setResult] = useState(null);
 
   const loadDashboard = async () => {
     setLoading(true);
@@ -132,29 +123,13 @@ function Dashboard() {
 
   const handleTransactionSubmit = async (transaction) => {
     setSimError(null);
-    setResult(null);
     setSubmitting(true);
     setSimulationState("submitting");
     setSimulationStep(0);
 
-    const startedAt = Date.now();
-
     try {
-      const data = await processTransaction(transaction);
+      await processTransaction(transaction);
 
-      // Give the pipeline animation enough time to communicate the four
-      // stages even when the API responds very quickly. This is presentation
-      // state only; it does not claim that the backend emits stage telemetry.
-      const elapsed = Date.now() - startedAt;
-      const minimumPresentationTime = 2600;
-      const remaining = Math.max(0, minimumPresentationTime - elapsed);
-
-      if (remaining) {
-        await new Promise((resolve) => window.setTimeout(resolve, remaining));
-      }
-
-      setSimulationStep(simulationSteps.length - 1);
-      setResult(data);
       setSimulationState("complete");
       setSubmitting(false);
       await loadDashboard();
@@ -164,6 +139,13 @@ function Dashboard() {
       setSubmitting(false);
     }
   };
+
+  const simulationSteps = [
+    { key: "received", label: "Event received" },
+    { key: "engine", label: "Decision engine" },
+    { key: "policy", label: "Policy evaluated" },
+    { key: "recovery", label: "Recovery recorded" }
+  ];
 
   useEffect(() => {
     if (!submitting) return undefined;
@@ -183,17 +165,32 @@ function Dashboard() {
         subtitle="Monitor recovery opportunity, inspect governed decisions, and run a payment failure through the same engine used by the application."
       >
         <section className="rr-dashboard-command">
-          <div className="rr-dashboard-command-topline">
-            <div className="rr-command-context">
+          <div className="rr-dashboard-command-copy">
+            <div>
               <span className="rr-dashboard-kicker">Today</span>
-              <span className="rr-command-context-text">Run a controlled failure through the governed recovery engine.</span>
+              <h2>Recovery operations at a glance</h2>
+              <p>
+                Start with the live engine, inspect the most recent decision,
+                then follow what happened through the recovery queue.
+              </p>
             </div>
+
             <div className="rr-command-links">
-              <button type="button" className="rr-dashboard-link-button" onClick={() => navigate("/transactions")}>
+              <button
+                type="button"
+                className="rr-dashboard-link-button"
+                onClick={() => navigate("/transactions")}
+              >
                 View transactions <span>→</span>
               </button>
+
               <span className="rr-command-divider" />
-              <button type="button" className="rr-dashboard-link-button" onClick={() => navigate("/analytics")}>
+
+              <button
+                type="button"
+                className="rr-dashboard-link-button"
+                onClick={() => navigate("/analytics")}
+              >
                 View analytics <span>→</span>
               </button>
             </div>
@@ -202,29 +199,42 @@ function Dashboard() {
           <div className="rr-dashboard-simulator">
             <div className="rr-dashboard-simulator-head">
               <div>
-                <span className="rr-dashboard-panel-eyebrow">Sandbox</span>
+                <span className="rr-dashboard-panel-eyebrow">
+                  Sandbox
+                </span>
                 <h3>Simulate a payment failure</h3>
               </div>
+
               <span className="rr-dashboard-live-dot">
-                {submitting ? "PROCESSING" : result ? "DECISION READY" : "LIVE ENGINE"}
+                {submitting ? "PROCESSING" : "LIVE ENGINE"}
               </span>
             </div>
 
             <p className="rr-dashboard-panel-description">
-              Run a controlled failure through context, risk, recommendation, policy and recovery without touching live payment traffic.
+              Run a controlled failure through context, risk, recommendation,
+              policy and recovery without touching live payment traffic.
             </p>
 
             {submitting && (
               <div className="rr-simulation-progress" aria-live="polite">
                 {simulationSteps.map((step, index) => (
-                  <div className={`rr-simulation-step ${index < simulationStep ? "is-complete" : ""} ${index === simulationStep ? "is-active" : ""}`} key={step.key}>
+                  <div
+                    className={`rr-simulation-step ${
+                      index < simulationStep ? "is-complete" : ""
+                    } ${index === simulationStep ? "is-active" : ""}`}
+                    key={step.key}
+                  >
                     <span className="rr-simulation-step-node">
-                      <span className="rr-simulation-step-dot">{index < simulationStep ? "✓" : index + 1}</span>
+                      <span className="rr-simulation-step-dot">
+                        {index < simulationStep ? "✓" : index + 1}
+                      </span>
                       <span>{step.label}</span>
                     </span>
                     {index < simulationSteps.length - 1 && (
                       <span className={`rr-simulation-connector ${index < simulationStep ? "is-complete" : ""}`}>
-                        {index === simulationStep && <span className="rr-simulation-travel-dot" />}
+                        {index === simulationStep && (
+                          <span className="rr-simulation-travel-dot" />
+                        )}
                       </span>
                     )}
                   </div>
@@ -234,17 +244,27 @@ function Dashboard() {
 
             <div className="rr-dashboard-simulator-grid">
               <div className="rr-dashboard-simulator-form">
-                <TransactionForm onSubmit={handleTransactionSubmit} submitting={submitting} />
+                <TransactionForm
+                  onSubmit={handleTransactionSubmit}
+                  submitting={submitting}
+                />
               </div>
 
               <div className="rr-dashboard-simulator-result">
-                {simError && <ErrorState title="Simulation failed" message={simError} />}
+                {simError && (
+                  <ErrorState
+                    title="Simulation failed"
+                    message={simError}
+                  />
+                )}
 
-                {!simError && !submitting && !result && (
+                {!simError && !submitting && simulationState !== "complete" && (
                   <div className="rr-simulator-placeholder">
                     <span className="rr-simulator-placeholder-line" />
-                    <strong>Run a scenario</strong>
-                    <p>The returned recommendation, policy decision and recovery outcome will appear here.</p>
+                    <strong>Ready to run</strong>
+                    <p>
+                      The decision summary will appear below after the engine completes.
+                    </p>
                   </div>
                 )}
 
@@ -258,21 +278,13 @@ function Dashboard() {
                   </div>
                 )}
 
-                {result && !submitting && !simError && (
-                  <div className="rr-simulator-result-scroll">
-                    <div className="rr-simulation-result-banner">
-                      <div>
-                        <span>Decision returned</span>
-                        <strong>Engine run completed</strong>
-                      </div>
-                      <span className="rr-result-ready">● Ready</span>
+                {!simError && !submitting && simulationState === "complete" && (
+                  <div className="rr-simulator-complete">
+                    <span className="rr-simulator-complete-icon">✓</span>
+                    <div>
+                      <strong>Decision returned</strong>
+                      <p>Latest decision updated below.</p>
                     </div>
-                    <AnalysisResult result={result} />
-                    {result?.event?.eventId && (
-                      <button type="button" className="rr-dashboard-primary-action rr-dashboard-primary-action--full" onClick={() => navigate(`/transactions/${result.event.eventId}`)}>
-                        Open decision trace <span>→</span>
-                      </button>
-                    )}
                   </div>
                 )}
               </div>
