@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import RecoveryEngineViz from "./RecoveryEngineViz";
+import RecoveryEngineViz from "./Recoveryengineviz";
 import FloatingPanels from "./FloatingPanels";
 
 function Hero() {

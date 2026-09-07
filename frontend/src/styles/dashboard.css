@@ -1,0 +1,446 @@
+@import "./variables.css";
+
+/* ---------- Section rhythm ---------- */
+
+.rr-dash-section {
+    margin-bottom: 22px;
+}
+
+.rr-dash-section:last-child {
+    margin-bottom: 0;
+}
+
+/* ---------- Metric card additional semantic accents ---------- */
+/* MetricCard already applies accent-<x> classes and a --rr-metric-accent
+   CSS var generically — these rules simply extend the palette it can use. */
+
+.rr-metric-value.accent-danger {
+    color: var(--rr-danger);
+}
+
+.rr-metric-value.accent-success {
+    color: var(--rr-success);
+}
+
+.rr-metric-value.accent-warning {
+    color: var(--rr-warning);
+}
+
+.rr-metric-skeleton {
+    height: 104px;
+    border-radius: var(--rr-radius-md);
+    background: linear-gradient(100deg,
+            var(--rr-surface) 30%,
+            var(--rr-surface-2) 50%,
+            var(--rr-surface) 70%);
+    background-size: 200% 100%;
+    animation: rr-skeleton-sweep 1.4s ease-in-out infinite;
+    border: 1px solid var(--rr-border);
+}
+
+@keyframes rr-skeleton-sweep {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+/* ---------- Reveal-on-load motion (restrained) ---------- */
+
+.rr-reveal {
+    animation: rr-reveal-in 320ms var(--rr-ease) both;
+}
+
+@keyframes rr-reveal-in {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---------- Outcome Summary strip ---------- */
+
+.rr-outcome-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    align-items: stretch;
+    background: var(--rr-surface);
+    border: 1px solid var(--rr-border);
+    border-radius: var(--rr-radius-md);
+    padding: 14px 18px;
+    position: relative;
+}
+
+.rr-outcome-pill {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 4px 10px;
+    border-right: 1px solid var(--rr-border);
+}
+
+.rr-outcome-pill:last-of-type {
+    border-right: none;
+}
+
+.rr-outcome-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.rr-outcome-dot--success {
+    background: var(--rr-success);
+    box-shadow: 0 0 0 3px var(--rr-success-dim);
+}
+
+.rr-outcome-dot--warning {
+    background: var(--rr-warning);
+    box-shadow: 0 0 0 3px var(--rr-warning-dim);
+}
+
+.rr-outcome-dot--blue {
+    background: var(--rr-blue);
+    box-shadow: 0 0 0 3px var(--rr-blue-dim);
+}
+
+.rr-outcome-dot--danger {
+    background: var(--rr-danger);
+    box-shadow: 0 0 0 3px var(--rr-danger-dim);
+}
+
+.rr-outcome-label {
+    font-size: 11px;
+    color: var(--rr-muted);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.rr-outcome-value {
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--rr-text);
+    line-height: 1.2;
+}
+
+.rr-outcome-note {
+    grid-column: 1 / -1;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--rr-border);
+    font-size: 11px;
+    color: var(--rr-muted-2);
+    line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+    .rr-outcome-strip {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .rr-outcome-pill:nth-child(2) {
+        border-right: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .rr-outcome-strip {
+        grid-template-columns: 1fr;
+    }
+
+    .rr-outcome-pill {
+        border-right: none;
+        border-bottom: 1px solid var(--rr-border);
+        padding-bottom: 10px;
+    }
+}
+
+/* ---------- Recovery Intelligence (Latest Decision + Activity) ---------- */
+
+.rr-intelligence-grid {
+    display: grid;
+    grid-template-columns: minmax(300px, 420px) 1fr;
+    gap: 18px;
+    align-items: start;
+}
+
+@media (max-width: 980px) {
+    .rr-intelligence-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rr-latest-decision-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--rr-border);
+}
+
+.rr-latest-decision-error {
+    font-family: var(--rr-font-mono);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--rr-danger);
+    letter-spacing: -0.01em;
+}
+
+.rr-latest-decision-amount {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--rr-text);
+}
+
+.rr-latest-decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 18px;
+    margin-bottom: 18px;
+}
+
+.rr-latest-decision-field .k {
+    font-size: 10.5px;
+    color: var(--rr-muted);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.rr-latest-decision-field .v {
+    font-size: 13.5px;
+    color: var(--rr-text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rr-latest-decision-cta {
+    width: 100%;
+}
+
+@media (max-width: 420px) {
+    .rr-latest-decision-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ---------- Recovery Activity Feed ---------- */
+
+.rr-activity-feed {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.rr-activity-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 8px;
+    border-bottom: 1px solid var(--rr-border);
+    cursor: pointer;
+    transition: background var(--rr-t-fast) var(--rr-ease);
+    flex-wrap: wrap;
+}
+
+.rr-activity-row:last-child {
+    border-bottom: none;
+}
+
+.rr-activity-row:hover {
+    background: var(--rr-surface-2);
+}
+
+.rr-activity-main {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px;
+}
+
+.rr-activity-error {
+    font-family: var(--rr-font-mono);
+    font-size: 12px;
+    color: var(--rr-muted);
+}
+
+.rr-activity-amount {
+    font-size: 13.5px;
+    font-weight: 650;
+    color: var(--rr-text);
+}
+
+.rr-activity-meta {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.rr-activity-time {
+    font-size: 11.5px;
+    color: var(--rr-muted-2);
+    min-width: 64px;
+    text-align: right;
+}
+
+/* ---------- Recovery Breakdown ---------- */
+
+.rr-breakdown-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 22px;
+}
+
+.rr-breakdown-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--rr-muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 800px) {
+    .rr-breakdown-grid {
+        grid-template-columns: 1fr;
+        gap: 26px;
+    }
+}
+
+/* ---------- Policy Intelligence + Breakdown row (asymmetric widths) ---------- */
+
+.rr-policy-breakdown-grid {
+    display: grid;
+    grid-template-columns: minmax(260px, 1fr) minmax(340px, 1.4fr);
+    gap: 18px;
+    align-items: start;
+}
+
+@media (max-width: 980px) {
+    .rr-policy-breakdown-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+.rr-policy-note {
+    font-size: 12.5px;
+    color: var(--rr-muted);
+    margin-bottom: 14px;
+    line-height: 1.5;
+}
+
+.rr-policy-row {
+    display: grid;
+    grid-template-columns: 110px 1fr 28px;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.rr-policy-label {
+    font-size: 12px;
+    color: var(--rr-text-dim);
+    font-weight: 600;
+}
+
+.rr-policy-bar-track {
+    height: 6px;
+    border-radius: 999px;
+    background: var(--rr-surface-2);
+    overflow: hidden;
+}
+
+.rr-policy-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    background: linear-gradient(90deg, var(--rr-blue), var(--rr-violet));
+}
+
+.rr-policy-count {
+    font-size: 12.5px;
+    color: var(--rr-text);
+    text-align: right;
+}
+
+/* ---------- Recent Events density ---------- */
+
+.rr-table-dense thead th {
+    padding: 8px 12px;
+}
+
+.rr-table-dense tbody td {
+    padding: 10px 12px;
+}
+
+.rr-table-time {
+    color: var(--rr-muted-2);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* ---------- Simulation tool (lower visual priority, compact) ---------- */
+
+.rr-simulator-card {
+    border-color: var(--rr-border);
+}
+
+.rr-simulator-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.rr-simulator-form form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px 14px;
+    align-items: end;
+}
+
+.rr-simulator-form .rr-field {
+    margin-bottom: 0;
+}
+
+.rr-simulator-form button {
+    grid-column: 1 / -1;
+    width: auto;
+    justify-self: start;
+    min-width: 200px;
+}
+
+.rr-simulator-result {
+    border-top: 1px solid var(--rr-border);
+    padding-top: 16px;
+}
+
+@media (max-width: 900px) {
+    .rr-simulator-form form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 560px) {
+    .rr-simulator-form form {
+        grid-template-columns: 1fr;
+    }
+
+    .rr-simulator-form button {
+        width: 100%;
+    }
+}  

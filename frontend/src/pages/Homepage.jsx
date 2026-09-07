@@ -6,13 +6,13 @@ import ProblemScenarios from "../components/homepage/ProblemScenarios";
 import DecisionPipeline from "../components/homepage/DecisionPipeline";
 import RevenueFlow from "../components/homepage/RevenueFlow";
 import HowItWorksTimeline from "../components/homepage/HowItWorksTimeline";
-import GuardrailsSection from "../components/homepage/GuardrailsSection";
+import GuardrailsSection from "../components/homepage/Guardrailssection";
 import RecoveryOutcome from "../components/homepage/RecoveryOutcome";
 import MerchantConsolePreview from "../components/homepage/MerchantConsolePreview";
 import DecisionTracePreview from "../components/homepage/DecisionTracePreview";
 import Capabilities from "../components/homepage/Capabilities";
 import EvaluationPreview from "../components/homepage/EvaluationPreview";
-import FinalCta from "../components/homepage/FinalCta";
+import FinalCta from "../components/homepage/Finalcta";
 import Footer from "../components/homepage/Footer";
 import "../styles/homepage.css";
 

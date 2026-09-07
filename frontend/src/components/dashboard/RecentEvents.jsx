@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { getRecentEvents } from "../../services/api";
+import { formatCurrency, formatRelativeTime } from "../../utils/time";
 import StatusBadge from "../common/StatusBadge";
 import LoadingState from "../common/LoadingState";
 import ErrorState from "../common/ErrorState";
@@ -40,8 +41,8 @@ function RecentEvents() {
   }
 
   return (
-    <div className="rr-table-wrap">
-      <table className="rr-table">
+    <div className="rr-table-wrap rr-reveal">
+      <table className="rr-table rr-table-dense">
         <thead>
           <tr>
             <th>Customer</th>
@@ -49,6 +50,7 @@ function RecentEvents() {
             <th>Error</th>
             <th>Status</th>
             <th>Attempt</th>
+            <th>Time</th>
           </tr>
         </thead>
         <tbody>
@@ -59,10 +61,11 @@ function RecentEvents() {
               onClick={() => navigate(`/transactions/${event.eventId}`)}
             >
               <td>{event.customerId}</td>
-              <td className="rr-num-cell">₹{event.paymentAmount}</td>
+              <td className="rr-num-cell">{formatCurrency(event.paymentAmount)}</td>
               <td>{event.errorCode || "—"}</td>
               <td><StatusBadge status={event.status} /></td>
               <td className="rr-num-cell">{event.attemptNumber}</td>
+              <td className="rr-table-time">{formatRelativeTime(event.timestamp)}</td>
             </tr>
           ))}
         </tbody>
