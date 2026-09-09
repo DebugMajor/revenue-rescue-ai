@@ -1,0 +1,270 @@
+/* Settings v2 — compact operational system surface */
+.rr-settings-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.rr-settings-card {
+  min-width: 0;
+  padding: 18px 20px;
+}
+
+.rr-settings-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(137, 154, 177, .11);
+}
+
+.rr-settings-card-head h2 {
+  margin: 4px 0 0;
+  color: var(--rr-text);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.rr-settings-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  color: var(--rr-cyan);
+  font-size: 8px;
+  font-weight: 750;
+  letter-spacing: .10em;
+  text-transform: uppercase;
+}
+
+.rr-settings-eyebrow::before {
+  content: "";
+  width: 5px;
+  height: 5px;
+  margin-right: 6px;
+  border-radius: 50%;
+  background: var(--rr-cyan);
+  box-shadow: 0 0 0 3px var(--rr-cyan-dim);
+}
+
+.rr-settings-pill {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 0 auto;
+  min-height: 22px;
+  padding: 4px 8px;
+  border: 1px solid rgba(137, 154, 177, .19);
+  border-radius: 999px;
+  color: var(--rr-muted);
+  background: var(--rr-surface-2);
+  font-size: 7px;
+  font-weight: 750;
+  letter-spacing: .06em;
+  white-space: nowrap;
+}
+
+.rr-settings-pill--success {
+  color: #38d39f;
+  border-color: rgba(56, 211, 159, .2);
+  background: rgba(56, 211, 159, .065);
+}
+
+.rr-settings-pill--danger {
+  color: #f56b7c;
+  border-color: rgba(245, 107, 124, .2);
+  background: rgba(245, 107, 124, .065);
+}
+
+.rr-settings-pill--amber {
+  color: #f0b34f;
+  border-color: rgba(240, 179, 79, .2);
+  background: rgba(240, 179, 79, .065);
+}
+
+.rr-settings-pill--violet {
+  color: #a894ff;
+  border-color: rgba(139, 124, 246, .2);
+  background: rgba(139, 124, 246, .065);
+}
+
+.rr-settings-compact-list {
+  display: grid;
+}
+
+.rr-settings-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  min-height: 45px;
+  padding: 7px 0;
+  border-bottom: 1px solid rgba(137, 154, 177, .08);
+}
+
+.rr-settings-row:last-child {
+  border-bottom: 0;
+}
+
+.rr-settings-row-label {
+  color: var(--rr-muted);
+  font-size: 9.5px;
+}
+
+.rr-settings-row-value {
+  max-width: 70%;
+  overflow: hidden;
+  color: var(--rr-text-dim);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rr-settings-row-value.is-mono {
+  font-family: var(--rr-font-mono);
+}
+
+.rr-settings-row-value.is-success {
+  color: var(--rr-success);
+}
+
+.rr-settings-row-value.is-danger {
+  color: var(--rr-danger);
+}
+
+.rr-settings-row-value.is-neutral {
+  color: var(--rr-muted);
+}
+
+.rr-settings-card-action {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 12px;
+}
+
+.rr-settings-service-list {
+  display: grid;
+  gap: 8px;
+  margin-top: 13px;
+}
+
+.rr-settings-service-row {
+  display: grid;
+  grid-template-columns: 29px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+  min-height: 56px;
+  padding: 8px 10px;
+  border: 1px solid rgba(137, 154, 177, .10);
+  border-radius: 8px;
+  background: var(--rr-surface-2);
+}
+
+.rr-settings-service-mark {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 7px;
+  color: var(--rr-cyan);
+  background: rgba(37, 213, 200, .09);
+  font-family: var(--rr-font-mono);
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.rr-settings-service-mark.is-purple {
+  color: #a894ff;
+  background: rgba(139, 124, 246, .09);
+}
+
+.rr-settings-service-copy {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+}
+
+.rr-settings-service-copy strong {
+  color: var(--rr-text);
+  font-size: 9.5px;
+}
+
+.rr-settings-service-copy span {
+  overflow: hidden;
+  color: var(--rr-muted);
+  font-size: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rr-settings-footnote {
+  margin-top: 10px;
+  color: var(--rr-muted-2);
+  font-size: 8px;
+  line-height: 1.4;
+}
+
+.rr-settings-eval-inline {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.rr-settings-eval-inline > div {
+  padding: 12px 13px;
+  border: 1px solid rgba(137, 154, 177, .10);
+  border-radius: 8px;
+  background: var(--rr-surface-2);
+}
+
+.rr-settings-eval-inline span,
+.rr-settings-eval-inline strong {
+  display: block;
+}
+
+.rr-settings-eval-inline span {
+  color: var(--rr-muted);
+  font-size: 8px;
+}
+
+.rr-settings-eval-inline strong {
+  margin-top: 6px;
+  color: var(--rr-text);
+  font-family: var(--rr-font-mono);
+  font-size: 11px;
+  font-weight: 650;
+}
+
+@media (max-width: 900px) {
+  .rr-settings-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .rr-settings-card {
+    padding: 16px;
+  }
+
+  .rr-settings-card-head {
+    flex-direction: column;
+  }
+
+  .rr-settings-service-row {
+    grid-template-columns: 29px minmax(0, 1fr);
+  }
+
+  .rr-settings-service-row .rr-settings-pill {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .rr-settings-eval-inline {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-settings-row-value {
+    max-width: 62%;
+  }
+}
