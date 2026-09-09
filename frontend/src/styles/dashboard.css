@@ -1,3 +1,4 @@
+@import "./performance-charts.css";
 @import "./variables.css";
 
 /* =========================================================
@@ -179,6 +180,56 @@
   font-size: 11.5px;
   line-height: 1.45;
 }
+
+.rr-dashboard-ingress-note {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 0 18px;
+  color: var(--rr-muted-2);
+  font-size: 9.5px;
+  line-height: 1.4;
+}
+
+.rr-dashboard-ingress-label {
+  color: var(--rr-dash-cyan);
+  font-size: 8.5px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.rr-dashboard-ingress-label--dim {
+  color: var(--rr-muted);
+}
+
+.rr-dashboard-ingress-separator {
+  width: 1px;
+  height: 11px;
+  margin: 0 2px;
+  background: var(--rr-dash-line-strong);
+}
+
+.rr-simulator-coverage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.rr-simulator-coverage span {
+  padding: 4px 7px;
+  border: 1px solid var(--rr-dash-line);
+  border-radius: 999px;
+  background: rgba(20, 26, 35, 0.74);
+  color: var(--rr-muted);
+  font-size: 8.5px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
 
 .rr-dashboard-simulator-grid {
   display: grid;
@@ -2267,4 +2318,90 @@
 
 @media (prefers-reduced-motion: reduce) {
   .rr-simulation-travel-dot { animation: none; left: 50%; }
+}
+
+/* v17: equal-height analytics row */
+.rr-dashboard-analytics {
+  align-items: stretch;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance,
+.rr-dashboard-analytics > .rr-dashboard-breakdown {
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
+  overflow: hidden;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance {
+  display: flex;
+  flex-direction: column;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-breakdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance > .rr-dashboard-panel-head,
+.rr-dashboard-analytics > .rr-dashboard-breakdown > .rr-dashboard-panel-head {
+  flex: 0 0 auto;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance > .rr-performance-inner,
+.rr-dashboard-analytics > .rr-dashboard-breakdown > .rr-breakdown-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Keep the Mix bars inset from the card edges */
+.rr-dashboard-breakdown .rr-breakdown-row {
+  padding-inline: 4px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-row-head,
+.rr-dashboard-breakdown .rr-breakdown-meta {
+  padding-inline: 1px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-track {
+  width: calc(100% - 8px);
+  margin-inline: 4px;
+}
+
+/* v18 final: clearer inline decision result */
+.rr-dashboard-simulator-result .rr-trace-label {
+  margin-bottom: 7px;
+  font-size: 8.5px;
+}
+
+.rr-dashboard-simulator-result .rr-trace-content {
+  margin-bottom: 13px;
+  padding: 11px 12px;
+  border-radius: 7px;
+}
+
+.rr-dashboard-simulator-result .rr-kv-row {
+  min-height: 25px;
+  gap: 14px;
+}
+
+.rr-dashboard-simulator-result .rr-kv-row .k,
+.rr-dashboard-simulator-result .rr-kv-row .v {
+  font-size: 10px;
+}
+
+.rr-dashboard-simulator-result .rr-trace-content p {
+  margin-top: 7px;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.rr-dashboard-simulator-result .rr-dashboard-primary-action {
+  margin-top: 4px;
+  min-height: 36px;
 }

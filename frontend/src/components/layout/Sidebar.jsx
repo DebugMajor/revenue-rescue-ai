@@ -58,9 +58,8 @@ function Sidebar() {
       <NavGroup label="SYSTEM" links={SYSTEM} />
 
       <div className="rr-sidebar-footer">
-        <span>AI recommends</span>
-        <span>Policy decides</span>
-        <span>Code executes</span>
+        <strong>GOVERNED RECOVERY ENGINE</strong>
+        <span>AI recommends · Policy governs · Code executes</span>
       </div>
     </aside>
   );

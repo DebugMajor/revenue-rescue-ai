@@ -214,6 +214,14 @@ function Dashboard() {
               Run a controlled failure through context, risk, recommendation, policy and recovery without touching live payment traffic.
             </p>
 
+            <div className="rr-dashboard-ingress-note">
+              <span className="rr-dashboard-ingress-label">Test input</span>
+              <span>Production payment failures can enter through the Razorpay webhook.</span>
+              <span className="rr-dashboard-ingress-separator" />
+              <span className="rr-dashboard-ingress-label rr-dashboard-ingress-label--dim">Supported failure classes</span>
+              <span>Network · Timeout · Gateway · Card declined · Insufficient funds</span>
+            </div>
+
             {submitting && (
               <div className="rr-simulation-progress" aria-live="polite">
                 {simulationSteps.map((step, index) => (
@@ -245,6 +253,13 @@ function Dashboard() {
                     <span className="rr-simulator-placeholder-line" />
                     <strong>Run a scenario</strong>
                     <p>The returned recommendation, policy decision and recovery outcome will appear here.</p>
+                    <div className="rr-simulator-coverage">
+                      <span>Risk</span>
+                      <span>AI / fallback</span>
+                      <span>Policy</span>
+                      <span>Recovery</span>
+                      <span>Outcome</span>
+                    </div>
                   </div>
                 )}
 

@@ -1,47 +1,98 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import EmptyState from "../common/EmptyState";
+import "../../styles/performance-charts.css";
 
-// data: [{ errorCode, outcome, count }] from GET /analytics/recovery-by-error
-function pivot(rows) {
-  const byError = new Map();
-  for (const row of rows) {
-    const key = row.errorCode || "UNKNOWN";
-    if (!byError.has(key)) {
-      byError.set(key, { errorCode: key, RECOVERED: 0, FAILED: 0 });
+function normalise(data = []) {
+  const grouped = new Map();
+
+  data.forEach((row) => {
+    const label = row?.errorCode || row?.error || "UNKNOWN_ERROR";
+    if (!grouped.has(label)) {
+      grouped.set(label, { label, recovered: 0, failed: 0 });
     }
-    const entry = byError.get(key);
-    if (row.outcome === "RECOVERED") entry.RECOVERED = row.count;
-    if (row.outcome === "FAILED") entry.FAILED = row.count;
-  }
-  return Array.from(byError.values());
+    const item = grouped.get(label);
+    const outcome = String(row?.outcome || "").toUpperCase();
+    const count = Number(row?.count) || 0;
+
+    if (outcome === "RECOVERED") item.recovered += count;
+    if (outcome === "FAILED" || outcome === "RESOLVED_UNRECOVERED") {
+      item.failed += count;
+    }
+  });
+
+  return Array.from(grouped.values())
+    .sort((a, b) => {
+      const aTotal = a.recovered + a.failed;
+      const bTotal = b.recovered + b.failed;
+      return bTotal - aTotal;
+    });
 }
 
-function RecoveryByErrorChart({ data = null }) {
-  if (!data || data.length === 0) {
+function RecoveryByErrorChart({ data = [] }) {
+  const rows = normalise(data);
+
+  if (!rows.length) {
     return (
-      <EmptyState
-        title="No recovery attempts yet"
-        message="This chart populates once recovery attempts with a completed outcome exist, grouped by the originating error code."
-      />
+      <div className="rr-breakdown-empty">
+        No recovery outcomes recorded yet.
+      </div>
     );
   }
 
-  const chartData = pivot(data);
+  const max = Math.max(
+    ...rows.map((row) => row.recovered + row.failed),
+    1
+  );
 
   return (
-    <ResponsiveContainer width="100%" height={Math.max(220, chartData.length * 42)}>
-      <BarChart data={chartData} layout="vertical" margin={{ top: 4, right: 16, left: 8, bottom: 4 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--rr-border)" />
-        <XAxis type="number" allowDecimals={false} tick={{ fill: "var(--rr-muted)", fontSize: 11 }} />
-        <YAxis type="category" dataKey="errorCode" width={130} tick={{ fill: "var(--rr-muted)", fontSize: 11 }} />
-        <Tooltip
-          contentStyle={{ background: "var(--rr-surface-2)", border: "1px solid var(--rr-border-strong)", borderRadius: 8, fontSize: 12 }}
-        />
-        <Legend wrapperStyle={{ fontSize: 12 }} />
-        <Bar dataKey="RECOVERED" fill="var(--rr-cyan)" radius={[0, 4, 4, 0]} />
-        <Bar dataKey="FAILED" fill="var(--rr-danger)" radius={[0, 4, 4, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="rr-breakdown-chart">
+      <div className="rr-breakdown-rows">
+        {rows.map((row) => {
+          const total = row.recovered + row.failed;
+          const recoveredWidth =
+            total > 0 ? (row.recovered / max) * 100 : 0;
+          const failedWidth = total > 0 ? (row.failed / max) * 100 : 0;
+
+          return (
+            <div className="rr-breakdown-row" key={row.label}>
+              <div className="rr-breakdown-row-head">
+                <span title={row.label}>{row.label}</span>
+                <strong>{total}</strong>
+              </div>
+
+              <div className="rr-breakdown-track" aria-label={`${row.label}: ${total} outcomes`}>
+                <span
+                  className="rr-breakdown-segment recovered"
+                  style={{ width: `${recoveredWidth}%` }}
+                />
+                <span
+                  className="rr-breakdown-segment failed"
+                  style={{ width: `${failedWidth}%` }}
+                />
+              </div>
+
+              <div className="rr-breakdown-meta">
+                <span className="is-recovered">
+                  {row.recovered} recovered
+                </span>
+                <span className="is-failed">
+                  {row.failed} failed
+                </span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+
+      <div className="rr-chart-legend">
+        <span>
+          <i className="legend-dot recovered" />
+          Recovered
+        </span>
+        <span>
+          <i className="legend-dot failed" />
+          Failed
+        </span>
+      </div>
+    </div>
   );
 }
 
