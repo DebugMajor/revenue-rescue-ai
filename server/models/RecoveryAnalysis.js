@@ -25,7 +25,8 @@ const analysisSchema = new mongoose.Schema(
                 "WAIT_AND_RETRY",
                 "SEND_PAYMENT_LINK",
                 "HUMAN_REVIEW",
-                "DO_NOT_RETRY"
+                "DO_NOT_RETRY",
+                "RECOVERY_REMINDER"
             ],
             required: true
         },

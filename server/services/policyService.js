@@ -46,7 +46,8 @@ const evaluatePolicy = (riskScore, riskBand, recommendation, confidence, recover
         };
     }
 
-    if (recommendation === "RETRY_NOW" || recommendation === "WAIT_AND_RETRY" || recommendation === "SEND_PAYMENT_LINK") {
+
+    if (recommendation === "RETRY_NOW" || recommendation === "WAIT_AND_RETRY" || recommendation === "SEND_PAYMENT_LINK" || recommendation === "RECOVERY_REMINDER") {
         return {
             decision: "APPROVED",
             reason: "Recovery action passed all automatic execution policy checks."

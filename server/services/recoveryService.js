@@ -123,7 +123,6 @@ const executeRecovery = async (event, analysis) => {
     }
 
     // SEND_PAYMENT_LINK
-    // SEND_PAYMENT_LINK
     else if (analysis.recommendation === "SEND_PAYMENT_LINK") {
         let paymentLinkId;
 
@@ -174,8 +173,24 @@ const executeRecovery = async (event, analysis) => {
 
         await savedAttempt.save();
     }
+    //Reminder
+    else if (analysis.recommendation === "RECOVERY_REMINDER") {
+        savedAttempt.outcome = "PENDING";
+        savedAttempt.outcomeDetails =
+            "Recovery reminder recorded; awaiting customer return.";
+
+        await Event.findOneAndUpdate(
+            { _id: event._id },
+            { status: "PENDING" },
+            { returnDocument: "after" }
+        );
+
+        await savedAttempt.save();
+    }
 
     return savedAttempt;
 };
+
+
 
 export default executeRecovery;

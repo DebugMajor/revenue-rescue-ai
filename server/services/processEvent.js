@@ -23,7 +23,7 @@ const processEvent = async (eventData, userId,
     );
 
     // Non-failed events don't need recovery analysis
-    if (newEvent.status !== "FAILED") {
+    if (newEvent.status !== "FAILED" && newEvent.status !== "CHECKOUT_ABANDONED") {
         return {
             event: newEvent,
             context
@@ -34,7 +34,8 @@ const processEvent = async (eventData, userId,
         context.successfulPayments,
         context.totalPayments,
         context.recoveryAttempts + 1,
-        newEvent.errorCode
+        newEvent.errorCode,
+        newEvent.eventType
     );
 
     let analysisResult;

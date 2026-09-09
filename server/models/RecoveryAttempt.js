@@ -25,7 +25,8 @@ const attemptSchema = new mongoose.Schema(
             enum: [
                 "RETRY_NOW",
                 "WAIT_AND_RETRY",
-                "SEND_PAYMENT_LINK"
+                "SEND_PAYMENT_LINK",
+                "RECOVERY_REMINDER"
             ]
         },
 

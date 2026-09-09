@@ -1,5 +1,5 @@
 const deterministicAnalysisService = (event) => {
-    if (event.status !== "FAILED") {
+    if (event.status !== "FAILED" && event.status !== "CHECKOUT_ABANDONED") {
         return;
     }
 
@@ -21,6 +21,12 @@ const deterministicAnalysisService = (event) => {
         confidence = 0.70;
         analysisSummary = "Payment failed because the customer has insufficient funds.";
         reasoning = "An immediate retry is unlikely to succeed, so providing an alternative payment option may improve the recovery chance.";
+    }
+    else if (event.eventType === "CHECKOUT_ABANDONED") {
+        recommendation = "RECOVERY_REMINDER";
+        confidence = 0.80;
+        analysisSummary = "Checkout was abandoned before the payment was completed.";
+        reasoning = "A recovery reminder can re-engage the customer without retrying the payment automatically.";
     }
     else {
         recommendation = "HUMAN_REVIEW";

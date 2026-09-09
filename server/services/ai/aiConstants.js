@@ -3,7 +3,8 @@ const ALLOWED_RECOMMENDATIONS = [
     "WAIT_AND_RETRY",
     "SEND_PAYMENT_LINK",
     "HUMAN_REVIEW",
-    "DO_NOT_RETRY"
+    "DO_NOT_RETRY",
+    "RECOVERY_REMINDER"
 ];
 
 const isValidConfidence = (confidence) => {

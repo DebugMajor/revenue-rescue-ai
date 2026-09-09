@@ -1,7 +1,7 @@
 import Analysis from "../models/RecoveryAnalysis.js";
 
 const analyzeEvent = async (event, analysisResult, context, risk) => {
-    if (event.status !== "FAILED") {
+    if (event.status !== "FAILED" && event.status !== "CHECKOUT_ABANDONED") {
         return;
     }
 

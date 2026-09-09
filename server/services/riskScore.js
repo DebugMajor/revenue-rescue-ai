@@ -16,7 +16,9 @@ const getAttemptFactor = (recoveryAttempts) => {
         return 0.1;
 }
 
-const getErrorFactor = (errorCode) => {
+const getEventFactor = (errorCode, eventType) => {
+    if (eventType === "CHECKOUT_ABANDONED")
+        return 0.6;
     if (errorCode === "NETWORK_ERROR")
         return 0.5;
     if (errorCode === "TIMEOUT")
@@ -38,12 +40,12 @@ const getRiskBand = (score) => {
     return "HIGH";
 };
 
-const calculateRiskScore = (successfulPayments, totalPayments, recoveryAttempts, errorCode) => {
+const calculateRiskScore = (successfulPayments, totalPayments, recoveryAttempts, errorCode, eventType) => {
     const priorSuccessRate = getPriorSuccessRate(successfulPayments, totalPayments);
     const attemptFactor = getAttemptFactor(recoveryAttempts);
-    const errorFactor = getErrorFactor(errorCode);
+    const eventFactor = getEventFactor(errorCode, eventType);
 
-    const score = (0.4 * priorSuccessRate) + (0.3 * attemptFactor) + (0.3 * errorFactor);
+    const score = (0.4 * priorSuccessRate) + (0.3 * attemptFactor) + (0.3 * eventFactor);
     const band = getRiskBand(score);
     return { riskScore: Number(score.toFixed(2)), riskBand: band };
 }
