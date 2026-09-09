@@ -5,6 +5,7 @@ import LoadingState from "../components/common/LoadingState";
 import ErrorState from "../components/common/ErrorState";
 import EmptyState from "../components/common/EmptyState";
 import { getTransactions } from "../services/api";
+import "../styles/transactions.css";
 
 function Transactions() {
   const [events, setEvents] = useState(null);
@@ -12,6 +13,7 @@ function Transactions() {
 
   useEffect(() => {
     let cancelled = false;
+
     getTransactions()
       .then((data) => {
         if (!cancelled) setEvents(Array.isArray(data) ? data : []);
@@ -19,41 +21,57 @@ function Transactions() {
       .catch((err) => {
         if (!cancelled) setError(err?.message || "Unable to load transactions.");
       });
-    return () => { cancelled = true; };
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
-    <div className="rr-transactions-page">
-      <PageContainer
-        eyebrow="Event stream"
-        title="Transactions"
-        subtitle="Review payment failures, recovery outcomes, and the decisions recorded by the recovery engine."
-      >
-        <section className="rr-transactions-workspace">
-          <div className="rr-transactions-header">
-            <div>
-              <span className="rr-transactions-kicker">Recovery ledger</span>
-              <h2>Transaction history</h2>
-            </div>
-            {events && !error && (
-              <span className="rr-transactions-count">
-                {events.length} {events.length === 1 ? "event" : "events"}
-              </span>
-            )}
+    <PageContainer
+      title="Transactions"
+      subtitle="Review payment failures, recovery outcomes, and the decisions recorded by the recovery engine."
+    >
+      <div className="rr-transactions-page">
+        <div className="rr-transaction-heading">
+          <div>
+            <div className="rr-section-eyebrow">RECOVERY LEDGER</div>
+            <h2>Transaction history</h2>
+            <p>Payment failures, recovery outcomes, and recorded decisions.</p>
           </div>
+          {events && (
+            <div className="rr-transaction-count">
+              <strong>{events.length}</strong>
+              <span>events</span>
+            </div>
+          )}
+        </div>
 
-          {error && <ErrorState title="Couldn't load transactions" message={error} />}
-          {!error && events == null && <LoadingState label="Loading transaction history…" />}
+        <div className="rr-transaction-card">
+          {error && (
+            <ErrorState
+              title="Couldn't load transactions"
+              message={error}
+            />
+          )}
+
+          {!error && events == null && (
+            <LoadingState label="Loading transactions…" />
+          )}
+
           {!error && events && events.length === 0 && (
             <EmptyState
               title="No transactions yet"
-              message="Process a transaction from the Dashboard to create the first recovery event."
+              message="Process a transaction from the Dashboard to see it here."
             />
           )}
-          {!error && events && events.length > 0 && <TransactionTable events={events} />}
-        </section>
-      </PageContainer>
-    </div>
+
+          {!error && events && events.length > 0 && (
+            <TransactionTable events={events} />
+          )}
+        </div>
+      </div>
+    </PageContainer>
   );
 }
 
