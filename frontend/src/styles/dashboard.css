@@ -1,3 +1,4 @@
+@import "./performance-charts.css";
 @import "./variables.css";
 
 /* =========================================================
@@ -179,6 +180,56 @@
   font-size: 11.5px;
   line-height: 1.45;
 }
+
+.rr-dashboard-ingress-note {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 10px;
+  padding: 0 18px;
+  color: var(--rr-muted-2);
+  font-size: 9.5px;
+  line-height: 1.4;
+}
+
+.rr-dashboard-ingress-label {
+  color: var(--rr-dash-cyan);
+  font-size: 8.5px;
+  font-weight: 750;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.rr-dashboard-ingress-label--dim {
+  color: var(--rr-muted);
+}
+
+.rr-dashboard-ingress-separator {
+  width: 1px;
+  height: 11px;
+  margin: 0 2px;
+  background: var(--rr-dash-line-strong);
+}
+
+.rr-simulator-coverage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-top: 14px;
+}
+
+.rr-simulator-coverage span {
+  padding: 4px 7px;
+  border: 1px solid var(--rr-dash-line);
+  border-radius: 999px;
+  background: rgba(20, 26, 35, 0.74);
+  color: var(--rr-muted);
+  font-size: 8.5px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
 
 .rr-dashboard-simulator-grid {
   display: grid;
@@ -966,14 +1017,6 @@
   font-weight: 600;
 }
 
-.rr-simulation-step + .rr-simulation-step::before {
-  content: "";
-  flex: 1;
-  height: 1px;
-  margin-right: 6px;
-  background: var(--rr-dash-line-strong);
-}
-
 .rr-simulation-step-dot {
   display: grid;
   place-items: center;
@@ -1410,5 +1453,1286 @@
   .rr-performance-fill,
   .rr-dashboard-page * {
     scroll-behavior: auto;
+  }
+}
+
+
+/* =========================================================
+   Dashboard v4 — compact command workspace + live pipeline
+   The simulator is an input surface. Decision details belong
+   to Latest Decision / Decision Trace below.
+   ========================================================= */
+
+.rr-dashboard-command {
+  display: block;
+  margin-top: 8px;
+  margin-bottom: 16px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.rr-dashboard-command-copy {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 0 0 14px;
+}
+
+.rr-dashboard-command-copy h2 {
+  margin: 6px 0 6px;
+  max-width: none;
+  font-size: clamp(24px, 2vw, 29px);
+}
+
+.rr-dashboard-command-copy p {
+  max-width: 650px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.rr-command-links {
+  flex: 0 0 auto;
+  margin-top: 0;
+  padding-bottom: 2px;
+}
+
+.rr-dashboard-simulator {
+  width: 100%;
+}
+
+.rr-dashboard-simulator-head {
+  padding: 13px 17px 10px;
+}
+
+.rr-dashboard-panel-description {
+  padding: 9px 17px 10px;
+}
+
+.rr-dashboard-simulator-grid {
+  margin-top: 0;
+  min-height: 166px;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  border-top: 1px solid var(--rr-dash-line);
+}
+
+.rr-dashboard-simulator-form {
+  display: flex;
+  align-items: center;
+  padding: 15px 17px 16px;
+}
+
+.rr-dashboard-simulator-form form {
+  width: 100%;
+}
+
+.rr-dashboard-simulator-result {
+  display: flex;
+  align-items: center;
+  min-height: 166px;
+  padding: 15px 17px;
+  background: rgba(255, 255, 255, 0.008);
+}
+
+.rr-simulator-placeholder,
+.rr-simulator-processing,
+.rr-simulator-complete {
+  width: 100%;
+  min-height: 126px;
+}
+
+.rr-simulator-placeholder {
+  justify-content: center;
+}
+
+.rr-simulator-placeholder-line {
+  width: 38px;
+  height: 2px;
+  margin-bottom: 10px;
+}
+
+.rr-simulator-placeholder strong,
+.rr-simulator-processing strong,
+.rr-simulator-complete strong {
+  font-size: 12px;
+}
+
+.rr-simulator-placeholder p,
+.rr-simulator-processing p,
+.rr-simulator-complete p {
+  max-width: 290px;
+  margin-top: 4px;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+/* Live four-stage pipeline. It exists only while the request is running. */
+.rr-simulation-progress {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  min-height: 48px;
+  padding: 8px 17px;
+  border-top: 1px solid var(--rr-dash-line);
+  border-bottom: 1px solid var(--rr-dash-line);
+}
+
+.rr-simulation-step {
+  display: grid;
+  grid-template-columns: auto minmax(18px, 1fr);
+  align-items: center;
+  min-width: 0;
+  color: var(--rr-muted-2);
+  font-size: 9.5px;
+  font-weight: 600;
+}
+
+.rr-simulation-step-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.rr-simulation-step-node > span:last-child {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.rr-simulation-step-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  border: 1px solid var(--rr-dash-line-strong);
+  border-radius: 50%;
+  background: var(--rr-dash-panel);
+  color: var(--rr-muted);
+  font-size: 8px;
+  z-index: 2;
+}
+
+.rr-simulation-step.is-active {
+  color: var(--rr-text);
+}
+
+.rr-simulation-step.is-active .rr-simulation-step-dot {
+  border-color: rgba(41, 214, 202, 0.72);
+  color: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.07);
+  animation: rr-step-pulse 1.2s ease-in-out infinite;
+}
+
+.rr-simulation-step.is-complete {
+  color: var(--rr-text-dim);
+}
+
+.rr-simulation-step.is-complete .rr-simulation-step-dot {
+  border-color: rgba(56, 211, 159, 0.45);
+  background: rgba(56, 211, 159, 0.08);
+  color: var(--rr-dash-green);
+}
+
+.rr-simulation-connector {
+  position: relative;
+  display: block;
+  height: 1px;
+  margin: 0 10px;
+  background: var(--rr-dash-line-strong);
+  overflow: visible;
+}
+
+.rr-simulation-connector.is-complete {
+  background: rgba(56, 211, 159, 0.42);
+}
+
+.rr-simulation-travel-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08), 0 0 10px rgba(41, 214, 202, 0.55);
+  transform: translate(-50%, -50%);
+  animation: rr-step-travel 1.05s ease-in-out infinite;
+}
+
+@keyframes rr-step-travel {
+  0% { left: 0%; opacity: 0.25; }
+  18% { opacity: 1; }
+  82% { opacity: 1; }
+  100% { left: 100%; opacity: 0.25; }
+}
+
+@keyframes rr-step-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.05); }
+  50% { box-shadow: 0 0 0 5px rgba(41, 214, 202, 0.10); }
+}
+
+.rr-simulator-processing {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.rr-processing-ring {
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+}
+
+.rr-simulator-complete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rr-simulator-complete-icon {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  flex: 0 0 27px;
+  border: 1px solid rgba(56, 211, 159, 0.38);
+  border-radius: 50%;
+  background: rgba(56, 211, 159, 0.08);
+  color: var(--rr-dash-green);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+/* The detailed analysis no longer renders inside the simulator. */
+.rr-simulation-result-banner,
+.rr-simulation-complete {
+  animation: rr-simulator-settle 180ms ease-out;
+}
+
+@keyframes rr-simulator-settle {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1120px) {
+  .rr-dashboard-command-copy {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .rr-command-links {
+    padding-bottom: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .rr-dashboard-simulator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-dashboard-simulator-form {
+    border-right: 0;
+    border-bottom: 1px solid var(--rr-dash-line);
+  }
+
+  .rr-simulation-progress {
+    grid-template-columns: 1fr 1fr;
+    gap: 7px 10px;
+    padding-block: 9px;
+  }
+
+  .rr-simulation-step {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-simulation-connector {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-simulation-step.is-active .rr-simulation-step-dot,
+  .rr-simulation-travel-dot {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   Dashboard v4 — hierarchy + simulation pipeline correction
+   ========================================================= */
+
+.rr-dashboard-command {
+  display: block;
+  margin-top: 4px;
+  margin-bottom: 18px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.rr-dashboard-command-copy {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 0 2px 11px;
+}
+
+.rr-command-context {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  min-width: 0;
+}
+
+.rr-command-context p {
+  margin: 0;
+  color: var(--rr-muted);
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.rr-command-links {
+  margin-top: 0;
+  flex: 0 0 auto;
+}
+
+.rr-dashboard-simulator {
+  width: 100%;
+}
+
+.rr-dashboard-simulator-grid {
+  grid-template-columns: minmax(0, 1.18fr) minmax(300px, 0.82fr);
+  min-height: 198px;
+}
+
+.rr-dashboard-simulator-form {
+  padding: 15px 17px 17px;
+}
+
+.rr-dashboard-simulator-result {
+  display: flex;
+  align-items: center;
+  min-height: 198px;
+  padding: 17px 20px;
+}
+
+.rr-simulator-placeholder,
+.rr-simulator-processing,
+.rr-simulator-complete {
+  width: 100%;
+}
+
+.rr-simulator-placeholder {
+  min-height: 0;
+}
+
+.rr-simulator-processing {
+  min-height: 0;
+}
+
+.rr-simulator-complete {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.rr-simulator-complete-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex: 0 0 28px;
+  border: 1px solid rgba(56, 211, 159, 0.38);
+  border-radius: 50%;
+  background: rgba(56, 211, 159, 0.08);
+  color: var(--rr-dash-green);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.rr-simulator-complete strong {
+  display: block;
+  color: var(--rr-text);
+  font-size: 12px;
+}
+
+.rr-simulator-complete p {
+  margin: 3px 0 0;
+  color: var(--rr-muted);
+  font-size: 10.5px;
+}
+
+/* Four-stage progress rail: each connector is an explicit track so the
+   active cyan dot visibly travels from one stage to the next. */
+.rr-simulation-progress {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: center;
+  gap: 0;
+  padding: 10px 17px;
+  border-top: 1px solid var(--rr-dash-line);
+  border-bottom: 1px solid var(--rr-dash-line);
+}
+
+.rr-simulation-step {
+  display: grid;
+  grid-template-columns: auto minmax(22px, 1fr);
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: var(--rr-muted-2);
+  font-size: 9px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.rr-simulation-step-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.rr-simulation-step-dot {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 19px;
+  height: 19px;
+  flex: 0 0 19px;
+  border: 1px solid var(--rr-dash-line-strong);
+  border-radius: 50%;
+  background: var(--rr-dash-panel);
+  color: var(--rr-muted-2);
+  font-size: 8px;
+  z-index: 1;
+}
+
+.rr-simulation-connector {
+  position: relative;
+  display: block;
+  height: 1px;
+  margin: 0 10px;
+  background: var(--rr-dash-line-strong);
+}
+
+.rr-simulation-connector.is-complete {
+  background: rgba(56, 211, 159, 0.38);
+}
+
+.rr-simulation-travel-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08), 0 0 10px rgba(41, 214, 202, 0.5);
+  transform: translate(-50%, -50%);
+  animation: rr-simulation-travel 650ms ease-in-out infinite;
+}
+
+@keyframes rr-simulation-travel {
+  0% { left: 0%; opacity: 0.35; }
+  20% { opacity: 1; }
+  80% { opacity: 1; }
+  100% { left: 100%; opacity: 0.35; }
+}
+
+.rr-simulation-step.is-active {
+  color: var(--rr-dash-cyan);
+}
+
+.rr-simulation-step.is-active .rr-simulation-step-dot {
+  border-color: rgba(41, 214, 202, 0.55);
+  color: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08);
+}
+
+.rr-simulation-step.is-complete {
+  color: var(--rr-text-dim);
+}
+
+.rr-simulation-step.is-complete .rr-simulation-step-dot {
+  border-color: rgba(56, 211, 159, 0.45);
+  background: rgba(56, 211, 159, 0.08);
+  color: var(--rr-dash-green);
+}
+
+.rr-simulation-connector {
+  width: 100%;
+  margin: 0;
+}
+
+/* The dashboard's decision workspace is the single source of truth for the
+   returned analysis. The simulator never grows into a second trace. */
+.rr-dashboard-workspace {
+  align-items: stretch;
+}
+
+.rr-dashboard-decision,
+.rr-dashboard-queue {
+  min-height: 0;
+}
+
+@media (max-width: 1120px) {
+  .rr-dashboard-command-copy {
+    align-items: flex-start;
+  }
+
+  .rr-dashboard-simulator-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 0.72fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .rr-dashboard-command-copy {
+    display: block;
+  }
+
+  .rr-command-links {
+    margin-top: 9px;
+  }
+
+  .rr-dashboard-simulator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-dashboard-simulator-result {
+    min-height: 112px;
+    border-top: 1px solid var(--rr-dash-line);
+  }
+
+  .rr-simulation-progress {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 7px;
+  }
+
+  .rr-simulation-connector {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-simulation-travel-dot,
+  .rr-processing-ring {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   Dashboard v6 — stable command workspace with inline result
+   ========================================================= */
+.rr-dashboard-command {
+  display: block;
+  margin-bottom: 18px;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.rr-dashboard-command-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  min-height: 28px;
+  margin-bottom: 9px;
+}
+
+.rr-dashboard-command-topline .rr-command-context {
+  display: flex;
+  align-items: baseline;
+  gap: 9px;
+  margin: 0;
+}
+
+.rr-command-context-text {
+  color: var(--rr-muted);
+  font-size: 11px;
+  line-height: 1.35;
+}
+
+.rr-dashboard-command-topline .rr-command-links {
+  margin-top: 0;
+}
+
+.rr-dashboard-simulator {
+  width: 100%;
+}
+
+.rr-dashboard-simulator-grid {
+  grid-template-columns: minmax(300px, 0.92fr) minmax(430px, 1.08fr);
+  min-height: 300px;
+}
+
+.rr-dashboard-simulator-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 20px 22px;
+}
+
+.rr-dashboard-simulator-result {
+  min-width: 0;
+  min-height: 300px;
+  max-height: 330px;
+  overflow: hidden;
+  padding: 0;
+  border-left: 0;
+}
+
+.rr-simulator-result-scroll {
+  height: 100%;
+  max-height: 330px;
+  overflow-y: auto;
+  padding: 15px 16px 17px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(148, 163, 184, 0.28) transparent;
+}
+
+.rr-simulator-result-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.rr-simulator-result-scroll::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.28);
+  border-radius: 999px;
+}
+
+.rr-simulation-result-banner {
+  position: sticky;
+  top: -15px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -15px -16px 13px;
+  padding: 12px 16px 10px;
+  background: linear-gradient(180deg, #10151d 78%, rgba(16, 21, 29, 0));
+  border-bottom: 1px solid var(--rr-dash-line);
+}
+
+.rr-simulation-result-banner > div {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.rr-simulation-result-banner span:first-child {
+  color: var(--rr-muted-2);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.rr-simulation-result-banner strong {
+  color: var(--rr-dash-green);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.rr-result-ready {
+  color: var(--rr-dash-green);
+  font-size: 9px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* Reuse the trace component in a dense, scrollable dashboard presentation. */
+.rr-dashboard-simulator-result .rr-trace-label {
+  margin: 0 0 5px;
+  color: var(--rr-muted-2);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  line-height: 1.2;
+}
+
+.rr-dashboard-simulator-result .rr-trace-content {
+  margin-bottom: 10px;
+  padding: 9px 10px;
+  border: 1px solid var(--rr-dash-line);
+  border-radius: 6px;
+  background: var(--rr-dash-panel-raised);
+}
+
+.rr-dashboard-simulator-result .rr-kv-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 22px;
+}
+
+.rr-dashboard-simulator-result .rr-kv-row .k {
+  color: var(--rr-muted);
+  font-size: 9.5px;
+}
+
+.rr-dashboard-simulator-result .rr-kv-row .v {
+  min-width: 0;
+  color: var(--rr-text-dim);
+  font-size: 9.5px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.rr-dashboard-simulator-result .rr-trace-content p {
+  margin: 5px 0 0;
+  color: var(--rr-text-dim) !important;
+  font-size: 9.5px;
+  line-height: 1.45;
+}
+
+.rr-dashboard-simulator-result .rr-dashboard-primary-action {
+  margin-top: 2px;
+}
+
+.rr-dashboard-simulator-result .rr-simulator-placeholder,
+.rr-dashboard-simulator-result .rr-simulator-processing {
+  min-height: 300px;
+  padding: 20px;
+}
+
+.rr-simulation-progress {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 0;
+  padding: 10px 18px;
+  border-top: 1px solid var(--rr-dash-line);
+  border-bottom: 1px solid var(--rr-dash-line);
+}
+
+.rr-simulation-step {
+  display: grid;
+  grid-template-columns: auto minmax(24px, 1fr);
+  align-items: center;
+  min-width: 0;
+  gap: 8px;
+}
+
+.rr-simulation-step-node {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  color: var(--rr-muted-2);
+  font-size: 9px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.rr-simulation-step-dot {
+  display: grid;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  place-items: center;
+  border: 1px solid var(--rr-dash-line-strong);
+  border-radius: 50%;
+  color: var(--rr-muted);
+  font-size: 8px;
+}
+
+.rr-simulation-step.is-active .rr-simulation-step-node,
+.rr-simulation-step.is-complete .rr-simulation-step-node {
+  color: var(--rr-text-dim);
+}
+
+.rr-simulation-step.is-active .rr-simulation-step-dot {
+  border-color: var(--rr-dash-cyan);
+  color: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08);
+}
+
+.rr-simulation-step.is-complete .rr-simulation-step-dot {
+  border-color: var(--rr-dash-green);
+  background: rgba(56, 211, 159, 0.08);
+  color: var(--rr-dash-green);
+}
+
+.rr-simulation-connector {
+  position: relative;
+  height: 1px;
+  margin-right: 12px;
+  background: var(--rr-dash-line-strong);
+}
+
+.rr-simulation-connector.is-complete {
+  background: rgba(56, 211, 159, 0.48);
+}
+
+.rr-simulation-travel-dot {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08);
+  transform: translate(-50%, -50%);
+  animation: rr-simulation-travel 700ms linear infinite;
+}
+
+@keyframes rr-simulation-travel {
+  from { left: 0%; opacity: 0.35; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  to { left: 100%; opacity: 0.35; }
+}
+
+@media (max-width: 900px) {
+  .rr-dashboard-command-topline {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .rr-dashboard-simulator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-dashboard-simulator-form {
+    border-right: 0;
+    border-bottom: 1px solid var(--rr-dash-line);
+  }
+
+  .rr-dashboard-simulator-result {
+    min-height: 300px;
+    max-height: 360px;
+  }
+
+  .rr-simulator-result-scroll {
+    max-height: 360px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-simulation-travel-dot { animation: none; left: 50%; }
+}
+
+/* v17: equal-height analytics row */
+.rr-dashboard-analytics {
+  align-items: stretch;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance,
+.rr-dashboard-analytics > .rr-dashboard-breakdown {
+  height: 420px;
+  min-height: 420px;
+  max-height: 420px;
+  overflow: hidden;
+  align-self: stretch;
+  box-sizing: border-box;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance {
+  display: flex;
+  flex-direction: column;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-breakdown {
+  display: flex;
+  flex-direction: column;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance > .rr-dashboard-panel-head,
+.rr-dashboard-analytics > .rr-dashboard-breakdown > .rr-dashboard-panel-head {
+  flex: 0 0 auto;
+}
+
+.rr-dashboard-analytics > .rr-dashboard-performance > .rr-performance-inner,
+.rr-dashboard-analytics > .rr-dashboard-breakdown > .rr-breakdown-content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+/* Keep the Mix bars inset from the card edges */
+.rr-dashboard-breakdown .rr-breakdown-row {
+  padding-inline: 4px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-row-head,
+.rr-dashboard-breakdown .rr-breakdown-meta {
+  padding-inline: 1px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-track {
+  width: calc(100% - 8px);
+  margin-inline: 4px;
+}
+
+/* v18 final: clearer inline decision result */
+.rr-dashboard-simulator-result .rr-trace-label {
+  margin-bottom: 7px;
+  font-size: 8.5px;
+}
+
+.rr-dashboard-simulator-result .rr-trace-content {
+  margin-bottom: 13px;
+  padding: 11px 12px;
+  border-radius: 7px;
+}
+
+.rr-dashboard-simulator-result .rr-kv-row {
+  min-height: 25px;
+  gap: 14px;
+}
+
+.rr-dashboard-simulator-result .rr-kv-row .k,
+.rr-dashboard-simulator-result .rr-kv-row .v {
+  font-size: 10px;
+}
+
+.rr-dashboard-simulator-result .rr-trace-content p {
+  margin-top: 7px;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.rr-dashboard-simulator-result .rr-dashboard-primary-action {
+  margin-top: 4px;
+  min-height: 36px;
+}
+
+/* =========================================================
+   Final dashboard simulator polish — shared pipeline motion
+   ========================================================= */
+.rr-dashboard-simulator[data-event-type="CHECKOUT_ABANDONED"] .rr-simulation-travel-dot,
+.rr-dashboard-simulator[data-event-type="PAYMENT_FAILURE"] .rr-simulation-travel-dot {
+  animation: rr-simulation-travel 700ms linear infinite;
+}
+
+.rr-dashboard-simulator[data-event-type="CHECKOUT_ABANDONED"] .rr-simulation-step.is-active .rr-simulation-step-dot {
+  animation: rr-abandoned-step-pulse 1.35s ease-in-out infinite;
+}
+
+@keyframes rr-abandoned-step-pulse {
+  0%, 100% { box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08); }
+  50% { box-shadow: 0 0 0 6px rgba(41, 214, 202, 0.02), 0 0 18px rgba(41, 214, 202, 0.1); }
+}
+
+.rr-dashboard-simulator[data-event-type="CHECKOUT_ABANDONED"] .rr-processing-ring {
+  animation: rr-processing-spin 0.85s linear infinite, rr-abandoned-ring-glow 1.7s ease-in-out infinite;
+}
+
+@keyframes rr-abandoned-ring-glow {
+  0%, 100% { opacity: 0.78; }
+  50% { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-dashboard-simulator[data-event-type="CHECKOUT_ABANDONED"] .rr-simulation-travel-dot,
+  .rr-dashboard-simulator[data-event-type="PAYMENT_FAILURE"] .rr-simulation-travel-dot,
+  .rr-dashboard-simulator[data-event-type="CHECKOUT_ABANDONED"] .rr-simulation-step.is-active .rr-simulation-step-dot,
+  .rr-dashboard-simulator[data-event-type="CHECKOUT_ABANDONED"] .rr-processing-ring {
+    animation: none;
+  }
+}
+
+
+/* =========================================================
+   Final visual polish — event selector + readable analytics
+   ========================================================= */
+.rr-dashboard-simulator .rr-dashboard-event-type-field {
+  margin-bottom: 12px;
+}
+
+.rr-dashboard-simulator .rr-event-type-toggle {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.rr-dashboard-simulator .rr-event-type-option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid var(--rr-dash-line-strong);
+  border-radius: 8px;
+  background: rgba(20, 26, 35, 0.42);
+  color: var(--rr-muted);
+  cursor: pointer;
+  font-size: 10.5px;
+  font-weight: 650;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    color 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.rr-dashboard-simulator .rr-event-type-option:hover {
+  border-color: rgba(41, 214, 202, 0.34);
+  background: rgba(41, 214, 202, 0.045);
+  color: var(--rr-text);
+}
+
+.rr-dashboard-simulator .rr-event-type-option:focus-within {
+  border-color: rgba(41, 214, 202, 0.55);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08);
+}
+
+.rr-dashboard-simulator .rr-event-type-option.is-selected {
+  border-color: rgba(41, 214, 202, 0.58);
+  background: linear-gradient(
+    135deg,
+    rgba(41, 214, 202, 0.095),
+    rgba(105, 167, 255, 0.045)
+  );
+  color: var(--rr-text);
+  box-shadow: inset 0 0 0 1px rgba(41, 214, 202, 0.045);
+}
+
+.rr-dashboard-simulator .rr-event-type-option input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.rr-dashboard-simulator .rr-event-type-radio {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 15px;
+  height: 15px;
+  flex: 0 0 15px;
+  border: 1px solid rgba(148, 163, 184, 0.42);
+  border-radius: 50%;
+  background: rgba(7, 11, 16, 0.55);
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.rr-dashboard-simulator .rr-event-type-radio::after {
+  content: "";
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: transparent;
+  transform: scale(0.5);
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.rr-dashboard-simulator .rr-event-type-option.is-selected .rr-event-type-radio {
+  border-color: var(--rr-dash-cyan);
+  box-shadow: 0 0 0 3px rgba(41, 214, 202, 0.08);
+}
+
+.rr-dashboard-simulator .rr-event-type-option.is-selected .rr-event-type-radio::after {
+  background: var(--rr-dash-cyan);
+  transform: scale(1);
+}
+
+/* Analytics: give the existing real data more visual weight without changing it. */
+.rr-dashboard-analytics > .rr-dashboard-performance,
+.rr-dashboard-analytics > .rr-dashboard-breakdown {
+  border-radius: 12px;
+}
+
+.rr-dashboard-performance .rr-performance-inner {
+  padding: 17px 18px 15px;
+}
+
+.rr-dashboard-performance .rr-performance-summary {
+  padding-bottom: 14px;
+}
+
+.rr-dashboard-performance .rr-performance-summary > div:first-child strong {
+  font-size: 16px;
+}
+
+.rr-dashboard-performance .rr-performance-metrics {
+  gap: 18px;
+}
+
+.rr-dashboard-performance .rr-performance-metrics span {
+  font-size: 9.5px;
+}
+
+.rr-dashboard-performance .rr-performance-metrics strong {
+  font-size: 13px;
+}
+
+.rr-dashboard-performance .rr-performance-activity-chart {
+  padding: 12px 2px 10px;
+}
+
+.rr-dashboard-performance .rr-performance-chart-guide {
+  margin-bottom: 10px;
+  font-size: 9.5px;
+}
+
+.rr-dashboard-performance .rr-performance-day-grid {
+  height: 215px;
+  gap: 9px;
+}
+
+.rr-dashboard-performance .rr-performance-day-card {
+  grid-template-rows: 21px minmax(0, 1fr) 22px;
+  padding: 0 5px;
+  border: 1px solid rgba(148, 163, 184, 0.055);
+  border-radius: 9px;
+  background:
+    linear-gradient(to bottom, rgba(41, 214, 202, 0.025), transparent 55%),
+    rgba(20, 26, 35, 0.28);
+}
+
+.rr-dashboard-performance .rr-performance-day-values,
+.rr-dashboard-performance .rr-performance-day-footer {
+  font-size: 9.5px;
+}
+
+.rr-dashboard-performance .rr-performance-day-bars {
+  position: relative;
+  gap: 5px;
+  padding: 9px 5px 5px;
+  border-bottom-color: rgba(148, 163, 184, 0.16);
+  background-size: 100% 25%;
+}
+
+.rr-dashboard-performance .rr-performance-column {
+  width: 13px;
+  border-radius: 4px 4px 2px 2px;
+  box-shadow: 0 0 16px rgba(41, 214, 202, 0.08);
+}
+
+.rr-dashboard-performance .rr-performance-day-footer strong {
+  font-size: 10px;
+}
+
+.rr-dashboard-performance .rr-performance-legend {
+  padding-top: 10px;
+  font-size: 9.5px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-content {
+  padding: 15px 18px 16px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-module {
+  padding-bottom: 14px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-module--action {
+  padding-top: 13px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-title-row {
+  margin-bottom: 10px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-kicker {
+  font-size: 8.5px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-title {
+  font-size: 11.5px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-rows {
+  gap: 12px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-row {
+  padding-inline: 3px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-row-head {
+  margin-bottom: 5px;
+  padding-inline: 1px;
+  font-size: 9.5px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-row-head strong {
+  font-size: 9.5px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-track {
+  width: calc(100% - 6px);
+  height: 10px;
+  margin-inline: 3px;
+  border-radius: 999px;
+  background: rgba(125, 143, 166, 0.13);
+}
+
+.rr-dashboard-breakdown .rr-breakdown-segment {
+  min-height: 10px;
+}
+
+.rr-dashboard-breakdown .rr-breakdown-meta {
+  margin-top: 5px;
+  padding-inline: 1px;
+  font-size: 9px;
+}
+
+.rr-dashboard-breakdown .rr-chart-legend {
+  gap: 13px;
+  padding-top: 9px;
+  font-size: 9px;
+}
+
+@media (max-width: 760px) {
+  .rr-dashboard-simulator .rr-event-type-toggle {
+    gap: 8px;
+  }
+
+  .rr-dashboard-simulator .rr-event-type-option {
+    min-height: 40px;
+    padding-inline: 10px;
+    font-size: 10px;
+  }
+
+  .rr-dashboard-performance .rr-performance-day-grid {
+    height: 190px;
+  }
+}
+
+/* =========================================================
+   Dashboard v6 — simulator result width + readability polish
+   ========================================================= */
+.rr-dashboard-simulator-result {
+  overflow: hidden;
+}
+
+.rr-dashboard-simulator-result .rr-simulator-result-scroll {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Let the returned decision use the full result column instead of
+   collapsing to the width of its text content. */
+.rr-dashboard-simulator-result .rr-trace-content,
+.rr-dashboard-simulator-result .rr-simulation-result-banner,
+.rr-dashboard-simulator-result .rr-dashboard-primary-action {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 1100px) {
+  .rr-dashboard-simulator-result .rr-trace-content {
+    min-height: 52px;
   }
 }

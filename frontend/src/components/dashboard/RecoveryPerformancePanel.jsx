@@ -3,6 +3,25 @@ import { getRecoveryTrend } from "../../services/api";
 import LoadingState from "../common/LoadingState";
 import ErrorState from "../common/ErrorState";
 
+function addOutcome(bucket, outcome, count) {
+  const normalized = String(outcome || "").toUpperCase();
+  const value = Number(count);
+  if (!Number.isFinite(value) || value <= 0) return;
+
+  if (normalized === "RECOVERED" || normalized === "SUCCESS") {
+    bucket.recovered += value;
+  }
+
+  if (
+    normalized === "FAILED" ||
+    normalized === "RESOLVED_UNRECOVERED" ||
+    normalized === "UNRECOVERED" ||
+    normalized === "FAILURE"
+  ) {
+    bucket.failed += value;
+  }
+}
+
 function numberFromRow(row, keys) {
   for (const key of keys) {
     const value = Number(row?.[key]);
@@ -12,19 +31,50 @@ function numberFromRow(row, keys) {
 }
 
 function normalizeTrend(rows) {
-  return (Array.isArray(rows) ? rows : []).map((row) => ({
-    date: row?.date || row?.day || row?._id || "Unknown",
-    recovered: numberFromRow(row, [
+  const byDate = new Map();
+
+  (Array.isArray(rows) ? rows : []).forEach((row) => {
+    const dateValue = row?.date || row?.day || row?._id;
+    if (!dateValue) return;
+
+    const date = String(dateValue).slice(0, 10);
+    const current = byDate.get(date) || {
+      date,
+      recovered: 0,
+      failed: 0,
+    };
+
+    if (row?.outcome !== undefined) {
+      addOutcome(current, row.outcome, row.count);
+    }
+
+    current.recovered += numberFromRow(row, [
       "recovered",
       "recoveredCount",
-      "RECOVERED"
-    ]),
-    failed: numberFromRow(row, [
+      "RECOVERED",
+    ]);
+    current.failed += numberFromRow(row, [
       "failed",
       "failedCount",
-      "FAILED"
-    ])
-  }));
+      "FAILED",
+    ]);
+
+    byDate.set(date, current);
+  });
+
+  return Array.from(byDate.values()).sort((a, b) =>
+    a.date.localeCompare(b.date)
+  );
+}
+
+function formatDate(value) {
+  const date = new Date(`${value}T00:00:00`);
+  if (Number.isNaN(date.getTime())) return value;
+
+  return new Intl.DateTimeFormat("en-IN", {
+    month: "short",
+    day: "numeric",
+  }).format(date);
 }
 
 function RecoveryPerformancePanel() {
@@ -40,9 +90,7 @@ function RecoveryPerformancePanel() {
       })
       .catch((err) => {
         if (!cancelled) {
-          setError(
-            err?.message || "Unable to load recovery performance."
-          );
+          setError(err?.message || "Unable to load recovery performance.");
         }
       });
 
@@ -51,195 +99,145 @@ function RecoveryPerformancePanel() {
     };
   }, []);
 
-  const rows = useMemo(
-    () => normalizeTrend(trend),
-    [trend]
-  );
+  const rows = useMemo(() => normalizeTrend(trend), [trend]);
 
   if (error) {
     return (
-      <div className="rr-performance-inner">
-        <ErrorState
-          title="Unable to load recovery activity"
-          message={error}
-        />
+      <div className="rr-performance-inner rr-performance-state">
+        <ErrorState title="Unable to load recovery activity" message={error} />
       </div>
     );
   }
 
   if (trend == null) {
     return (
-      <div className="rr-performance-inner">
+      <div className="rr-performance-inner rr-performance-state">
         <LoadingState label="Loading recovery activity…" />
       </div>
     );
   }
 
-  if (!rows.length) {
+  const visibleRows = rows.slice(-7);
+  const totals = visibleRows.reduce(
+    (acc, row) => ({
+      recovered: acc.recovered + row.recovered,
+      failed: acc.failed + row.failed,
+    }),
+    { recovered: 0, failed: 0 }
+  );
+
+  const completed = totals.recovered + totals.failed;
+  const recoveryRate = completed
+    ? Math.round((totals.recovered / completed) * 100)
+    : 0;
+
+  if (!visibleRows.length || completed === 0) {
     return (
       <div className="rr-performance-inner rr-performance-empty">
         <div className="rr-performance-empty-copy">
           <span className="rr-performance-empty-line" />
-          <strong>No completed recovery history yet</strong>
+          <strong>No completed recovery activity yet</strong>
           <p>
-            Completed recovery attempts will build this view automatically.
+            The chart will show daily recovered and failed attempts once a
+            recovery reaches a completed outcome.
           </p>
         </div>
       </div>
     );
   }
 
-  const totals = rows.reduce(
-    (acc, row) => ({
-      recovered: acc.recovered + row.recovered,
-      failed: acc.failed + row.failed
-    }),
-    { recovered: 0, failed: 0 }
-  );
-
-  const max = Math.max(
-    totals.recovered,
-    totals.failed,
+  const scaleMax = Math.max(
+    ...visibleRows.map((row) => Math.max(row.recovered, row.failed)),
     1
   );
-
-  const latest = rows[rows.length - 1];
-  const days = rows.length;
-
-  if (days === 1) {
-    return (
-      <div className="rr-performance-inner">
-        <div className="rr-performance-summary">
-          <div>
-            <span className="rr-performance-label">
-              Recovery history
-            </span>
-            <strong>1 day of activity</strong>
-            <p>
-              More history will make the trend more meaningful. The underlying
-              recovery events are being recorded normally.
-            </p>
-          </div>
-
-          <span className="rr-performance-date">
-            {latest.date}
-          </span>
-        </div>
-
-        <div className="rr-performance-bars">
-          <div className="rr-performance-bar-row">
-            <div className="rr-performance-bar-label">
-              <span className="rr-performance-dot rr-performance-dot--recovered" />
-              Recovered
-              <strong>{totals.recovered}</strong>
-            </div>
-            <div className="rr-performance-track">
-              <span
-                className="rr-performance-fill rr-performance-fill--recovered"
-                style={{
-                  width: `${(totals.recovered / max) * 100}%`
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="rr-performance-bar-row">
-            <div className="rr-performance-bar-label">
-              <span className="rr-performance-dot rr-performance-dot--failed" />
-              Failed
-              <strong>{totals.failed}</strong>
-            </div>
-            <div className="rr-performance-track">
-              <span
-                className="rr-performance-fill rr-performance-fill--failed"
-                style={{
-                  width: `${(totals.failed / max) * 100}%`
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="rr-performance-foot">
-          <span>Completed attempts</span>
-          <strong>{totals.recovered + totals.failed}</strong>
-        </div>
-      </div>
-    );
-  }
+  const gridValues = [scaleMax, Math.ceil(scaleMax * 0.66), Math.ceil(scaleMax * 0.33), 0];
 
   return (
     <div className="rr-performance-inner">
-      <div className="rr-performance-summary rr-performance-summary--compact">
+      <div className="rr-performance-summary">
         <div>
-          <span className="rr-performance-label">
-            Recovery history
-          </span>
-          <strong>{days} days of activity</strong>
+          <span className="rr-performance-label">Recovery history</span>
+          <strong>{visibleRows.length} days of activity</strong>
         </div>
 
-        <div className="rr-performance-totals">
-          <span className="rr-total rr-total--recovered">
-            Recovered <strong>{totals.recovered}</strong>
-          </span>
-          <span className="rr-total rr-total--failed">
-            Failed <strong>{totals.failed}</strong>
-          </span>
+        <div className="rr-performance-metrics">
+          <div><span>Completed</span><strong>{completed}</strong></div>
+          <div><span>Recovered</span><strong className="is-success">{totals.recovered}</strong></div>
+          <div><span>Failed</span><strong className="is-danger">{totals.failed}</strong></div>
+          <div><span>Recovery</span><strong className="is-success">{recoveryRate}%</strong></div>
         </div>
       </div>
 
-      <div className="rr-performance-mini-chart">
-        {rows.slice(-12).map((row) => {
-          const rowMax = Math.max(
-            row.recovered,
-            row.failed,
-            1
-          );
+      <div
+        className="rr-performance-activity-chart"
+        role="img"
+        aria-label="Completed recovery attempts by day"
+      >
+        <div className="rr-performance-chart-guide">
+          <span>Completed attempts per day</span>
+          <span>Last {visibleRows.length} days</span>
+        </div>
 
-          return (
-            <div
-              className="rr-performance-day"
-              key={row.date}
-              title={`${row.date}: ${row.recovered} recovered, ${row.failed} failed`}
-            >
-              <div className="rr-performance-columns">
-                <span
-                  className="rr-performance-column rr-performance-column--recovered"
-                  style={{
-                    height: `${Math.max(
-                      8,
-                      (row.recovered / rowMax) * 100
-                    )}%`
-                  }}
-                />
-                <span
-                  className="rr-performance-column rr-performance-column--failed"
-                  style={{
-                    height: `${Math.max(
-                      8,
-                      (row.failed / rowMax) * 100
-                    )}%`
-                  }}
-                />
-              </div>
-              <span>{row.date}</span>
+        <div className="rr-performance-chart-body">
+          <div className="rr-performance-y-axis" aria-hidden="true">
+            {gridValues.map((value, index) => (
+              <span key={`${value}-${index}`}>{value}</span>
+            ))}
+          </div>
+
+          <div className="rr-performance-chart-area">
+            <div className="rr-performance-grid-lines" aria-hidden="true">
+              <span /><span /><span /><span />
             </div>
-          );
-        })}
+
+            <div className="rr-performance-day-grid">
+              {visibleRows.map((row) => {
+                const recoveredHeight = row.recovered
+                  ? Math.max(8, (row.recovered / scaleMax) * 100)
+                  : 0;
+                const failedHeight = row.failed
+                  ? Math.max(8, (row.failed / scaleMax) * 100)
+                  : 0;
+                const total = row.recovered + row.failed;
+
+                return (
+                  <div
+                    className="rr-performance-day-card"
+                    key={row.date}
+                    title={`${formatDate(row.date)} · ${row.recovered} recovered · ${row.failed} failed`}
+                  >
+                    <div className="rr-performance-day-values">
+                      <span className="rr-performance-recovered-value">{row.recovered}</span>
+                      <span className="rr-performance-failed-value">{row.failed}</span>
+                    </div>
+
+                    <div className="rr-performance-day-bars">
+                      <span
+                        className="rr-performance-column rr-performance-column--recovered"
+                        style={{ height: `${recoveredHeight}%` }}
+                      />
+                      <span
+                        className="rr-performance-column rr-performance-column--failed"
+                        style={{ height: `${failedHeight}%` }}
+                      />
+                    </div>
+
+                    <div className="rr-performance-day-footer">
+                      <span>{formatDate(row.date)}</span>
+                      <strong>{total}</strong>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
       </div>
 
       <div className="rr-performance-legend">
-        <span>
-          <i className="rr-performance-dot rr-performance-dot--recovered" />
-          Recovered
-        </span>
-        <span>
-          <i className="rr-performance-dot rr-performance-dot--failed" />
-          Failed
-        </span>
-        <span className="rr-performance-legend-note">
-          Showing recent activity
-        </span>
+        <span><i className="rr-performance-dot rr-performance-dot--recovered" />Recovered</span>
+        <span><i className="rr-performance-dot rr-performance-dot--failed" />Failed</span>
+        <span className="rr-performance-legend-note">Completed outcomes only</span>
       </div>
     </div>
   );

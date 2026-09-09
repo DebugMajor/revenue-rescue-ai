@@ -1,71 +1,88 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
-import EmptyState from "../common/EmptyState";
+import "../../styles/performance-charts.css";
 
-function pivot(rows) {
-  const byDate = new Map();
-  for (const row of rows || []) {
-    if (!byDate.has(row.date)) {
-      byDate.set(row.date, { date: row.date, RECOVERED: 0, FAILED: 0 });
-    }
-    const entry = byDate.get(row.date);
-    if (row.outcome === "RECOVERED") entry.RECOVERED += Number(row.count) || 0;
-    if (row.outcome === "FAILED" || row.outcome === "RESOLVED_UNRECOVERED") entry.FAILED += Number(row.count) || 0;
-  }
-  return Array.from(byDate.values()).sort((a, b) => a.date.localeCompare(b.date));
+function normaliseRows(data = []) {
+  const grouped = new Map();
+
+  data.forEach((row) => {
+    if (!row?.date) return;
+    const key = String(row.date).slice(0, 10);
+    if (!grouped.has(key)) grouped.set(key, { date: key, recovered: 0, failed: 0 });
+
+    const bucket = grouped.get(key);
+    const outcome = String(row.outcome || "").toUpperCase();
+    const count = Number(row.count) || 0;
+
+    if (outcome === "RECOVERED") bucket.recovered += count;
+    if (outcome === "FAILED" || outcome === "RESOLVED_UNRECOVERED") bucket.failed += count;
+  });
+
+  return Array.from(grouped.values()).sort((a, b) => a.date.localeCompare(b.date));
 }
 
-function formatDate(value) {
+function shortDate(value) {
   const date = new Date(`${value}T00:00:00`);
-  return Number.isNaN(date.getTime())
-    ? value
-    : date.toLocaleDateString("en-IN", { day: "2-digit", month: "short" });
+  if (Number.isNaN(date.getTime())) return value;
+  return new Intl.DateTimeFormat("en-IN", { month: "short", day: "numeric" }).format(date);
 }
 
-function RecoveryTrendChart({ data = null }) {
-  if (!data || data.length === 0) {
-    return (
-      <EmptyState
-        title="Recovery trend not available yet"
-        message="This view populates once completed recovery outcomes exist across the analytics window."
-      />
-    );
-  }
+function RecoveryTrendChart({ data = [] }) {
+  const rows = normaliseRows(data);
 
-  const chartData = pivot(data).slice(-7);
+  if (!rows.length) return null;
+
+  const totalRecovered = rows.reduce((sum, row) => sum + row.recovered, 0);
+  const totalFailed = rows.reduce((sum, row) => sum + row.failed, 0);
+  const max = Math.max(...rows.map((row) => Math.max(row.recovered, row.failed)), 1);
 
   return (
-    <div className="rr-analytics-chart rr-analytics-trend-chart">
-      <ResponsiveContainer width="100%" height={250}>
-        <BarChart data={chartData} margin={{ top: 14, right: 12, left: -12, bottom: 2 }} barGap={6} barCategoryGap="28%">
-          <CartesianGrid strokeDasharray="3 3" stroke="var(--rr-border)" vertical={false} />
-          <XAxis
-            dataKey="date"
-            tickFormatter={formatDate}
-            tick={{ fill: "var(--rr-muted)", fontSize: 11 }}
-            axisLine={{ stroke: "var(--rr-border)" }}
-            tickLine={false}
-          />
-          <YAxis
-            allowDecimals={false}
-            tick={{ fill: "var(--rr-muted)", fontSize: 11 }}
-            axisLine={false}
-            tickLine={false}
-          />
-          <Tooltip
-            cursor={{ fill: "rgba(255,255,255,.025)" }}
-            contentStyle={{
-              background: "var(--rr-surface-2)",
-              border: "1px solid var(--rr-border-strong)",
-              borderRadius: 8,
-              fontSize: 12,
-            }}
-            labelFormatter={formatDate}
-          />
-          <Legend wrapperStyle={{ fontSize: 11, paddingTop: 10 }} iconType="circle" />
-          <Bar dataKey="RECOVERED" name="Recovered" fill="#8B7CF6" radius={[5, 5, 0, 0]} maxBarSize={34} />
-          <Bar dataKey="FAILED" name="Failed" fill="#F56B7C" radius={[5, 5, 0, 0]} maxBarSize={34} />
-        </BarChart>
-      </ResponsiveContainer>
+    <div className="rr-trend-chart">
+      <div className="rr-trend-summary">
+        <div>
+          <span>Completed attempts</span>
+          <strong>{totalRecovered + totalFailed}</strong>
+        </div>
+        <div>
+          <span>Recovered</span>
+          <strong className="is-success">{totalRecovered}</strong>
+        </div>
+        <div>
+          <span>Failed</span>
+          <strong className="is-danger">{totalFailed}</strong>
+        </div>
+      </div>
+
+      <div className="rr-trend-plot" role="img" aria-label="Recovery activity by day">
+        <div className="rr-trend-grid-line line-25" />
+        <div className="rr-trend-grid-line line-50" />
+        <div className="rr-trend-grid-line line-75" />
+        <div className="rr-trend-baseline" />
+
+        <div className="rr-trend-groups">
+          {rows.map((row) => (
+            <div className="rr-trend-group" key={row.date}>
+              <div className="rr-trend-bars">
+                <span
+                  className="rr-trend-bar recovered"
+                  style={{ height: `${Math.max((row.recovered / max) * 100, row.recovered ? 10 : 0)}%` }}
+                  title={`${row.recovered} recovered`}
+                />
+                <span
+                  className="rr-trend-bar failed"
+                  style={{ height: `${Math.max((row.failed / max) * 100, row.failed ? 10 : 0)}%` }}
+                  title={`${row.failed} failed`}
+                />
+              </div>
+              <span className="rr-trend-date">{shortDate(row.date)}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="rr-chart-legend">
+        <span><i className="legend-dot recovered" />Recovered</span>
+        <span><i className="legend-dot failed" />Failed</span>
+        <span className="legend-note">Daily completed recovery attempts</span>
+      </div>
     </div>
   );
 }
