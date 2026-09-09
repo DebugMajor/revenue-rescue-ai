@@ -1,0 +1,481 @@
+:root {
+  --rr-tx-bg: #090d13;
+  --rr-tx-surface: #0f151e;
+  --rr-tx-surface-2: #141b26;
+  --rr-tx-border: rgba(145, 164, 190, 0.14);
+  --rr-tx-border-strong: rgba(145, 164, 190, 0.22);
+  --rr-tx-text: #eef3f8;
+  --rr-tx-muted: #7f8da2;
+  --rr-tx-muted-2: #5d6a7d;
+  --rr-tx-cyan: #25d5c8;
+}
+
+.rr-transactions-page {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.rr-transaction-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 8px 0 18px;
+}
+
+.rr-section-eyebrow {
+  color: var(--rr-tx-cyan);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  margin-bottom: 7px;
+}
+
+.rr-transaction-heading h2 {
+  margin: 0;
+  color: var(--rr-tx-text);
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.rr-transaction-heading p {
+  margin: 6px 0 0;
+  color: var(--rr-tx-muted);
+  font-size: 13px;
+}
+
+.rr-transaction-count {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  color: var(--rr-tx-muted);
+  white-space: nowrap;
+}
+
+.rr-transaction-count strong {
+  color: var(--rr-tx-text);
+  font-size: 18px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rr-transaction-count span {
+  font-size: 12px;
+}
+
+.rr-transaction-card {
+  overflow: hidden;
+  border: 1px solid var(--rr-tx-border);
+  border-radius: 12px;
+  background: rgba(15, 21, 30, 0.72);
+}
+
+.rr-transaction-table {
+  min-width: 0;
+}
+
+.rr-transaction-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--rr-tx-border);
+  background: rgba(12, 17, 25, 0.72);
+}
+
+.rr-transaction-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1 1 360px;
+  max-width: 520px;
+}
+
+.rr-transaction-search input {
+  width: 100%;
+  min-height: 38px;
+  padding: 0 38px 0 35px;
+  border: 1px solid var(--rr-tx-border-strong);
+  border-radius: 7px;
+  outline: none;
+  background: var(--rr-tx-surface-2);
+  color: var(--rr-tx-text);
+  font: inherit;
+  font-size: 13px;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.rr-transaction-search input::placeholder {
+  color: var(--rr-tx-muted-2);
+}
+
+.rr-transaction-search input:focus {
+  border-color: rgba(37, 213, 200, 0.65);
+  box-shadow: 0 0 0 3px rgba(37, 213, 200, 0.08);
+}
+
+.rr-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--rr-tx-muted);
+  font-size: 18px;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.rr-search-clear {
+  position: absolute;
+  right: 8px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  background: transparent;
+  color: var(--rr-tx-muted);
+  cursor: pointer;
+  font-size: 18px;
+  line-height: 1;
+}
+
+.rr-transaction-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rr-transaction-filters select {
+  min-width: 145px;
+  min-height: 38px;
+  padding: 0 32px 0 11px;
+  border: 1px solid var(--rr-tx-border-strong);
+  border-radius: 7px;
+  outline: none;
+  background: var(--rr-tx-surface-2);
+  color: var(--rr-tx-text);
+  font: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  color-scheme: dark;
+}
+
+.rr-transaction-filters select:focus {
+  border-color: rgba(37, 213, 200, 0.65);
+}
+
+.rr-clear-filters {
+  min-height: 38px;
+  padding: 0 11px;
+  border: 1px solid var(--rr-tx-border-strong);
+  border-radius: 7px;
+  background: transparent;
+  color: var(--rr-tx-muted);
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+
+.rr-clear-filters:hover {
+  color: var(--rr-tx-text);
+  border-color: rgba(37, 213, 200, 0.35);
+}
+
+.rr-transaction-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 42px;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--rr-tx-border);
+  color: var(--rr-tx-muted);
+  font-size: 12px;
+}
+
+.rr-transaction-meta strong {
+  color: var(--rr-tx-text);
+}
+
+.rr-filter-state {
+  color: var(--rr-tx-cyan);
+  font-size: 11px;
+}
+
+.rr-transaction-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.rr-transaction-table-grid {
+  width: 100%;
+  min-width: 980px;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+.rr-transaction-table-grid th {
+  height: 42px;
+  padding: 0 13px;
+  border-bottom: 1px solid var(--rr-tx-border);
+  color: var(--rr-tx-muted);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.rr-transaction-table-grid th:nth-child(1) { width: 20%; }
+.rr-transaction-table-grid th:nth-child(2) { width: 16%; }
+.rr-transaction-table-grid th:nth-child(3) { width: 11%; }
+.rr-transaction-table-grid th:nth-child(4) { width: 14%; }
+.rr-transaction-table-grid th:nth-child(5) { width: 7%; }
+.rr-transaction-table-grid th:nth-child(6) { width: 10%; }
+.rr-transaction-table-grid th:nth-child(7) { width: 15%; }
+.rr-transaction-table-grid th:nth-child(8) { width: 34px; }
+
+.rr-transaction-table-grid td {
+  height: 58px;
+  padding: 0 13px;
+  border-bottom: 1px solid var(--rr-tx-border);
+  color: #b8c3d2;
+  font-size: 12.5px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.rr-transaction-table-grid tbody tr {
+  cursor: pointer;
+  transition: background 0.12s ease;
+  outline: none;
+}
+
+.rr-transaction-table-grid tbody tr:hover,
+.rr-transaction-table-grid tbody tr:focus-visible {
+  background: rgba(28, 38, 52, 0.72);
+}
+
+.rr-transaction-table-grid tbody tr:hover .rr-transaction-id,
+.rr-transaction-table-grid tbody tr:focus-visible .rr-transaction-id,
+.rr-transaction-table-grid tbody tr:hover .rr-row-action {
+  color: var(--rr-tx-cyan);
+}
+
+.rr-transaction-table-grid tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.rr-transaction-id,
+.rr-amount,
+.rr-attempt {
+  font-family: var(--rr-font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-variant-numeric: tabular-nums;
+  color: var(--rr-tx-text) !important;
+}
+
+.rr-transaction-id {
+  font-weight: 600;
+}
+
+.rr-amount {
+  font-weight: 650;
+}
+
+.rr-error-code {
+  color: #aeb9c9;
+  font-family: var(--rr-font-mono, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace);
+  font-size: 11.5px;
+}
+
+.rr-timestamp {
+  color: #8d9aad !important;
+}
+
+.rr-row-action {
+  color: var(--rr-tx-muted-2);
+  text-align: right;
+  font-size: 15px !important;
+  transition: color 0.12s ease;
+}
+
+.rr-transaction-card .rr-state-panel {
+  margin: 16px;
+}
+
+@media (max-width: 900px) {
+  .rr-transaction-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .rr-transaction-search {
+    max-width: none;
+  }
+
+  .rr-transaction-filters {
+    width: 100%;
+  }
+
+  .rr-transaction-filters select,
+  .rr-clear-filters {
+    flex: 1 1 160px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rr-transaction-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .rr-transaction-heading h2 {
+    font-size: 20px;
+  }
+
+  .rr-transaction-card {
+    border-radius: 9px;
+  }
+}
+
+/* v19: harden transaction filter styling against global/native form rules */
+.rr-transactions-page,
+.rr-transactions-page * {
+  box-sizing: border-box;
+}
+
+.rr-transactions-page input.rr-transaction-search-input,
+.rr-transactions-page select.rr-transaction-filter-select {
+  -webkit-appearance: none;
+  appearance: none;
+  background-image: none !important;
+  background-color: #141b26 !important;
+  color: #eef3f8 !important;
+  border: 1px solid rgba(145, 164, 190, 0.22) !important;
+  box-shadow: none;
+  opacity: 1 !important;
+  color-scheme: dark;
+}
+
+.rr-transactions-page input.rr-transaction-search-input {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 38px 0 36px;
+  border-radius: 7px;
+  font-size: 13px;
+  line-height: 1;
+}
+
+.rr-transactions-page input.rr-transaction-search-input::placeholder {
+  color: #667388 !important;
+  opacity: 1 !important;
+}
+
+.rr-transactions-page input.rr-transaction-search-input:-webkit-autofill,
+.rr-transactions-page input.rr-transaction-search-input:-webkit-autofill:hover,
+.rr-transactions-page input.rr-transaction-search-input:-webkit-autofill:focus {
+  -webkit-text-fill-color: #eef3f8 !important;
+  -webkit-box-shadow: 0 0 0 1000px #141b26 inset !important;
+  box-shadow: 0 0 0 1000px #141b26 inset !important;
+  caret-color: #eef3f8;
+}
+
+.rr-transactions-page select.rr-transaction-filter-select {
+  min-width: 158px;
+  min-height: 40px;
+  padding: 0 34px 0 12px;
+  border-radius: 7px;
+  font-size: 12.5px;
+  line-height: 1;
+  cursor: pointer;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #718097 50%),
+    linear-gradient(135deg, #718097 50%, transparent 50%) !important;
+  background-position:
+    calc(100% - 16px) 16px,
+    calc(100% - 11px) 16px !important;
+  background-size: 5px 5px, 5px 5px !important;
+  background-repeat: no-repeat !important;
+}
+
+.rr-transactions-page select.rr-transaction-filter-select option {
+  background: #141b26;
+  color: #eef3f8;
+}
+
+.rr-transactions-page input.rr-transaction-search-input:focus,
+.rr-transactions-page select.rr-transaction-filter-select:focus {
+  border-color: rgba(37, 213, 200, 0.65) !important;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 213, 200, 0.08) !important;
+}
+
+.rr-transaction-toolbar {
+  align-items: stretch;
+  padding: 16px;
+  gap: 14px;
+}
+
+.rr-transaction-search {
+  flex: 1 1 420px;
+  max-width: none;
+}
+
+.rr-transaction-filters {
+  justify-content: flex-end;
+}
+
+.rr-transaction-card {
+  background: rgba(15, 21, 30, 0.9);
+}
+
+.rr-transaction-heading {
+  margin-bottom: 16px;
+}
+
+.rr-transaction-heading h2 {
+  letter-spacing: -0.02em;
+}
+
+.rr-transaction-heading p {
+  max-width: 620px;
+}
+
+.rr-transaction-meta {
+  padding-inline: 16px;
+}
+
+.rr-transaction-table-grid th {
+  height: 44px;
+  padding-inline: 14px;
+}
+
+.rr-transaction-table-grid td {
+  height: 60px;
+  padding-inline: 14px;
+}
+
+.rr-transaction-table-grid th:last-child,
+.rr-transaction-table-grid td:last-child {
+  padding-right: 12px;
+}
+
+@media (max-width: 900px) {
+  .rr-transaction-toolbar {
+    padding: 13px;
+  }
+
+  .rr-transaction-search {
+    flex-basis: auto;
+  }
+
+  .rr-transaction-filters {
+    justify-content: flex-start;
+  }
+
+  .rr-transactions-page select.rr-transaction-filter-select {
+    min-width: 150px;
+    flex: 1 1 150px;
+  }
+}

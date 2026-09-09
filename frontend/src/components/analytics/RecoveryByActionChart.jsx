@@ -1,100 +1,46 @@
-import "../../styles/performance-charts.css";
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import EmptyState from "../common/EmptyState";
 
-function normalise(data = []) {
-  const grouped = new Map();
 
-  data.forEach((row) => {
-    const label = row?.action || "UNKNOWN";
-    if (!grouped.has(label)) {
-      grouped.set(label, { label, recovered: 0, failed: 0 });
+function pivot(rows) {
+  const byAction = new Map();
+  for (const row of rows) {
+    if (!byAction.has(row.action)) {
+      byAction.set(row.action, { action: row.action, RECOVERED: 0, FAILED: 0 });
     }
-    const item = grouped.get(label);
-    const outcome = String(row?.outcome || "").toUpperCase();
-    const count = Number(row?.count) || 0;
-
-    if (outcome === "RECOVERED") item.recovered += count;
-    if (outcome === "FAILED" || outcome === "RESOLVED_UNRECOVERED") {
-      item.failed += count;
-    }
-  });
-
-  return Array.from(grouped.values()).sort((a, b) => {
-    const aTotal = a.recovered + a.failed;
-    const bTotal = b.recovered + b.failed;
-    return bTotal - aTotal;
-  });
+    const entry = byAction.get(row.action);
+    if (row.outcome === "RECOVERED") entry.RECOVERED = row.count;
+    if (row.outcome === "FAILED") entry.FAILED = row.count;
+  }
+  return Array.from(byAction.values());
 }
 
-function RecoveryByActionChart({ data = [] }) {
-  const rows = normalise(data);
-
-  if (!rows.length) {
+function RecoveryByActionChart({ data = null }) {
+  if (!data || data.length === 0) {
     return (
-      <div className="rr-breakdown-empty">
-        No recovery actions recorded yet.
-      </div>
+      <EmptyState
+        title="No recovery attempts yet"
+        message="This chart populates once recovery attempts with a completed outcome (RECOVERED or FAILED) exist."
+      />
     );
   }
 
-  const max = Math.max(
-    ...rows.map((row) => row.recovered + row.failed),
-    1
-  );
+  const chartData = pivot(data);
 
   return (
-    <div className="rr-breakdown-chart">
-      <div className="rr-breakdown-rows">
-        {rows.map((row) => {
-          const total = row.recovered + row.failed;
-          const recoveredWidth =
-            total > 0 ? (row.recovered / max) * 100 : 0;
-          const failedWidth = total > 0 ? (row.failed / max) * 100 : 0;
-
-          return (
-            <div className="rr-breakdown-row" key={row.label}>
-              <div className="rr-breakdown-row-head">
-                <span title={row.label}>{row.label}</span>
-                <strong>{total}</strong>
-              </div>
-
-              <div
-                className="rr-breakdown-track"
-                aria-label={`${row.label}: ${total} outcomes`}
-              >
-                <span
-                  className="rr-breakdown-segment recovered"
-                  style={{ width: `${recoveredWidth}%` }}
-                />
-                <span
-                  className="rr-breakdown-segment failed"
-                  style={{ width: `${failedWidth}%` }}
-                />
-              </div>
-
-              <div className="rr-breakdown-meta">
-                <span className="is-recovered">
-                  {row.recovered} recovered
-                </span>
-                <span className="is-failed">
-                  {row.failed} failed
-                </span>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-
-      <div className="rr-chart-legend">
-        <span>
-          <i className="legend-dot recovered" />
-          Recovered
-        </span>
-        <span>
-          <i className="legend-dot failed" />
-          Failed
-        </span>
-      </div>
-    </div>
+    <ResponsiveContainer width="100%" height={260}>
+      <BarChart data={chartData} margin={{ top: 4, right: 8, left: 0, bottom: 4 }}>
+        <CartesianGrid strokeDasharray="3 3" stroke="var(--rr-border)" />
+        <XAxis dataKey="action" tick={{ fill: "var(--rr-muted)", fontSize: 11 }} />
+        <YAxis tick={{ fill: "var(--rr-muted)", fontSize: 11 }} allowDecimals={false} />
+        <Tooltip
+          contentStyle={{ background: "var(--rr-surface-2)", border: "1px solid var(--rr-border-strong)", borderRadius: 8, fontSize: 12 }}
+        />
+        <Legend wrapperStyle={{ fontSize: 12 }} />
+        <Bar dataKey="RECOVERED" fill="var(--rr-success)" radius={[4, 4, 0, 0]} />
+        <Bar dataKey="FAILED" fill="var(--rr-danger)" radius={[4, 4, 0, 0]} />
+      </BarChart>
+    </ResponsiveContainer>
   );
 }
 

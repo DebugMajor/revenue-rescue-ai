@@ -489,3 +489,113 @@
   margin-top: 4px;
   line-height: 1.5;
 }
+/* Recovery Center v2: explicitly distinguish active queue from full ledger */
+.rr-recovery-shell {
+  width: 100%;
+}
+
+.rr-recovery-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 12px;
+  padding: 0 2px;
+}
+
+.rr-recovery-scope {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+}
+
+.rr-recovery-scope-item {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.rr-recovery-scope-item::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  flex: 0 0 6px;
+  border-radius: 50%;
+  background: #38d39f;
+  box-shadow: 0 0 0 3px rgba(56, 211, 159, .08);
+}
+
+.rr-recovery-scope-label {
+  color: #8b98ab;
+  font-size: 11px;
+  font-weight: 650;
+}
+
+.rr-recovery-scope-item strong {
+  color: #eef3f8;
+  font-family: var(--rr-font-mono, ui-monospace, SFMono-Regular, Menlo, monospace);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+}
+
+.rr-recovery-scope-divider {
+  width: 1px;
+  height: 18px;
+  flex: 0 0 1px;
+  background: rgba(137, 154, 177, .18);
+}
+
+.rr-recovery-scope-copy {
+  min-width: 0;
+  color: #667388;
+  font-size: 10.5px;
+  line-height: 1.45;
+}
+
+.rr-recovery-history-link {
+  flex: 0 0 auto;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #7f90a8;
+  font: inherit;
+  font-size: 10.5px;
+  cursor: pointer;
+  transition: color .15s ease;
+}
+
+.rr-recovery-history-link:hover,
+.rr-recovery-history-link:focus-visible {
+  color: #25d5c8;
+  outline: none;
+}
+
+.rr-recovery-card {
+  overflow: hidden;
+}
+
+.rr-recovery-card .rr-table-wrap {
+  overflow-x: auto;
+}
+
+.rr-recovery-card .rr-table {
+  min-width: 900px;
+}
+
+@media (max-width: 760px) {
+  .rr-recovery-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .rr-recovery-scope {
+    align-items: flex-start;
+  }
+
+  .rr-recovery-scope-copy {
+    max-width: 430px;
+  }
+}

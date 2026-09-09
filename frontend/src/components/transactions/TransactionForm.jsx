@@ -55,9 +55,6 @@ function TransactionForm({ onSubmit, submitting = false }) {
                     onChange={(event) => setErrorCode(event.target.value)}
                 >
                     <option value="NETWORK_ERROR">NETWORK_ERROR</option>
-                    <option value="TIMEOUT">TIMEOUT</option>
-                    <option value="GATEWAY_ERROR">GATEWAY_ERROR</option>
-                    <option value="CARD_DECLINED">CARD_DECLINED</option>
                     <option value="INSUFFICIENT_FUNDS">INSUFFICIENT_FUNDS</option>
                     <option value="UNKNOWN_ERROR">UNKNOWN_ERROR</option>
                 </select>
