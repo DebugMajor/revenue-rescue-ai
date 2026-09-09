@@ -55,7 +55,6 @@ router.post("/", async (req, res) => {
             );
         }
 
-
         // 2. Ensure raw request body exists
         if (!Buffer.isBuffer(req.body)) {
             return sendError(
@@ -90,7 +89,6 @@ router.post("/", async (req, res) => {
             );
         }
 
-
         // 4. Require provider event ID
         const providerEventId =
             req.headers["x-razorpay-event-id"];
@@ -105,8 +103,11 @@ router.post("/", async (req, res) => {
 
         // 5. Parse JSON safely
         let payload;
+
         try {
-            payload = JSON.parse(req.body.toString("utf8"));
+            payload = JSON.parse(
+                req.body.toString("utf8")
+            );
         } catch (error) {
             console.error(
                 "Webhook JSON parsing failed:",
@@ -119,7 +120,6 @@ router.post("/", async (req, res) => {
                 "Malformed webhook JSON payload."
             );
         }
-
 
         // 6. Validate basic payload structure
         if (
@@ -146,7 +146,6 @@ router.post("/", async (req, res) => {
                 "Webhook event type is missing or invalid."
             );
         }
-
 
         // 7. Idempotency check
         const existingEvent = await Event.findOne({
@@ -240,7 +239,8 @@ router.post("/", async (req, res) => {
             }
 
             recoveryAttempt.outcome = outcome;
-            recoveryAttempt.outcomeDetails = outcomeDetails;
+            recoveryAttempt.outcomeDetails =
+                outcomeDetails;
 
             await recoveryAttempt.save();
 
@@ -262,10 +262,11 @@ router.post("/", async (req, res) => {
         let normalizedEvent;
 
         try {
-            normalizedEvent = normalizeRazorpayEvent(
-                payload,
-                providerEventId
-            );
+            normalizedEvent =
+                normalizeRazorpayEvent(
+                    payload,
+                    providerEventId
+                );
         } catch (error) {
             console.error(
                 "Razorpay event normalization failed:",
@@ -279,9 +280,11 @@ router.post("/", async (req, res) => {
             );
         }
 
-
-        // 10. Process payment.failed      
-        if (normalizedEvent.eventType === "payment.failed") {
+        // 10. Process payment.failed
+        if (
+            normalizedEvent.eventType ===
+            "payment.failed"
+        ) {
             if (!process.env.WEBHOOK_USER_ID) {
                 return sendError(
                     res,
@@ -296,15 +299,67 @@ router.post("/", async (req, res) => {
             );
         }
 
-
         // 11. Process other payment lifecycle events
         else {
+
+            // Check whether a successful payment
+            // resolves a pending abandoned checkout.
+            if (normalizedEvent.status === "CAPTURED") {
+
+                const abandonedRecovery =
+                    await RecoveryAttempt.findOne({
+                        action: "RECOVERY_REMINDER",
+                        outcome: "PENDING"
+                    })
+                        .populate("event")
+                        .sort({ createdAt: -1 });
+                if (
+                    abandonedRecovery &&
+                    abandonedRecovery.event &&
+                    abandonedRecovery.event.customerId ===
+                    normalizedEvent.customerId &&
+                    abandonedRecovery.event.eventType ===
+                    "CHECKOUT_ABANDONED" &&
+                    String(abandonedRecovery.event.user) ===
+                    String(process.env.WEBHOOK_USER_ID)
+                ) {
+                    abandonedRecovery.outcome = "RECOVERED";
+
+                    abandonedRecovery.outcomeDetails =
+                        "Customer completed payment after abandoning checkout.";
+
+                    await abandonedRecovery.save();
+
+                    await Event.findOneAndUpdate(
+                        { _id: abandonedRecovery.event._id },
+                        { status: "RECOVERED" }
+                    );
+
+                    console.log(
+                        "ABANDONED CHECKOUT RECOVERED:",
+                        abandonedRecovery._id
+                    );
+
+                    return res.status(200).json({
+                        status: "OK",
+                        message:
+                            "Abandoned checkout recovery completed",
+                        eventId: normalizedEvent.eventId,
+                        recoveryAttemptId:
+                            abandonedRecovery._id,
+                        outcome: "RECOVERED"
+                    });
+                }
+            }
+
             const event = await Event.findOne({
                 eventId: normalizedEvent.eventId
             });
 
             if (event !== null) {
-                event.status = normalizedEvent.status;
+                event.status =
+                    normalizedEvent.status;
+
                 await event.save();
             } else {
                 return res.status(200).json({
@@ -326,6 +381,7 @@ router.post("/", async (req, res) => {
             message: "Webhook processed successfully",
             eventId: normalizedEvent.eventId
         });
+
     } catch (error) {
         console.error(
             "Webhook processing failed:",
