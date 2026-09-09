@@ -1,47 +1,63 @@
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts";
 import EmptyState from "../common/EmptyState";
 
-// data: [{ errorCode, outcome, count }] from GET /analytics/recovery-by-error
-function pivot(rows) {
-  const byError = new Map();
+function pivot(rows = []) {
+  const byAction = new Map();
   for (const row of rows) {
     const key = row.errorCode || "UNKNOWN";
-    if (!byError.has(key)) {
-      byError.set(key, { errorCode: key, RECOVERED: 0, FAILED: 0 });
-    }
-    const entry = byError.get(key);
-    if (row.outcome === "RECOVERED") entry.RECOVERED = row.count;
-    if (row.outcome === "FAILED") entry.FAILED = row.count;
+    if (!byAction.has(key)) byAction.set(key, { label: key, recovered: 0, failed: 0 });
+    const entry = byAction.get(key);
+    const count = Number(row.count) || 0;
+    if (row.outcome === "RECOVERED") entry.recovered += count;
+    if (row.outcome === "FAILED" || row.outcome === "RESOLVED_UNRECOVERED") entry.failed += count;
   }
-  return Array.from(byError.values());
+  return Array.from(byAction.values()).sort((a, b) =>
+    (b.recovered + b.failed) - (a.recovered + a.failed)
+  );
 }
 
 function RecoveryByErrorChart({ data = null }) {
   if (!data || data.length === 0) {
-    return (
-      <EmptyState
-        title="No recovery attempts yet"
-        message="This chart populates once recovery attempts with a completed outcome exist, grouped by the originating error code."
-      />
-    );
+    return <EmptyState title="No recovery attempts yet" message="Completed outcomes grouped by originating error." />;
   }
 
-  const chartData = pivot(data);
+  const rows = pivot(data);
+  const max = Math.max(...rows.map((row) => row.recovered + row.failed), 1);
 
   return (
-    <ResponsiveContainer width="100%" height={Math.max(220, chartData.length * 42)}>
-      <BarChart data={chartData} layout="vertical" margin={{ top: 4, right: 16, left: 8, bottom: 4 }}>
-        <CartesianGrid strokeDasharray="3 3" stroke="var(--rr-border)" />
-        <XAxis type="number" allowDecimals={false} tick={{ fill: "var(--rr-muted)", fontSize: 11 }} />
-        <YAxis type="category" dataKey="errorCode" width={130} tick={{ fill: "var(--rr-muted)", fontSize: 11 }} />
-        <Tooltip
-          contentStyle={{ background: "var(--rr-surface-2)", border: "1px solid var(--rr-border-strong)", borderRadius: 8, fontSize: 12 }}
-        />
-        <Legend wrapperStyle={{ fontSize: 12 }} />
-        <Bar dataKey="RECOVERED" fill="var(--rr-cyan)" radius={[0, 4, 4, 0]} />
-        <Bar dataKey="FAILED" fill="var(--rr-danger)" radius={[0, 4, 4, 0]} />
-      </BarChart>
-    </ResponsiveContainer>
+    <div className="rr-analytics-breakdown">
+      {rows.map((row) => {
+        const total = row.recovered + row.failed;
+        const rate = total ? Math.round((row.recovered / total) * 100) : 0;
+        const width = (total / max) * 100;
+
+        return (
+          <div className={`rr-breakdown-item rr-breakdown-item--${row.label.toLowerCase()}`} key={row.label}>
+            <div className="rr-breakdown-head">
+              <span>{row.label}</span>
+              <strong>{total}</strong>
+            </div>
+            <div className="rr-breakdown-track">
+              <span
+                className="rr-breakdown-failed"
+                style={{ width: `${(row.failed / Math.max(max, 1)) * 100}%` }}
+              />
+              <span
+                className="rr-breakdown-recovered"
+                style={{ width: `${(row.recovered / Math.max(max, 1)) * 100}%` }}
+              />
+            </div>
+            <div className="rr-breakdown-foot">
+              <span>{row.recovered} recovered · {row.failed} failed</span>
+              <strong>{rate}% recovery</strong>
+            </div>
+          </div>
+        );
+      })}
+      <div className="rr-breakdown-legend">
+        <span><i className="recovered" /> Recovered</span>
+        <span><i className="failed" /> Failed</span>
+      </div>
+    </div>
   );
 }
 
