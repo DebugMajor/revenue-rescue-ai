@@ -1,0 +1,4 @@
+eventId,customerId,paymentAmount,errorCode,status,eventType,attemptNumber,timestamp
+csv_ui_final_001,csv_final_customer_001,2499,NETWORK_ERROR,FAILED,PAYMENT_FAILURE,1,2026-09-09T10:00:00Z
+csv_ui_final_002,csv_final_customer_002,4999,INSUFFICIENT_FUNDS,FAILED,PAYMENT_FAILURE,1,2026-09-09T10:01:00Z
+csv_ui_final_003,csv_final_customer_003,1999,,CHECKOUT_ABANDONED,CHECKOUT_ABANDONED,1,2026-09-09T10:02:00Z

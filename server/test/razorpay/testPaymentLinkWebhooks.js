@@ -42,6 +42,7 @@ const runTest = async () => {
 
             const event = await Event.create({
                 eventId,
+                user: new mongoose.Types.ObjectId(process.env.WEBHOOK_USER_ID),
                 eventType: "payment.failed",
                 customerId: `customer_${Date.now()}`,
                 paymentAmount: 50,
@@ -118,7 +119,7 @@ const runTest = async () => {
 
             console.log(
                 updatedAttempt.outcome === test.expectedOutcome &&
-                updatedEvent.status === test.expectedOutcome
+                    updatedEvent.status === test.expectedOutcome
                     ? "✅ TEST PASSED"
                     : "❌ TEST FAILED"
             );
