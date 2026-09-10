@@ -1,0 +1,211 @@
+/* Final polish for the Analytics daily recovery trend */
+.rr-trend-chart-polished {
+  width: 100%;
+  padding-top: 4px;
+}
+
+.rr-trend-chart-polished .rr-trend-summary {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin: 0 0 18px;
+}
+
+.rr-trend-chart-polished .rr-trend-stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.rr-trend-chart-polished .rr-trend-stat span {
+  color: #7f8da3;
+  font-size: 10px;
+}
+
+.rr-trend-chart-polished .rr-trend-stat strong {
+  color: #edf3fb;
+  font-size: 17px;
+  line-height: 1;
+}
+
+.rr-trend-chart-polished .rr-trend-stat strong.is-success {
+  color: #35d6a4;
+}
+
+.rr-trend-chart-polished .rr-trend-stat strong.is-danger {
+  color: #ff6878;
+}
+
+.rr-trend-plot-polished {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 205px;
+}
+
+.rr-trend-y-axis {
+  width: 30px;
+  flex: 0 0 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1px 8px 25px 0;
+  color: #68768b;
+  font-size: 9px;
+  text-align: right;
+}
+
+.rr-trend-chart-area {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+  border-bottom: 1px solid rgba(143, 158, 180, 0.22);
+}
+
+.rr-trend-grid {
+  position: absolute;
+  inset: 0 0 23px;
+  pointer-events: none;
+}
+
+.rr-trend-grid-row {
+  position: absolute;
+  left: 0;
+  right: 0;
+  border-top: 1px dashed rgba(143, 158, 180, 0.11);
+}
+
+.rr-trend-groups {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  gap: 24px;
+  padding: 0 18px;
+}
+
+.rr-trend-group {
+  flex: 1;
+  min-width: 52px;
+  max-width: 160px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.rr-trend-bars {
+  width: 100%;
+  height: calc(100% - 23px);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 8px;
+}
+
+.rr-trend-bar-wrap {
+  position: relative;
+  height: 100%;
+  width: 22px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.rr-trend-bar {
+  display: block;
+  width: 18px;
+  border-radius: 4px 4px 2px 2px;
+  transition: transform 160ms ease, filter 160ms ease;
+  cursor: default;
+}
+
+.rr-trend-bar:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.08);
+}
+
+.rr-trend-bar.recovered {
+  background: linear-gradient(180deg, #45e1b0 0%, #25c998 100%);
+}
+
+.rr-trend-bar.failed {
+  background: linear-gradient(180deg, #ff7a89 0%, #f25568 100%);
+}
+
+.rr-trend-date {
+  height: 23px;
+  display: flex;
+  align-items: flex-end;
+  color: #7f8da3;
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.rr-trend-chart-polished .rr-chart-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 11px;
+  color: #7f8da3;
+  font-size: 9px;
+}
+
+.rr-trend-chart-polished .rr-chart-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.rr-trend-chart-polished .legend-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.rr-trend-chart-polished .legend-dot.recovered {
+  background: #35d6a4;
+}
+
+.rr-trend-chart-polished .legend-dot.failed {
+  background: #ff6878;
+}
+
+.rr-trend-chart-polished .legend-note {
+  margin-left: auto;
+}
+
+@media (max-width: 700px) {
+  .rr-trend-chart-polished .rr-trend-summary {
+    gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .rr-trend-plot-polished {
+    height: 185px;
+  }
+
+  .rr-trend-groups {
+    gap: 7px;
+    padding: 0 2px;
+  }
+
+  .rr-trend-bar-wrap {
+    width: 19px;
+  }
+
+  .rr-trend-bar {
+    width: 13px;
+  }
+
+  .rr-trend-chart-polished .rr-chart-legend {
+    flex-wrap: wrap;
+  }
+
+  .rr-trend-chart-polished .legend-note {
+    width: 100%;
+    margin-left: 0;
+  }
+}

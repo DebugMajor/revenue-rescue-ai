@@ -20,7 +20,8 @@ import {
   getTransactions,
   getTransactionById,
   getRecoveryQueue,
-  processTransaction
+  processTransaction,
+  processCsvBatch
 } from "../services/api";
 
 const getSimulationSteps = (eventType) => {
@@ -57,6 +58,7 @@ function Dashboard() {
   const [simulationStep, setSimulationStep] = useState(0);
   const [simulationEventType, setSimulationEventType] = useState("PAYMENT_FAILURE");
   const [result, setResult] = useState(null);
+  const [csvResult, setCsvResult] = useState(null);
 
   const loadDashboard = async () => {
     setLoading(true);
@@ -145,10 +147,12 @@ function Dashboard() {
   const handleTransactionSubmit = async (transaction) => {
     setSimError(null);
     setResult(null);
+    setCsvResult(null);
     setSubmitting(true);
     setSimulationState("submitting");
     setSimulationStep(0);
-    setSimulationEventType(transaction?.eventType || "PAYMENT_FAILURE");
+    setSimulationEventType(
+      transaction?.eventType || "PAYMENT_FAILURE");
 
     const startedAt = Date.now();
 
@@ -177,6 +181,48 @@ function Dashboard() {
       setSubmitting(false);
     }
   };
+  const handleCsvSubmit = async (csvText) => {
+    setSimError(null);
+    setResult(null);
+    setCsvResult(null);
+    setSubmitting(true);
+    setSimulationState("submitting");
+    setSimulationStep(0);
+
+    const startedAt = Date.now();
+
+    try {
+      const data = await processCsvBatch(csvText);
+
+      const elapsed = Date.now() - startedAt;
+      const minimumPresentationTime = 2200;
+      const remaining = Math.max(
+        0,
+        minimumPresentationTime - elapsed
+      );
+
+      if (remaining) {
+        await new Promise((resolve) =>
+          window.setTimeout(resolve, remaining)
+        );
+      }
+
+      setSimulationStep(3);
+      setCsvResult(data);
+      setSimulationState("complete");
+      setSubmitting(false);
+
+      await loadDashboard();
+    }
+    catch (error) {
+      setSimulationState("error");
+      setSimError(
+        error?.message || "CSV batch processing failed."
+      );
+      setSubmitting(false);
+    }
+  };
+
 
   const simulationSteps = getSimulationSteps(simulationEventType);
 
@@ -222,7 +268,7 @@ function Dashboard() {
                 <h3>Simulate a recovery event</h3>
               </div>
               <span className="rr-dashboard-live-dot">
-                {submitting ? "PROCESSING" : result ? "DECISION READY" : "LIVE ENGINE"}
+                {submitting ? "PROCESSING" : result || csvResult ? "DECISION READY" : "LIVE ENGINE"}
               </span>
             </div>
 
@@ -250,13 +296,13 @@ function Dashboard() {
 
             <div className="rr-dashboard-simulator-grid">
               <div className="rr-dashboard-simulator-form">
-                <TransactionForm onSubmit={handleTransactionSubmit} submitting={submitting} />
+                <TransactionForm onSubmit={handleTransactionSubmit} onCsvSubmit={handleCsvSubmit} submitting={submitting} />
               </div>
 
               <div className="rr-dashboard-simulator-result">
                 {simError && <ErrorState title="Simulation failed" message={simError} />}
 
-                {!simError && !submitting && !result && (
+                {!simError && !submitting && !result && !csvResult && (
                   <div className="rr-simulator-placeholder">
                     <span className="rr-simulator-placeholder-line" />
                     <strong>Run a scenario</strong>
@@ -286,6 +332,7 @@ function Dashboard() {
                   </div>
                 )}
 
+
                 {result && !submitting && !simError && (
                   <div className="rr-simulator-result-scroll">
                     <div className="rr-simulation-result-banner">
@@ -293,16 +340,114 @@ function Dashboard() {
                         <span>Decision returned</span>
                         <strong>Engine run completed</strong>
                       </div>
+
                       <span className="rr-result-ready">● Ready</span>
                     </div>
+
                     <AnalysisResult result={result} />
+
                     {result?.event?.eventId && (
-                      <button type="button" className="rr-dashboard-primary-action rr-dashboard-primary-action--full" onClick={() => navigate(`/transactions/${result.event.eventId}`)}>
+                      <button
+                        type="button"
+                        className="rr-dashboard-primary-action rr-dashboard-primary-action--full"
+                        onClick={() =>
+                          navigate(`/transactions/${result.event.eventId}`)
+                        }
+                      >
                         Open decision trace <span>→</span>
                       </button>
                     )}
                   </div>
                 )}
+
+                {csvResult && !submitting && !simError && (
+                  <div className="rr-simulator-result-scroll">
+                    <div className="rr-simulation-result-banner">
+                      <div>
+                        <span>Batch processing complete</span>
+                        <strong>CSV batch processed</strong>
+                      </div>
+
+                      <span className="rr-result-ready">● Ready</span>
+                    </div>
+
+                    <div className="rr-csv-result-grid">
+                      <div className="rr-csv-result-card">
+                        <span>Total rows</span>
+                        <strong>{csvResult.total ?? 0}</strong>
+                      </div>
+
+                      <div className="rr-csv-result-card">
+                        <span>Processed</span>
+                        <strong>{csvResult.processed ?? 0}</strong>
+                      </div>
+
+                      <div className="rr-csv-result-card">
+                        <span>Recovered</span>
+                        <strong>{csvResult.recovered ?? 0}</strong>
+                      </div>
+
+                      <div className="rr-csv-result-card">
+                        <span>Pending</span>
+                        <strong>{csvResult.pending ?? 0}</strong>
+                      </div>
+
+                      <div className="rr-csv-result-card">
+                        <span>Escalated</span>
+                        <strong>{csvResult.escalated ?? 0}</strong>
+                      </div>
+
+                      <div className="rr-csv-result-card">
+                        <span>Invalid</span>
+                        <strong>{csvResult.invalid ?? 0}</strong>
+                      </div>
+
+                      <div className="rr-csv-result-card">
+                        <span>Duplicates</span>
+                        <strong>{csvResult.duplicates ?? 0}</strong>
+                      </div>
+                    </div>
+
+                    {Array.isArray(csvResult.errors) &&
+                      csvResult.errors.length > 0 && (
+                        <div className="rr-csv-errors">
+                          <div className="rr-csv-errors-title">
+                            Row issues
+                          </div>
+
+                          {csvResult.errors.map((error, index) => (
+                            <div
+                              className="rr-csv-error-row"
+                              key={`${error.row}-${index}`}
+                            >
+                              <span>Row {error.row}</span>
+                              <span>{error.message}</span>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+
+                    <div className="rr-csv-result-actions">
+                      <button
+                        type="button"
+                        className="rr-dashboard-primary-action"
+                        onClick={() => navigate("/transactions")}
+                      >
+                        View transactions <span>→</span>
+                      </button>
+
+                      <button
+                        type="button"
+                        className="rr-dashboard-primary-action"
+                        onClick={() => navigate("/analytics")}
+                      >
+                        View analytics <span>→</span>
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+
               </div>
             </div>
           </div>

@@ -153,6 +153,12 @@ export async function processTransaction(transaction) {
   return post("/events/process", transaction);
 }
 
+export async function processCsvBatch(csvText) {
+  return post("/events/process-csv", {
+    csv: csvText
+  });
+}
+
 export async function getRecentEvents() {
   const data = await get("/events");
   return extractArray(data, ["events"]);

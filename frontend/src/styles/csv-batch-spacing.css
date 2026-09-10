@@ -1,0 +1,80 @@
+/* CSV batch upload — final spacing/divider polish */
+
+/* Replace the literal "OR" with a cleaner section divider. */
+.rr-dashboard-simulator-form .rr-csv-upload-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin: 10px 0 12px;
+  color: var(--rr-muted);
+}
+
+.rr-dashboard-simulator-form .rr-csv-upload-divider::before,
+.rr-dashboard-simulator-form .rr-csv-upload-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--rr-dash-line-strong);
+}
+
+.rr-dashboard-simulator-form .rr-csv-upload-divider span {
+  flex: 0 0 auto;
+  color: var(--rr-muted-2);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+/* Give the Batch CSV label a little breathing room. */
+.rr-dashboard-simulator-form .rr-csv-upload-section > .rr-field {
+  margin-bottom: 8px;
+}
+
+/* Separate the native file picker from the selected-file metadata. */
+.rr-dashboard-simulator-form .rr-csv-upload-section input[type="file"] {
+  margin-bottom: 0;
+}
+
+.rr-dashboard-simulator-form .rr-csv-selected-file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 7px;
+  margin-bottom: 10px;
+  color: var(--rr-muted);
+  font-size: 10px;
+  line-height: 1.35;
+}
+
+.rr-dashboard-simulator-form .rr-csv-selected-file span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--rr-text-dim);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.rr-dashboard-simulator-form .rr-csv-selected-file span:last-child {
+  flex: 0 0 auto;
+  color: var(--rr-muted-2);
+}
+
+/* Keep the processing button clearly separated from the file details. */
+.rr-dashboard-simulator-form .rr-csv-upload-section > button {
+  margin-top: 0;
+}
+
+/* If a CSV error is present, keep it from touching the button. */
+.rr-dashboard-simulator-form .rr-csv-error {
+  margin-bottom: 9px;
+}
+
+@media (max-width: 520px) {
+  .rr-dashboard-simulator-form .rr-csv-upload-divider {
+    margin-block: 9px 11px;
+  }
+}

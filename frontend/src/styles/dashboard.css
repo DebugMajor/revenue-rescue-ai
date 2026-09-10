@@ -248,7 +248,7 @@
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 10px 12px;
-  align-items: end;
+  align-items: start;
 }
 
 .rr-dashboard-simulator-form .rr-field {
@@ -2734,5 +2734,265 @@
 @media (min-width: 1100px) {
   .rr-dashboard-simulator-result .rr-trace-content {
     min-height: 52px;
+  }
+}
+
+
+/* =========================================================
+   Final responsive hardening
+   Scope: dashboard layout only.
+   Existing dashboard rules are preserved.
+   ========================================================= */
+
+/* Prevent narrow dashboard content from forcing horizontal overflow. */
+.rr-dashboard-page,
+.rr-dashboard-page * {
+  box-sizing: border-box;
+}
+
+.rr-dashboard-page {
+  width: 100%;
+  max-width: 1180px;
+  min-width: 0;
+}
+
+/* Keep the dashboard navigation links usable when the command area wraps. */
+.rr-command-links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 13px;
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .rr-dashboard-command-copy {
+    width: 100%;
+  }
+
+  .rr-dashboard-command-copy h2,
+  .rr-dashboard-command-copy p {
+    max-width: 100%;
+  }
+
+  .rr-dashboard-simulator {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .rr-dashboard-simulator-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rr-dashboard-simulator-form {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .rr-dashboard-simulator-result {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .rr-dashboard-command-copy {
+    gap: 10px;
+    padding-inline: 0;
+  }
+
+  .rr-command-links {
+    width: 100%;
+    gap: 9px 12px;
+  }
+
+  .rr-dashboard-simulator-form form {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rr-dashboard-simulator-form .rr-field,
+  .rr-dashboard-simulator-form .rr-field:nth-child(3),
+  .rr-dashboard-simulator-form .rr-field:nth-child(4) {
+    grid-column: 1;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .rr-dashboard-simulator .rr-event-type-toggle {
+    width: 100%;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rr-dashboard-simulator .rr-event-type-option {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .rr-dashboard-simulator input,
+  .rr-dashboard-simulator select,
+  .rr-dashboard-simulator button {
+    max-width: 100%;
+  }
+
+  .rr-dashboard-simulator-result {
+    max-width: 100%;
+  }
+
+  .rr-dashboard-analytics > .rr-dashboard-performance,
+  .rr-dashboard-analytics > .rr-dashboard-breakdown {
+    height: auto;
+    min-height: 0;
+    max-height: none;
+  }
+
+  .rr-dashboard-performance .rr-performance-inner,
+  .rr-dashboard-breakdown .rr-breakdown-content {
+    min-width: 0;
+  }
+}
+
+@media (max-width: 520px) {
+  .rr-dashboard-command {
+    margin-top: 0;
+    margin-bottom: 14px;
+  }
+
+  .rr-dashboard-command-copy {
+    align-items: flex-start;
+    gap: 8px;
+    padding-bottom: 9px;
+  }
+
+  .rr-dashboard-command-copy h2 {
+    font-size: clamp(22px, 7vw, 27px);
+    line-height: 1.08;
+  }
+
+  .rr-dashboard-command-copy p {
+    font-size: 11.5px;
+    line-height: 1.5;
+  }
+
+  .rr-command-links {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .rr-command-divider {
+    display: none;
+  }
+
+  .rr-dashboard-simulator-head {
+    gap: 10px;
+    padding-inline: 14px;
+  }
+
+  .rr-dashboard-panel-description {
+    padding-inline: 14px;
+  }
+
+  .rr-dashboard-simulator-form {
+    padding: 13px 14px 14px;
+  }
+
+  .rr-dashboard-simulator-form form {
+    grid-template-columns: minmax(0, 1fr) !important;
+    gap: 11px;
+  }
+
+  .rr-dashboard-simulator-form .rr-field,
+  .rr-dashboard-simulator-form .rr-field:nth-child(3),
+  .rr-dashboard-simulator-form .rr-field:nth-child(4) {
+    grid-column: 1 !important;
+    min-width: 0;
+    width: 100%;
+  }
+
+  /* The event selector itself must not compress inside a narrow form. */
+  .rr-dashboard-simulator .rr-event-type-toggle {
+    grid-template-columns: 1fr;
+    gap: 7px;
+  }
+
+  .rr-dashboard-simulator .rr-event-type-option {
+    min-height: 40px;
+    padding-inline: 10px;
+    font-size: 10px;
+  }
+
+  .rr-dashboard-simulator .rr-event-type-option span:last-child {
+    min-width: 0;
+  }
+
+  .rr-dashboard-simulator-result {
+    min-height: 180px;
+    max-height: none;
+    padding: 14px;
+  }
+
+  .rr-simulation-progress {
+    grid-template-columns: 1fr 1fr;
+    padding-inline: 12px;
+  }
+
+  .rr-simulation-step {
+    white-space: normal;
+  }
+
+  .rr-dashboard-kpi {
+    min-height: 84px;
+  }
+
+  .rr-dashboard-workspace,
+  .rr-dashboard-analytics {
+    gap: 12px;
+  }
+
+  .rr-dashboard-panel-head {
+    gap: 10px;
+  }
+
+  .rr-decision-content {
+    padding-inline: 14px;
+  }
+
+  .rr-events-table-wrap,
+  .rr-activity-table {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .rr-events-table {
+    min-width: 700px;
+  }
+
+  .rr-activity-head,
+  .rr-activity-row {
+    min-width: 570px;
+  }
+}
+
+@media (max-width: 360px) {
+  .rr-dashboard-simulator-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .rr-dashboard-simulator-result {
+    padding-inline: 12px;
+  }
+
+  .rr-simulation-progress {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rr-dashboard-page *,
+  .rr-dashboard-page *::before,
+  .rr-dashboard-page *::after {
+    scroll-behavior: auto;
   }
 }

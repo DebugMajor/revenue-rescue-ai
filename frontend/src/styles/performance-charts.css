@@ -483,262 +483,364 @@
   }
 }
 
-/* =========================================================
-   Dashboard v6 — performance chart readability
-   ========================================================= */
-.rr-performance-inner {
-  padding: 18px 18px 15px;
+/* Recovery trend chart */
+.rr-trend-chart {
+    width: 100%;
+    padding-top: 8px;
 }
 
-.rr-performance-activity-chart {
-  padding: 14px 4px 11px;
+.rr-trend-summary {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 18px;
 }
 
-.rr-performance-chart-guide {
-  margin-bottom: 10px;
-  font-size: 10px;
+.rr-trend-summary > div {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
 }
 
-.rr-performance-day-grid {
-  height: 205px;
-  grid-template-columns: repeat(7, minmax(58px, 1fr));
-  gap: 10px;
+.rr-trend-summary span {
+    color: #7f8da3;
+    font-size: 11px;
 }
 
-.rr-performance-day-card {
-  grid-template-rows: 24px minmax(0, 1fr) 24px;
-  padding: 0 5px;
-  border-radius: 8px;
+.rr-trend-summary strong {
+    color: #e8eef7;
+    font-size: 18px;
 }
 
-.rr-performance-day-values,
-.rr-performance-day-footer {
-  gap: 6px;
-  font-size: 10px;
+.rr-trend-summary strong.is-success {
+    color: #35d6a4;
 }
 
-.rr-performance-day-values {
-  padding: 0 3px;
+.rr-trend-summary strong.is-danger {
+    color: #ff6878;
 }
 
-.rr-performance-day-bars {
-  gap: 5px;
-  padding: 9px 4px 5px;
-  background-size: 100% 25%;
+.rr-trend-plot {
+    position: relative;
+    height: 170px;
+    width: 100%;
+    border-bottom: 1px solid rgba(130, 145, 165, 0.2);
 }
 
-.rr-performance-column {
-  width: 13px;
-  border-radius: 4px 4px 2px 2px;
+.rr-trend-grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed rgba(130, 145, 165, 0.12);
 }
 
-.rr-performance-legend {
-  gap: 18px;
-  padding-top: 12px;
-  font-size: 10px;
+.rr-trend-grid-line.line-25 {
+    bottom: 25%;
 }
 
-.rr-performance-dot {
-  width: 7px;
-  height: 7px;
+.rr-trend-grid-line.line-50 {
+    bottom: 50%;
 }
 
-@media (max-width: 900px) {
-  .rr-performance-day-grid {
-    grid-template-columns: repeat(4, minmax(58px, 1fr));
-    height: 190px;
-  }
+.rr-trend-grid-line.line-75 {
+    bottom: 75%;
 }
 
-@media (max-width: 560px) {
-  .rr-performance-day-grid {
-    grid-template-columns: repeat(2, minmax(70px, 1fr));
-    height: auto;
-    min-height: 170px;
-  }
+.rr-trend-baseline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid rgba(130, 145, 165, 0.25);
 }
 
-/* =========================================================
-   Dashboard v7 — chart readability pass
-   Make the existing real-data charts substantially easier to read
-   without changing their data or calculation logic.
-   ========================================================= */
-.rr-dashboard-analytics > .rr-dashboard-performance,
-.rr-dashboard-analytics > .rr-dashboard-breakdown {
-  height: 500px;
-  min-height: 500px;
-  max-height: 500px;
+.rr-trend-groups {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    gap: 18px;
+    padding: 0 16px;
 }
 
-.rr-dashboard-performance .rr-performance-inner {
-  padding: 20px 20px 17px;
+.rr-trend-group {
+    flex: 1;
+    min-width: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 9px;
 }
 
-.rr-dashboard-performance .rr-performance-summary {
-  padding-bottom: 16px;
+.rr-trend-bars {
+    height: 145px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 7px;
 }
 
-.rr-dashboard-performance .rr-performance-summary > div:first-child strong {
-  font-size: 18px;
+.rr-trend-bar {
+    display: block;
+    width: 18px;
+    min-height: 0;
+    border-radius: 4px 4px 1px 1px;
+    transition: height 0.25s ease;
 }
 
-.rr-dashboard-performance .rr-performance-label {
-  font-size: 10px;
+.rr-trend-bar.recovered {
+    background: #35d6a4;
 }
 
-.rr-dashboard-performance .rr-performance-metrics {
-  gap: 24px;
+.rr-trend-bar.failed {
+    background: #ff6878;
 }
 
-.rr-dashboard-performance .rr-performance-metrics span {
-  font-size: 10px;
+.rr-trend-date {
+    color: #7f8da3;
+    font-size: 11px;
+    white-space: nowrap;
 }
 
-.rr-dashboard-performance .rr-performance-metrics strong {
-  font-size: 15px;
+.rr-chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 12px;
+    color: #7f8da3;
+    font-size: 10px;
 }
 
-.rr-dashboard-performance .rr-performance-activity-chart {
-  flex: 1 1 auto;
-  min-height: 0;
-  padding: 16px 5px 13px;
+.rr-chart-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
-.rr-dashboard-performance .rr-performance-chart-guide {
-  margin-bottom: 12px;
-  font-size: 10px;
+.rr-chart-legend .legend-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
-.rr-dashboard-performance .rr-performance-day-grid {
-  height: 285px;
-  grid-template-columns: repeat(7, minmax(68px, 1fr));
-  gap: 13px;
+.rr-chart-legend .legend-dot.recovered {
+    background: #35d6a4;
 }
 
-.rr-dashboard-performance .rr-performance-day-card {
-  grid-template-rows: 28px minmax(0, 1fr) 28px;
-  padding: 0 7px;
-  border-radius: 10px;
+.rr-chart-legend .legend-dot.failed {
+    background: #ff6878;
 }
 
-.rr-dashboard-performance .rr-performance-day-values,
-.rr-dashboard-performance .rr-performance-day-footer {
-  gap: 8px;
-  font-size: 11px;
+.rr-chart-legend .legend-note {
+    margin-left: auto;
 }
 
-.rr-dashboard-performance .rr-performance-day-values {
-  padding-inline: 4px;
+@media (max-width: 700px) {
+    .rr-trend-summary {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .rr-trend-groups {
+        gap: 8px;
+        padding: 0 4px;
+    }
+
+    .rr-trend-bar {
+        width: 13px;
+    }
+
+    .rr-chart-legend {
+        flex-wrap: wrap;
+    }
+
+    .rr-chart-legend .legend-note {
+        margin-left: 0;
+        width: 100%;
+    }
 }
 
-.rr-dashboard-performance .rr-performance-day-bars {
-  gap: 8px;
-  padding: 11px 6px 6px;
-  background-size: 100% 20%;
+
+/* Recovery trend chart */
+.rr-trend-chart {
+    width: 100%;
+    padding-top: 8px;
 }
 
-.rr-dashboard-performance .rr-performance-column {
-  width: 19px;
-  border-radius: 5px 5px 2px 2px;
+.rr-trend-summary {
+    display: flex;
+    gap: 32px;
+    margin-bottom: 18px;
 }
 
-.rr-dashboard-performance .rr-performance-day-footer {
-  padding-inline: 4px;
+.rr-trend-summary > div {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
 }
 
-.rr-dashboard-performance .rr-performance-day-footer strong {
-  font-size: 11px;
+.rr-trend-summary span {
+    color: #7f8da3;
+    font-size: 11px;
 }
 
-.rr-dashboard-performance .rr-performance-legend {
-  gap: 22px;
-  padding-top: 14px;
-  font-size: 11px;
+.rr-trend-summary strong {
+    color: #e8eef7;
+    font-size: 18px;
 }
 
-.rr-dashboard-performance .rr-performance-dot {
-  width: 8px;
-  height: 8px;
+.rr-trend-summary strong.is-success {
+    color: #35d6a4;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-content {
-  padding: 18px 20px 20px;
+.rr-trend-summary strong.is-danger {
+    color: #ff6878;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-module {
-  padding-bottom: 17px;
+.rr-trend-plot {
+    position: relative;
+    height: 170px;
+    width: 100%;
+    border-bottom: 1px solid rgba(130, 145, 165, 0.2);
 }
 
-.rr-dashboard-breakdown .rr-breakdown-module--action {
-  padding-top: 16px;
+.rr-trend-grid-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    border-top: 1px dashed rgba(130, 145, 165, 0.12);
 }
 
-.rr-dashboard-breakdown .rr-breakdown-title-row {
-  margin-bottom: 12px;
+.rr-trend-grid-line.line-25 {
+    bottom: 25%;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-kicker {
-  font-size: 9px;
+.rr-trend-grid-line.line-50 {
+    bottom: 50%;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-title {
-  font-size: 13px;
+.rr-trend-grid-line.line-75 {
+    bottom: 75%;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-rows {
-  gap: 14px;
+.rr-trend-baseline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-top: 1px solid rgba(130, 145, 165, 0.25);
 }
 
-.rr-dashboard-breakdown .rr-breakdown-row-head {
-  margin-bottom: 6px;
-  font-size: 10px;
+.rr-trend-groups {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-around;
+    gap: 18px;
+    padding: 0 16px;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-row-head strong {
-  font-size: 10px;
+.rr-trend-group {
+    flex: 1;
+    min-width: 55px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 9px;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-track,
-.rr-dashboard-breakdown .rr-breakdown-segment {
-  height: 12px;
-  min-height: 12px;
+.rr-trend-bars {
+    height: 145px;
+    width: 100%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    gap: 7px;
 }
 
-.rr-dashboard-breakdown .rr-breakdown-meta {
-  margin-top: 6px;
-  font-size: 9.5px;
+.rr-trend-bar {
+    display: block;
+    width: 18px;
+    min-height: 0;
+    border-radius: 4px 4px 1px 1px;
+    transition: height 0.25s ease;
 }
 
-.rr-dashboard-breakdown .rr-chart-legend {
-  gap: 15px;
-  padding-top: 11px;
-  font-size: 10px;
+.rr-trend-bar.recovered {
+    background: #35d6a4;
 }
 
-@media (max-width: 900px) {
-  .rr-dashboard-analytics > .rr-dashboard-performance,
-  .rr-dashboard-analytics > .rr-dashboard-breakdown {
-    height: auto;
-    min-height: 440px;
-    max-height: none;
-  }
-
-  .rr-dashboard-performance .rr-performance-day-grid {
-    height: 245px;
-    grid-template-columns: repeat(4, minmax(68px, 1fr));
-  }
+.rr-trend-bar.failed {
+    background: #ff6878;
 }
 
-@media (max-width: 760px) {
-  .rr-dashboard-performance .rr-performance-day-grid {
-    height: auto;
-    min-height: 225px;
-    grid-template-columns: repeat(3, minmax(72px, 1fr));
-  }
+.rr-trend-date {
+    color: #7f8da3;
+    font-size: 11px;
+    white-space: nowrap;
 }
 
-@media (max-width: 480px) {
-  .rr-dashboard-performance .rr-performance-day-grid {
-    grid-template-columns: repeat(2, minmax(78px, 1fr));
-  }
+.rr-chart-legend {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 12px;
+    color: #7f8da3;
+    font-size: 10px;
 }
+
+.rr-chart-legend > span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.rr-chart-legend .legend-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.rr-chart-legend .legend-dot.recovered {
+    background: #35d6a4;
+}
+
+.rr-chart-legend .legend-dot.failed {
+    background: #ff6878;
+}
+
+.rr-chart-legend .legend-note {
+    margin-left: auto;
+}
+
+@media (max-width: 700px) {
+    .rr-trend-summary {
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .rr-trend-groups {
+        gap: 8px;
+        padding: 0 4px;
+    }
+
+    .rr-trend-bar {
+        width: 13px;
+    }
+
+    .rr-chart-legend {
+        flex-wrap: wrap;
+    }
+
+    .rr-chart-legend .legend-note {
+        margin-left: 0;
+        width: 100%;
+    }
+}
+
