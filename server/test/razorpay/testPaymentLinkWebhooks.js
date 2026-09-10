@@ -6,7 +6,7 @@ import Event from "../../models/Event.js";
 import RecoveryAttempt from "../../models/RecoveryAttempt.js";
 
 dotenv.config({
-    path: "../../.env"
+    path: ".env"
 });
 
 const webhookURL = "http://localhost:5000/webhooks/razorpay";
