@@ -12,6 +12,7 @@ import getRecoveryQueue from "./services/recoveryCenterService.js";
 import recoveryAnalyticsService from "./services/recoveryAnalyticsService.js";
 import authRoutes from "./routes/authRoutes.js";
 import authMiddleware from "./middleware/authMiddleware.js";
+import parseCsvBatch from "./services/csvBatchService.js";
 
 dotenv.config();
 
@@ -42,6 +43,35 @@ app.use(authMiddleware);
 // Connect to Database
 connectDB();
 
+// Process CSV batch
+app.post("/events/process-csv", async (req, res) => {
+  try {
+    const csvText = req.body?.csv;
+
+    if (!csvText || typeof csvText !== "string") {
+      return res.status(400).json({
+        status: "ERROR",
+        message: "CSV content is required."
+      });
+    }
+
+    const result = await parseCsvBatch(
+      csvText,
+      req.user.userId
+    );
+
+    res.json({
+      status: "OK",
+      ...result
+    });
+  }
+  catch (error) {
+    res.status(400).json({
+      status: "ERROR",
+      message: error.message
+    });
+  }
+});
 
 //Process Events 
 app.post("/events/process", async (req, res) => {

@@ -1,8 +1,9 @@
 import Event from "../models/Event.js";
 import RecoveryAttempt from "../models/RecoveryAttempt.js";
 
-const getCustomerHistory = async (customerId, currentEventId) => {
+const getCustomerHistory = async (customerId, currentEventId, userId) => {
     const historicalEvents = await Event.find({
+        user: userId,
         customerId,
         _id: { $ne: currentEventId }
     });

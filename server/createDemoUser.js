@@ -31,7 +31,7 @@ const createDemoUser = async () => {
 
         console.log("Demo user created successfully.");
         console.log("Email:", email);
-        console.log("Password:", password);
+        console.log("Password: [configured locally]");
 
         process.exit(0);
     }

@@ -19,7 +19,8 @@ const processEvent = async (eventData, userId,
 
     const context = await getCustomerHistory(
         newEvent.customerId,
-        newEvent._id
+        newEvent._id,
+        userId
     );
 
     // Non-failed events don't need recovery analysis

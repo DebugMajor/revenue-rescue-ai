@@ -176,17 +176,6 @@ ${JSON.stringify(input, null, 2)}
         }
 
     } catch (error) {
-
-        console.log("Error constructor:", error?.constructor?.name);
-        console.log("Error name:", error?.name);
-        console.log("Error status:", error?.status);
-        console.log("Error code:", error?.code);
-        console.log("Error message:", error?.message);
-
-        // console.log("Gemini error type:", error?.constructor?.name);
-        // console.log("Gemini error status:", error?.status);
-        // console.log("Gemini error message:", error?.message);
-
         throw error;
     }
 };

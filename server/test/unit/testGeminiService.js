@@ -29,7 +29,8 @@ const test = async () => {
 
     const context = await getCustomerHistory(
         event.customerId,
-        event._id
+        event._id,
+        event.user
     );
 
     const risk = calculateRiskScore(
