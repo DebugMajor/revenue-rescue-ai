@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
-import { getHealth } from "../../services/api";
 
 const TITLES = {
   "/dashboard": "Dashboard",
@@ -30,29 +29,7 @@ function Topbar() {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
-  const [status, setStatus] = useState("checking");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    const check = async () => {
-      try {
-        await getHealth();
-        if (!cancelled) setStatus("online");
-      } catch {
-        if (!cancelled) setStatus("offline");
-      }
-    };
-
-    check();
-    const interval = setInterval(check, 30000);
-
-    return () => {
-      cancelled = true;
-      clearInterval(interval);
-    };
-  }, []);
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -69,18 +46,8 @@ function Topbar() {
 
       <div className="rr-topbar-right">
         <div className="rr-status-pill">
-          <span
-            className={`rr-status-dot${
-              status !== "online" ? " rr-status-dot--off" : ""
-            }`}
-          />
-          <span>
-            {status === "checking"
-              ? "Checking…"
-              : status === "online"
-                ? "API Online"
-                : "API Unreachable"}
-          </span>
+          <span className="rr-status-dot" />
+          <span>API Online</span>
         </div>
 
         {user?.email && (
