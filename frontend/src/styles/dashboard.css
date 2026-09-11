@@ -3212,3 +3212,26 @@
   height: auto !important;
   overflow: visible !important;
 }
+
+/* Simulator result: keep the panel fixed and scroll long results */
+.rr-dashboard-simulator-result {
+  min-height: 0 !important;
+  max-height: 560px !important;
+  overflow: hidden !important;
+}
+
+.rr-dashboard-simulator-result .rr-simulator-result-scroll {
+  height: 100% !important;
+  max-height: 520px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 6px;
+  scrollbar-width: thin;
+}
+
+/* Keep the CSV batch result readable without forcing the whole page to grow */
+.rr-dashboard-simulator-result .rr-csv-result-grid,
+.rr-dashboard-simulator-result .rr-csv-errors {
+  max-width: 100%;
+}
+
