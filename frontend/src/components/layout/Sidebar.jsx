@@ -45,13 +45,17 @@ export function BrandMark() {
 function Sidebar() {
   return (
     <aside className="rr-sidebar">
-      <div className="rr-sidebar-brand">
+      <NavLink
+        to="/"
+        className="rr-sidebar-brand"
+        aria-label="Return to Revenue Rescue AI homepage"
+      >
         <img
           src="/logo-wordmark.png"
           alt="Revenue Rescue AI"
           className="rr-sidebar-logo"
         />
-      </div>
+      </NavLink>
 
       <NavGroup label="OPERATIONS" links={OPERATIONS} />
       <NavGroup label="INTELLIGENCE" links={INTELLIGENCE} />
