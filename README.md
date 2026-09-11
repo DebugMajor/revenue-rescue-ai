@@ -6,7 +6,7 @@ Revenue Rescue AI turns failed payments and abandoned checkouts into governed re
 
 > **AI recommends. Policy decides. Code executes.**
 
-[Live Demo](https://revenue-rescue-ai-eight.vercel.app/) · [GitHub Repository](https://github.com/DebugMajor/revenue-rescue-ai) · [Backend](https://revenue-rescue-ai-whqw.onrender.com)
+[Live Demo](https://revenue-rescue-ai-eight.vercel.app/) · [Backend](https://revenue-rescue-ai-whqw.onrender.com)
 
 ---
 
