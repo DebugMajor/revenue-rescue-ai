@@ -35,11 +35,10 @@ const updateAnalysisPolicy = async (analysisId, policy) => {
             policyDecision: policy.decision,
             policyReason: policy.reason
         },
-        { new: true }
+        { returnDocument: "after" }
     );
 
     return updatedAnalysis;
 };
-
 
 export { analyzeEvent, updateAnalysisPolicy };
